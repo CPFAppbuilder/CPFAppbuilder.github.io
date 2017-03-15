@@ -1,1 +1,554 @@
+<html>
+<!--2017/01/04 Mark Yang - stores the pixel data in url, so it is sharable via url link -->
+<!--2016/12/26 Mark Yang - simple pixel editor for CPF web app -->
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+<title>CPF Pixel Editor test</title>
+<head>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body style="font-family:arial;width:100%">
+
+<div class="header">
+<h2><a href="?">CPF Pixel Editor</a></h2>
+</div>
+
+        <div id='pe_area' class='pe_block'></div>
+        <div id='pe_preview_area' class='pe_preview_block'> </div>
+
+    <div id='area' class="cp_block">
+        <div id='cp_area'></div>
+        <ul style="list-style-type:none;margin:1">
+          <li><div id='cp_area'></div></li>
+          <li>Click or tap to pick a color</li>
+          <li>HEX: <input type="text" id="hex" size="7"></input></li>
+          <li>RGB: <input type="text" id="rgb" size="10"></input><br></li>
+        </ul>
+    </div>
+<p>
+<p>
+
+<div class="sharelink_block">
+<!--
+Pixel Art Title:<br>
+<textarea id="pixelart_title" rows="1" cols="90" style="font-family:arial;font-size:14px;">My Pixel Art</textarea><p>
+-->
+<b>Copy this link to share:</b><br>
+<textarea id="sharelink" rows="6" cols="90" style="font-family:arial;font-size:14px;" readonly onclick="this.select();OnShareLinkClick();">Click on pixels to generate link.</textarea>
+</div>
+
+<div class="result"> 
+<p>
+<button onclick="myFunction()">Send</button>
+<button onclick="savepixel()">Save Pixel</button>
+<button onclick="runset()">Run all Pixel</button>
+	
+<p id="demo"> result:</p>
+</div>
+
+<script>
+console.log("location.href: "+location.href);
+console.log("location.protocol: "+location.protocol);
+console.log("location.hostname: "+location.hostname);
+console.log(location);
+
+// helper function
+// from http://www.webdesignerdepot.com
+function rgbToHex(R,G,B) {return toHex(R)+toHex(G)+toHex(B)}
+function toHex(n) {
+  n = parseInt(n,10);
+  if (isNaN(n)) return "00";
+  n = Math.max(0,Math.min(n,255));return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
+}
+
+// create hi-dpi canvas
+// from http://stackoverflow.com/questions/15661339/how-do-i-fix-blurry-text-in-my-html5-canvas
+var PIXEL_RATIO = (function () {
+    var ctx = document.createElement("canvas").getContext("2d"),
+        dpr = window.devicePixelRatio || 1,
+        bsr = ctx.webkitBackingStorePixelRatio ||
+              ctx.mozBackingStorePixelRatio ||
+              ctx.msBackingStorePixelRatio ||
+              ctx.oBackingStorePixelRatio ||
+              ctx.backingStorePixelRatio || 1;
+
+    return dpr / bsr;
+})();
+
+
+createHiDPICanvas = function(w, h, ratio) {
+    if (!ratio) { ratio = PIXEL_RATIO; }
+    var can = document.createElement("canvas");
+    can.width = w * ratio;
+    can.height = h * ratio;
+    can.style.width = w + "px";
+    can.style.height = h + "px";
+    can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    console.log ("can.width: " + can.width + "      can.height: " + can.height);
+    console.log ("can.style.width: " + can.style.width + "      can.style.height: " + can.style.height);
+    return can;
+}
+
+// PixelEditor class
+var PixelEditor = function (options) {
+
+    // convert url title
+    if (typeof options.url_title !== 'undefined') {
+        options.title = options.url_title;
+    }
+
+    // url options for nx & ny
+    if (typeof options.url_nx !== 'undefined') { options.num_x = Number(options.url_nx); }
+    if (typeof options.url_ny !== 'undefined') { options.num_y = Number(options.url_ny); }
+    this.num_x      = Number(options.num_x);
+    this.num_y      = Number(options.num_y);
+
+    // url options for pixel size
+    if (typeof options.url_ps !== 'undefined') { options.pixelsize = Number(options.url_ps); }
+
+    // create & init pixel data
+    this.pixelbytes = 3; // each pixel has 3-bytes for R, G, B
+    this.pixeldata  = new Uint8ClampedArray (this.num_x * this.num_y * this.pixelbytes);
+
+    // init pixel rects	
+    //var r_init = 192;
+    //var g_init = 192;
+    //var b_init = 192;
+	
+    var r_init = 0;
+    var g_init = 0;
+    var b_init = 0;
+    for (var i=0; i<this.num_x * this.num_y * this.pixelbytes; i+=3) {
+        this.pixeldata[i  ] = r_init;
+        this.pixeldata[i+1] = g_init;
+        this.pixeldata[i+2] = b_init;
+    }
+
+    // convert url options
+    if (typeof options.url_pd !== 'undefined') {
+        // read hex and convert it to rgb uint
+        var pd_len = options.num_x * options.num_y * this.pixelbytes * 2;
+        console.log ("pd_len: " + pd_len);
+        pd_len = (pd_len < options.url_pd.length) ? pd_len : options.url_pd.length;
+        var i=0, j=0;
+        while (i<pd_len) {
+            var hex;
+
+            // r
+            hex = "0x" + options.url_pd.charAt(i++) + options.url_pd.charAt(i++);
+            this.pixeldata[j++] = parseInt (hex); // convert hex to int
+
+            // g
+            hex = "0x" + options.url_pd.charAt(i++) + options.url_pd.charAt(i++);
+            this.pixeldata[j++] = parseInt (hex); // convert hex to int
+
+            // b
+            hex = "0x" + options.url_pd.charAt(i++) + options.url_pd.charAt(i++);
+            this.pixeldata[j++] = parseInt (hex); // convert hex to int
+        }
+    }
+
+    //this.canv       = document.createElement("canvas");
+    var ps = + options.pixelsize;
+    var cx = ps * options.num_x;
+    var cy = ps * options.num_y;
+    this.canv       = createHiDPICanvas (cx, cy);  console.log ("cx: " + cx + "      cy: " + cy);
+    this.pixelsize  = Number(options.pixelsize);
+    this.pp         = Number(options.pp);
+    
+    //canv = document.getElementById(options.id);
+    //var ps = + options.pixelsize;
+    //var cx = ps * options.num_x;
+    //var cy = ps * options.num_y;
+ 
+    var canv = this.canv;
+    canv.options = options;
+    canv.options.cx = cx;
+    canv.options.cy = cy;
+    canv.PixelEditor= this;
+
+    // canvas style
+    canv.setAttribute("id", options.id);
+    canv.setAttribute("class",  "pixel_editor");
+    //canv.setAttribute("width",  cx+"dp");
+    //canv.setAttribute("height", cy+"dp");
+    canv.setAttribute("margin", 0);
+    canv.setAttribute("padding",0);
+
+    // add the canvas to the parent element
+    var parentElem = document.getElementById(options.parent_id);
+    parentElem.appendChild(canv);
+
+    canv.options.pixelbytes = this.pixelbytes;
+    canv.options.pixeldata  = this.pixeldata;
+
+    // set color function
+    this.setRGB = function (r, g, b) {
+        var ctx = this.canv.getContext ('2d');
+        ctx.fillStyle = "#" + rgbToHex (r, g, b);
+
+        canv.curR = r;
+        canv.curG = g;
+        canv.curB = b;
+        //alert (rgbhex_style);
+    }
+
+    // init color
+
+    r_init = 255;
+    g_init = 0;
+    b_init = 255;
+    this.setRGB (r_init, g_init, b_init);
+    
+    // draw pixel function
+    this.FillPixel = function (x_idx, y_idx, r, g, b) {
+        var pp = this.pp;
+        var ps = this.pixelsize;
+
+        var ctx = canv.getContext ('2d');
+        var rect_x = x_idx * ps + pp - 0.5;
+        var rect_y = y_idx * ps + pp - 0.5;
+        
+        ps = ps - pp * 2 + 0.5; // pixel size is reduced by paddings
+        
+        //this.setRGB (r, g, b);
+        ctx.fillStyle = "#" + rgbToHex (r, g, b);
+        ctx.fillRect (rect_x, rect_y, ps, ps);
+    }
+
+    // render function
+    this.Render = function () {
+        // draw grids
+        var x, y;
+        var ctx = this.canv.getContext ('2d');
+
+        ctx.clearRect(0, 0, canv.width, canv.height)
+
+        // draw grids
+        if (typeof canv.options.nogrid == 'undefined') {
+            ctx.beginPath();
+            for (y=0; y<=canv.height; y+=ps) {
+                ctx.moveTo(0,y);
+                ctx.lineTo(canv.width,y);
+            }
+            
+            for (x=0; x<=canv.width; x+=ps) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canv.height);
+            }
+            
+            ctx.stroke();
+        }
+
+        // draw pixels
+        //var pp = Number(canv.options.pp);
+
+        var i=0, r, g, b;
+        for (y=0; y<canv.options.num_y; y++) {
+            for (x=0; x<canv.options.num_x; x++) {
+                r = this.pixeldata[i++];
+                g = this.pixeldata[i++];
+                b = this.pixeldata[i++];
+
+                this.FillPixel (x, y, r, g, b);
+            }
+        }
+    }
+    
+    this.CopyPixelData = function (src_pe) {
+        var num_bytes = this.canv.options.num_x*this.canv.options.num_y*this.pixelbytes;
+
+        for (var i=0; i<num_bytes; i++) {
+            this.pixeldata[i] = src_pe.pixeldata[i];
+        }
+    }
+
+    this.getOptions = function () {
+        return this.options;
+    }
+
+    // pixel editor canvas - click event handler
+    if (options.editable != false) {
+        var eventclick = function (event) {
+            var x = event.pageX - this.offsetLeft;
+            var y = event.pageY - this.offsetTop;
+            
+            if (x >= this.width ) x = this.width  - 1;
+            if (y >= this.height) y = this.height - 1;
+            
+            var x_idx = Math.floor (x / ps);
+            var y_idx = Math.floor (y / ps);
+
+            var r = this.curR;
+            var g = this.curG;
+            var b = this.curB;
+            console.log ("r: "+r+"g: "+g+"b: "+b);
+            this.PixelEditor.FillPixel (x_idx, y_idx, r, g, b);
+
+            // record the pixel data
+            var options = canv.options;
+            var num_x = options.num_x;
+            var num_y = options.num_y;
+
+            var dataIdx = (y_idx * num_x + x_idx) * options.pixelbytes;
+
+            options.pixeldata[dataIdx    ] = r;
+            options.pixeldata[dataIdx + 1] = g;
+            options.pixeldata[dataIdx + 2] = b;
+
+            // generate & set the shared link
+            /*
+            var link = ComposeShareLink (options);
+            var shareElemId = options.sharelink_id;
+            var shareElem   = document.getElementById(shareElemId);
+            shareElem.value = link;
+            console.log(shareElem);
+            */
+            UpdateUIElems (options);
+        }
+        
+        canv.addEventListener ('click', eventclick, false);
+    }
+}
+
+// setup color picker
+var ColorPicker = function (options) {
+    var img = new Image();
+    img.onload = function () {
+        var canv = document.createElement("canvas");
+        canv.setAttribute("id", options.id);
+        canv.setAttribute("class", "color_picker");
+
+        canv.setAttribute("width",  this.width);
+        canv.setAttribute("height", this.height);
+        canv.setAttribute("margin", 0);
+        canv.setAttribute("padding", 0);
+
+        var ctx = canv.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+
+        document.getElementById(options.parent_id).appendChild(canv);
+
+        // color picker - click event handler
+        canv.addEventListener('click', function(event) {
+            var x = event.pageX - this.offsetLeft;
+            var y = event.pageY - this.offsetTop;
+
+            console.log(ctx.getImageData(x, y, 1, 1));
+            var imgData = ctx.getImageData(x, y, 1, 1).data;
+            var R = imgData[0];
+            var G = imgData[1];
+            var B = imgData[2];
+
+            console.log ("r: "+R+"  g: "+G+"  b:"+B);
+
+            // show hex
+            var rgbhex_box = document.getElementById ('hex');
+            rgbhex_box.setAttribute ("value", rgbToHex(R,G,B));
+            
+            // show rgb
+            var RGB = R + ',' + G + "," + B;
+            var rgb_box = document.getElementById ('rgb');
+            rgb_box.setAttribute ("value", RGB);
+
+            pe.setRGB (R, G, B);
+
+        }, false);
+
+    }
+    //img.crossOrigin="crossdomain.xml"; //$$$Mark Yang, this is to avoid "Cross-Origin data" exception
+    img.src = options.image_src;
+}
+
+function UpdateUIElems (options) {
+    // update title
+
+    // update share link
+    var link = ComposeShareLink (options);
+    var shareElemId = options.sharelink_id;
+    var shareElem   = document.getElementById(shareElemId);
+    shareElem.value = link;
+    shareElem.select();
+    console.log(shareElem);
+
+    // update preview
+    if (typeof pep != 'undefined') {
+        pep.CopyPixelData (pe);
+        pep.Render();
+    }
+}
+var g_randomRGB ="";
+function ComposeShareLink (options) {
+    console.log ("ComponseSharedLink() - options: " + options);
+    //var titleElem = document.getElementById(options.title_id);
+    //var title = encodeURIComponent(titleElem.value);
+    var pixelbytes = options.pixelbytes;
+    var num_x = options.num_x;
+    var num_y = options.num_y;
+    var pixeldata = options.pixeldata;
+    var sharelink_id = options.sharelink_id;
+
+    // compose the share link
+    var link = location.protocol + "//" + location.hostname + location.pathname + "?";
+    //link = link + "title="+ title;
+    link = link + "nx=" + num_x;
+    link = link + "&ny=" + num_y;
+    var link2 = "";
+    // append pixel data
+    console.log ("ComponseSharedLink() - pixelbytes: " + pixelbytes);
+    console.log ("ComponseSharedLink() - total bytes: " + num_x*num_y*pixelbytes);
+    link = link + "&pd=";
+    for (var i=0; i<num_x*num_y*pixelbytes; i++) {
+
+        link = link + toHex(pixeldata[i]);
+	 
+		
+    }
+		   
+    var i=0;
+    var j=0;
+    var	randomRGB = "";
+    while(i!= num_x*num_y*pixelbytes) {
+	   var rgbparam =  j  + "," + 
+	   pixeldata[i] + "," + 
+	   pixeldata[i+1]  + "," + 
+	   pixeldata[i+2]   + ";";
+ 	   i = i+3;
+	   j = j+1;
+  	   randomRGB += rgbparam;  
+    }
+	
+   g_randomRGB = randomRGB;
+
+    document.getElementById("demo").innerHTML += g_randomRGB + "<br>";
+    console.log ("link: "+link);
+
+    return link;
+}
+
+function OnShareLinkClick () {
+    console.log ("OnShareLinkClick");
+    var intent = new Intent("http://webintents.org/share", 
+                        "text/uri-list", 
+                        window.location.href);
+    window.navigator.startActivity(intent);
+}
+
+var pe_options = {};
+pe_options.parent_id = 'pe_area';
+pe_options.id        = 'pixel_editor';
+pe_options.pixelsize = '40';
+pe_options.num_x     = '5';
+pe_options.num_y     = '5';
+pe_options.pp        = '3';
+pe_options.title_id  = 'pixelart_title';
+pe_options.sharelink_id = 'sharelink';
+pe_options.editable  = true;
+
+// parse URL parameters
+if (location.search.length > 1) {
+    var QueryVar = function (paramname)
+    {
+           var q = window.location.search.substring(1);
+           var v = q.split("&");
+           for (var i=0;i<v.length;i++) {
+                   var pair = v[i].split("=");
+
+                   //console.log (pair[0] + ":" + pair[1]);
+                   if(pair[0] == paramname) { return decodeURIComponent(pair[1]); }
+           }
+           //return (false);
+    }
+
+    pe_options.url_title = QueryVar ('title');
+    pe_options.url_ps = QueryVar ('ps');
+    pe_options.url_nx = QueryVar ('nx');
+    pe_options.url_ny = QueryVar ('ny');
+    pe_options.url_pd = QueryVar ('pd');
+
+    console.log ("pe_options.url_title: "+pe_options.url_title);
+}
+
+// pixel editor
+var pe = new PixelEditor(pe_options);
+//var pe = new PixelEditor({parent_id:'pe_area', id:"pixel_editor", pixelsize:'50', num_x:'7', num_y:'7', pp:'3', title_id: "pixelart_title", sharelink_id:"sharelink"});
+pe.Render();
+
+// pixel editor preview
+var pep_options = {};
+pep_options.parent_id = 'pe_preview_area';
+pep_options.id        = 'pe_preview';
+pep_options.pixelsize = '5';
+pep_options.num_x     = pe_options.num_x;
+pep_options.num_y     = pe_options.num_y;
+pep_options.pp        = '0';
+//pep_options.title_id  = 'pixelart_title';
+//pep_options.sharelink_id = 'sharelink';
+pep_options.url_nx = pe_options.url_nx;
+pep_options.url_ny = pe_options.url_ny;
+pep_options.url_pd = pe_options.url_pd;
+pep_options.editable  = false;
+pep_options.nogrid    = true;
+var pep = new PixelEditor(pep_options);
+pep.Render();
+
+console.log ("pe_options.editable: "+pe_options.editable);
+console.log ("pep_options.editable: "+pep_options.editable);
+
+// color picker
+var cp = new ColorPicker({parent_id:'cp_area', id:"color_picker", image_src:"images/img_colormap.gif"});
+var counter = 0;
+function repeatSelf() {
+   //document.getElementById("demo").innerHTML +=  counter++;
+   //var tmp = 'cpf.set(\"rgb led\",Math.floor((Math.random() * 255) + 1) ,Math.floor((Math.random() * 255) + 1) ,Math.floor((Math.random() * 255) + 1) );';
+     //if(cpf) {
+     //   cpf.setChainableLed(randomRGB);
+	sensordata = cpf.get("light sensor");
+	document.getElementById("demo").innerHTML += sensordata + "<br>";
+	//console.log ("num_x:" + num_x+ " num_x:"+ num_x+ " pixeldata[" + i + "]" +  pixeldata[i] );
+    //}
+   setTimeout(repeatSelf,1000);
+}
+	
+var sensordata;
+function myFunction() {
+	
+  if(cpf){
+    cpf.setChainableLed(g_randomRGB);
+	g_randomRGB = "";	
+   }  	
+	//repeatSelf();
+}
+	
+var fLen,i;
+var junk = new Array();
+	
+function savepixel() {
+   junk.push(g_randomRGB);
+   document.getElementById("demo").innerHTML += junk + "<br>";
+}
+
+function runset(){
+   fLen = junk.length;
+   document.getElementById("demo").innerHTML += "fLen:" + fLen + "<br>";
+   for (i = 0; i < fLen; i++) {    
+     if(cpf){
+       document.getElementById("demo").innerHTML += "cpf:" + junk[i] + "<br>";     
+       cpf.setChainableLed(junk[i]);
+     }
+   } 
+}
+
+function setup(){
+    if(cpf)
+      var ret = cpf.setPinMode('[\"resetPin\"],[\"setPinMode\", \"analog\", 0, \"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"setPinMode\", \"digital\", 2,\"OUTPUT\"],[\"setPinMode\", \"digital\", 3,\"PWM\"],[\"grove_newChainableLED\", 7, 8, 50]'); 
+    document.getElementById("demo").innerHTML += ret + "<br>";
+}
+</script>
+ 
+
+</body>
+
+</html>
