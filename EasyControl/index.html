@@ -29,9 +29,9 @@
 				<td><font color="blue"><b>blue</b></font></td>
 			</tr>
 			<tr style="text-align: center;">
-				<td id="redvalue">&nbsp</td>
-				<td id="greenvalue">&nbsp</td>
-				<td id="bluevalue">&nbsp</td>
+				<td id="redvalue">0</td>
+				<td id="greenvalue">0</td>
+				<td id="bluevalue">0</td>
 			</tr>
 			<tr>
 				<td><input Onchange="changeColor();" type="range" id="rled" class="ledbar" value="0" min="0" max="255"></td>
@@ -72,9 +72,9 @@
 		var Gled = document.getElementById("gled").value;
 		var Bled = document.getElementById("bled").value;
 		
-		document.getElementById("redvalue").style.backgroundColor = 'rgb(' + Rled + ',0,0)';
-		document.getElementById("greenvalue").style.backgroundColor = 'rgb(0,' + Gled + ',0)';
-		document.getElementById("bluevalue").style.backgroundColor = 'rgb(0,0,' + Bled + ')';
+		document.getElementById("redvalue").innerHTML = Rled;
+		document.getElementById("greenvalue").innerHTML = Gled;
+		document.getElementById("bluevalue").innerHTML = Bled;
 		
 		document.getElementById("showcolor").style.backgroundColor = 'rgb(' + Rled + ',' + Gled + ',' + Bled + ')';
 		
