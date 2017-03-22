@@ -1,1 +1,91 @@
 
+//functions//
+int cpf.request(String action);
+
+Parameters
+action parameter can be divided in two main parts: Initial pin and command
+
+
+
+Arduino Leonardo board:
+
+Initial pin: setup the mode for pin
+["resetPin"]  //prefix
+["setPinMode", “analog”, <0~5>, “INPUT”]
+["setPinMode", “digital”, <0~13>, “OUTPUT”]
+["setPinMode", “digital”, <0~13>, “INPUT”]
+[“setPinMode”, “digital”, <0~13>, “SERVO”]
+[“setPinMode”, “digital”, <0~13>, “TONE”]
+[“grove_newChainableLED”, 7, 8, <num of leds>]
+
+Command:
+[“digitalWrite”, <0~13>, <0 or 1>]
+[“analogWrite”, <0~5>, <0 or 255>]
+[“grove_setColorRGB”, <num led to control: from 0>, <R:0~255>, <G:0~255>, <B:0~255>]
+
+For example:
+1)var ret = cpf. request ('[\"resetPin\"],[\"setPinMode\", \"analog\", 0, \"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"grove_newChainableLED\", 7, 8, 1]');  
+2)var ret = cpf. request ('[\"digitalwrite\", 1, \"LOW\"]');
+var ret = cpf. request ('[\"digitalwrite\", 1,\"LOW\"],[\"digitalwrite\", 3, \"LOW\"] ');
+
+
+
+LED101 board:
+
+Initial pin:
+[“resetPin”]
+[“setPinMode”, “digital”, <0 or 1>, “OUTPUT”]
+
+Command:
+["digitalWrite", <0~3>, <0 or 1>]
+
+For example:
+var ret = cpf. request ('[\"digitalWrite\", <0~3>, <0 or 1>]');
+
+
+
+Braccio Robotic Arm:
+
+Initial pin:
+["resetPin"]
+["setPinMode", "digital", 3, "SERVO"]
+["setPinMode", "digital", 5, "SERVO"]
+["setPinMode", "digital", 6, "SERVO"]
+["setPinMode", "digital", 9, "SERVO"]
+["setPinMode", "digital", 10, "SERVO"]
+["setPinMode", "digital", 11, "SERVO"]
+
+Command:
+ ["braccio_movement", <delay: ms>, <S1: 0~180>, <S2: 0~180>, <S3: 0~180>, <S4: 0~180>, <S5: 0~180>, <S6: 0~180>]
+ 移動手臂(優雅的移動): ["braccio_movement", 20, 180, 0, 180, 180, 180, 67]
+	 .第一個參數是delay time, 數字越小移動越快, 假設delay time為n, 則6個servo 每n毫秒都會移動1度, 直到你設定的角度
+   .2~7個參數分別對應6個servo, 由底座開始算第一個, 數值(角度) 0~180
+ 移動手臂(快速移動): ["analogWrite", 3, 180]
+
+
+
+Servo:
+
+Initial pin:
+["servo_init", <pin>, <pos>, <minPulse>, <maxPulse>]
+
+Command:
+慢速移動Servo : ["servo_pos_speed", <pin>, <targetPos>, <delay>] 前進1, 暫停<delay>毫秒, 再次前進1, 直到抵達目標位置
+快速移動Servo : ["servo_pos", <pin>, <targetPos>]
+
+
+
+
+
+Return value
+
+LED 101 error
+{"errCode":2100, "errMsg": JSON is not valid.}
+
+Arduino error
+{"errCode":2200, "errMsg": JSON is not valid.}
+{"errCode": 2201, "errMsg": "Exception('API is not valid',)"}
+{"errCode": 2201, "errMsg": "SerialException('Attempting to use a port that is not open',)"}
+{"errCode": 2202, "errMsg": Uploading Arduino FW.}
+
+
