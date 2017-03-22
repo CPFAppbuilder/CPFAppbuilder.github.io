@@ -6,7 +6,7 @@ Parameters
 	action parameter can be divided in two main parts: Initial pin and command
 
 
-
+	
 	Arduino Leonardo board:
 
 	Initial pin: setup the mode for pin
