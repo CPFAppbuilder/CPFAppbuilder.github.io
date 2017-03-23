@@ -5,7 +5,6 @@ int cpf.request(String action);
 Parameters
 	action parameter can be divided in two main parts: Initial pin and command
 
-
 	
 	Arduino Leonardo board:
 
@@ -43,7 +42,6 @@ Parameters
 	var ret = cpf. request ('[\"digitalWrite\", <0~3>, <0 or 1>]');
 
 
-
 	Braccio Robotic Arm:
 
 	Initial pin:
@@ -63,7 +61,6 @@ Parameters
 	 移動手臂(快速移動): ["analogWrite", 3, 180]
 
 
-
 	Servo:
 
 	Initial pin:
@@ -81,7 +78,7 @@ Return value
 	{"errCode":2100, "errMsg": JSON is not valid.}
 
 	Arduino error
-	{"errCode":2200, "errMsg": JSON is not valid.}
+	{"errCode": 2200, "errMsg": JSON is not valid.}
 	{"errCode": 2201, "errMsg": "Exception('API is not valid',)"}
 	{"errCode": 2201, "errMsg": "SerialException('Attempting to use a port that is not open',)"}
 	{"errCode": 2202, "errMsg": Uploading Arduino FW.}
