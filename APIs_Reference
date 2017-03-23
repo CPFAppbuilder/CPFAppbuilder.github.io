@@ -10,12 +10,12 @@ Parameters
 
 	Initial pin: setup the mode for pin
 	["resetPin"]  //prefix
-	["setPinMode", “analog”, <0~5>, “INPUT”]
-	["setPinMode", “digital”, <0~13>, “OUTPUT”]
-	["setPinMode", “digital”, <0~13>, “INPUT”]
-	[“setPinMode”, “digital”, <0~13>, “SERVO”]
-	[“setPinMode”, “digital”, <0~13>, “TONE”]
-	[“grove_newChainableLED”, 7, 8, <num of leds>]
+	["setPinMode", "analog", <0~5>, "INPUT"]
+	["setPinMode", "digital", <0~13>, "OUTPUT"]
+	["setPinMode", "digital", <0~13>, "INPUT"]
+	["setPinMode", "digital", <0~13>, "SERVO"]
+	["setPinMode", "digital", <0~13>, "TONE"]
+	["grove_newChainableLED", 7, 8, <num of leds>]
 
 	Command:
 	[“digitalWrite”, <0~13>, <0 or 1>]
@@ -54,11 +54,11 @@ Parameters
 	["setPinMode", "digital", 11, "SERVO"]
 
 	Command:
-	 ["braccio_movement", <delay: ms>, <S1: 0~180>, <S2: 0~180>, <S3: 0~180>, <S4: 0~180>, <S5: 0~180>, <S6: 0~180>]
-	 移動手臂(優雅的移動): ["braccio_movement", 20, 180, 0, 180, 180, 180, 67]
-	   .第一個參數是delay time, 數字越小移動越快, 假設delay time為n, 則6個servo 每n毫秒都會移動1度, 直到你設定的角度
-	   .2~7個參數分別對應6個servo, 由底座開始算第一個, 數值(角度) 0~180
-	 移動手臂(快速移動): ["analogWrite", 3, 180]
+	["braccio_movement", <delay: ms>, <S1: 0~180>, <S2: 0~180>, <S3: 0~180>, <S4: 0~180>, <S5: 0~180>, <S6: 0~180>]
+	慢速移動手臂: ["braccio_movement", 20, 180, 0, 180, 180, 180, 67]
+	   -第一個參數是delay time, 數字越小移動越快, 假設delay time為n, 則6個servo 每n毫秒都會移動1度, 直到你設定的角度
+	   -2~7個參數分別對應6個servo, 由底座開始算第一個, 數值(角度) 0~180
+	快速移動手臂: ["analogWrite", 3, 180]
 
 
 	Servo:
