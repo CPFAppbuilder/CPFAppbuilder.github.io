@@ -25,7 +25,7 @@ Parameters
 	For example:
 	1)var ret = cpf.request ('[\"resetPin\"],[\"setPinMode\", \"analog\", 0, \"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"grove_newChainableLED\", 7, 8, 1]');  
 	2)var ret = cpf.request ('[\"digitalwrite\", 1, \"LOW\"]');
-	 var ret = cpf.request ('[\"digitalwrite\", 1,\"LOW\"],[\"digitalwrite\", 3, \"LOW\"] ');
+	  var ret = cpf.request ('[\"digitalwrite\", 1,\"LOW\"],[\"digitalwrite\", 3, \"LOW\"] ');
 
 
 
