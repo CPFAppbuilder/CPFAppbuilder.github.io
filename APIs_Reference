@@ -23,9 +23,9 @@ Parameters
 	[“grove_setColorRGB”, <num led to control: from 0>, <R:0~255>, <G:0~255>, <B:0~255>]
 
 	For example:
-	1)var ret = cpf. request ('[\"resetPin\"],[\"setPinMode\", \"analog\", 0, \"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"grove_newChainableLED\", 7, 8, 1]');  
-	2)var ret = cpf. request ('[\"digitalwrite\", 1, \"LOW\"]');
-	var ret = cpf. request ('[\"digitalwrite\", 1,\"LOW\"],[\"digitalwrite\", 3, \"LOW\"] ');
+	1)var ret = cpf.request ('[\"resetPin\"],[\"setPinMode\", \"analog\", 0, \"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"grove_newChainableLED\", 7, 8, 1]');  
+	2)var ret = cpf.request ('[\"digitalwrite\", 1, \"LOW\"]');
+	 var ret = cpf.request ('[\"digitalwrite\", 1,\"LOW\"],[\"digitalwrite\", 3, \"LOW\"] ');
 
 
 
@@ -39,7 +39,7 @@ Parameters
 	["digitalWrite", <0~3>, <0 or 1>]
 
 	For example:
-	var ret = cpf. request ('[\"digitalWrite\", <0~3>, <0 or 1>]');
+	var ret = cpf.request('[\"digitalWrite\", 2, 1]');
 
 
 	Braccio Robotic Arm:
@@ -55,10 +55,12 @@ Parameters
 
 	Command:
 	["braccio_movement", <delay: ms>, <S1: 0~180>, <S2: 0~180>, <S3: 0~180>, <S4: 0~180>, <S5: 0~180>, <S6: 0~180>]
-	慢速移動手臂: ["braccio_movement", 20, 180, 0, 180, 180, 180, 67]
 	   -第一個參數是delay time, 數字越小移動越快, 假設delay time為n, 則6個servo 每n毫秒都會移動1度, 直到你設定的角度
 	   -2~7個參數分別對應6個servo, 由底座開始算第一個, 數值(角度) 0~180
-	快速移動手臂: ["analogWrite", 3, 180]
+	
+	For example:
+	慢速移動手臂: var ret = cpf.request('[\"braccio_movement\", 20, 180, 0, 180, 180, 180, 67]');
+	快速移動手臂: var ret = cpf.request('[\"analogWrite\", 3, 180]');
 
 
 	Servo:
@@ -69,6 +71,10 @@ Parameters
 	Command:
 	慢速移動Servo : ["servo_pos_speed", <pin>, <targetPos>, <delay>] 前進1, 暫停<delay>毫秒, 再次前進1, 直到抵達目標位置
 	快速移動Servo : ["servo_pos", <pin>, <targetPos>]
+
+	For example:
+        var ret = cpf.request('[\"servo_pos_speed\", 4, 60, 20]');
+	var ret = cpf.request('[\"servo_pos\", 4, 60]');
 
 
 
