@@ -69,12 +69,12 @@ Parameters
 	["servo_init", <pin>, <pos>, <minPulse>, <maxPulse>]
 
 	Command:
-	慢速移動Servo : ["servo_pos_speed", <pin>, <targetPos>, <delay>] 前進1, 暫停<delay>毫秒, 再次前進1, 直到抵達目標位置
-	快速移動Servo : ["servo_pos", <pin>, <targetPos>]
+	["servo_pos_speed", <pin>, <targetPos>, <delay>] 前進1, 暫停<delay>毫秒, 再次前進1, 直到抵達目標位置
+	["servo_pos", <pin>, <targetPos>]
 
 	For example:
-        var ret = cpf.request('[\"servo_pos_speed\", 4, 60, 20]');
-	var ret = cpf.request('[\"servo_pos\", 4, 60]');
+        慢速移動Servo: var ret = cpf.request('[\"servo_pos_speed\", 4, 60, 30]');
+	快速移動Servo: var ret = cpf.request('[\"servo_pos\", 4, 60]');
 
 
 
