@@ -89,4 +89,55 @@ Return value
 	{"errCode": 2201, "errMsg": "SerialException('Attempting to use a port that is not open',)"}
 	{"errCode": 2202, "errMsg": Uploading Arduino FW.}
 
+------------------------------------------------------------------------
+//Standard lesson APIs
+
+//Set white led on or off
+cpf.set("white led", power);
+Parameters
+	power:1 means on
+	power:0 means off
+
+//Set fan speed
+cpf.set("fan", speed);
+Parameters
+	speed: range 0-255
+	
+//Set RBG LED
+cpf.set("rgb led", r, g, b);
+Parameters
+	r: red color, range 0-255
+	g: green color, range 0-255
+	b: blue color, range 0-255
+
+//Set 4 relay shiled
+
+//Get light sensor data
+int cpf.get("light sensor");
+Return value
+	the return value is 0-1023
+	
+//Get temperature data
+int cpf.get("temperature sensor");
+Return value 
+	the return value is 0-1023
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
