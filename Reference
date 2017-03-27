@@ -3,7 +3,7 @@
 int cpf.request(String action);
 
 Parameters
-	action parameter can be divided in two main parts: Initial pin and command
+	Action parameter can be divided in two main parts: Initial pin and command
 
 	
 	Arduino Leonardo board:
