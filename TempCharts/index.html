@@ -1,0 +1,134 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+	
+	var json = [];
+	var index = index || 1;
+	
+	function readTemps() {
+	
+		if(cpf) {
+
+			var obj = [];
+			var tempdata = cpf.get("temperature sensor");
+			var Celsius = toCelsius(tempdata);
+			
+			var d = new Date();
+			var time = d.getHours() + ":" +d.getMinutes() + ":" + d.getSeconds();
+			
+			obj = {"date": time, "temperature": Celsius};
+			json.push(obj);
+			
+			document.getElementById("temp").innerHTML = "第 " + index + " 筆";
+			
+			index += 1;
+		}
+		
+		setTimeout("readTemps()", 1000);
+	}
+	
+	function upload() {
+		var str = JSON.stringify(json);
+		aop.setStore("store1", str);
+		alert("Uploaded Success!");
+	}
+	
+	
+	function download() {
+	
+		google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);	
+	
+	}
+	
+	function drawChart() {
+	
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Time of Day');
+      data.addColumn('number', 'Temperature Data');
+	  
+	  var store = aop.getStore("store1");
+	  var result = JSON.parse(store);
+	  
+	  for (var i = 0; i < result.length; i++){
+		
+		data.addRows([
+			[result[i].date, result[i].temperature]
+		  ]);
+		  
+	  }
+	  
+      var options = {
+		fontSize: 20,
+        width: 900,
+        height: 500,
+		legend: {position: 'top', textStyle: {color: '1FB3DF', fontSize: 24}},
+        vAxes: {
+          // Adds titles to each axis.
+          0: {
+			title: 'Temps (Celsius)',
+			titleTextStyle: {fontSize: 26}
+		  }
+        },
+		hAxes: {
+          // Adds titles to each axis.
+          0: {
+			title: 'Time of day\n' + '共 ' + result.length + ' 筆',
+			titleTextStyle: {fontSize: 26}
+		  }
+        },
+		colors:['#1FB3DF']
+      };
+
+      var chart = new google.visualization.AreaChart(document.getElementById('dashboard'));
+
+      chart.draw(data, options);
+	  
+    }
+	
+	// Temperature
+	function toCelsius(value) {
+		var resistance = parseFloat((1023-value) * 10000 / value);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+		
+		return Math.round(temperature * 100) / 100;
+	}
+	
+	// cpf setup
+	function setup(){
+		if(cpf)
+			var ret = cpf.setPinMode('[\"resetPin\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"]'); 
+	}
+	
+  </script>
+  <style>
+	.button {
+		width: 160px;
+		height: 65px;
+		background-color: #ddd;
+		border-radius: 5px;
+		font-size: 24px;
+	}
+  </style>
+</head>
+<body>
+	<table>
+		<tr style="text-align: center; font-size: 22px;">
+			<td>一</td>
+			<td>二</td>
+			<td>三</td>
+		</tr>
+		<tr>
+			<td><button class="button" onclick="readTemps()">讀取溫度</button></td>
+			<td><button class="button" onclick="upload()">上傳資料</button></td>
+			<td><button class="button" onclick="download()">製作圖表</button></td>
+		</tr>
+		<tr>
+			<td id="temp" style="text-align:center; font-size: 18px;"></td>
+		</tr>
+	</table>
+	
+	<div style="margin-left: -40px; margin-top: 25px;" id="dashboard"></div>
+</body>
+</html>
