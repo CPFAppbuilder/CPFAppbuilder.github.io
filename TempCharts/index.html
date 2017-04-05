@@ -3,8 +3,8 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
 	
-	var json = [];
-	var index = index || 1;
+	var json = [];             // 儲存溫度資料
+	var index = index || 1;    // 顯示筆數
 	
 	function readTemps() {
 	
@@ -12,10 +12,10 @@
 
 			var obj = [];
 			var tempdata = cpf.get("temperature sensor");
-			var Celsius = toCelsius(tempdata);
+			var Celsius = toCelsius(tempdata);  // 轉換為攝氏溫標
 			
 			var d = new Date();
-			var time = d.getHours() + ":" +d.getMinutes() + ":" + d.getSeconds();
+			var time = d.getHours() + ":" +d.getMinutes() + ":" + d.getSeconds();   // 時：分：秒
 			
 			obj = {"date": time, "temperature": Celsius};
 			json.push(obj);
@@ -25,16 +25,18 @@
 			index += 1;
 		}
 		
-		setTimeout("readTemps()", 1000);
+		setTimeout("readTemps()", 1000);   // 每一秒執行一次 readTemps()
 	}
 	
+	// 將json上傳至雲端
 	function upload() {
 		var str = JSON.stringify(json);
 		aop.setStore("store1", str);
 		alert("Uploaded Success!");
 	}
 	
-	
+	// 呼叫google的圖表功能
+	// 官方資料：https://developers.google.com/chart/interactive/docs/quick_start?hl=zh-TW
 	function download() {
 	
 		google.charts.load('current', {'packages':['corechart']});
@@ -42,11 +44,12 @@
 	
 	}
 	
+	// 製作圖表
 	function drawChart() {
 	
       var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Time of Day');
-      data.addColumn('number', 'Temperature Data');
+      data.addColumn('string', 'Time of Day');			// 定義X軸的型態及欄位名稱
+      data.addColumn('number', 'Temperature Data');		
 	  
 	  var store = aop.getStore("store1");
 	  var result = JSON.parse(store);
@@ -54,15 +57,16 @@
 	  for (var i = 0; i < result.length; i++){
 		
 		data.addRows([
-			[result[i].date, result[i].temperature]
-		  ]);
+			[result[i].date, result[i].temperature] 	// 加入時間與溫度的資料
+		  ]);											// 例：data.addRows([10:30:05, 22.52],[10:30:10, 23.01],...);
 		  
 	  }
 	  
+	  // 圖表的選項(外觀)設定
       var options = {
-		fontSize: 20,
-        width: 900,
-        height: 500,
+		fontSize: 20,	// 字型大小
+        width: 900,		// 圖表寬度
+        height: 500,	// 圖表長度
 		legend: {position: 'top', textStyle: {color: '1FB3DF', fontSize: 24}},
         vAxes: {
           // Adds titles to each axis.
@@ -78,16 +82,16 @@
 			titleTextStyle: {fontSize: 26}
 		  }
         },
-		colors:['#1FB3DF']
+		colors:['#1FB3DF']		// 曲線的顏色
       };
 
-      var chart = new google.visualization.AreaChart(document.getElementById('dashboard'));
+      var chart = new google.visualization.AreaChart(document.getElementById('dashboard'));	
 
       chart.draw(data, options);
 	  
     }
 	
-	// Temperature
+	// 攝氏轉換
 	function toCelsius(value) {
 		var resistance = parseFloat((1023-value) * 10000 / value);
 		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
