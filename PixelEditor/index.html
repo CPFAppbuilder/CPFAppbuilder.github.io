@@ -113,9 +113,6 @@ var PixelEditor = function (options) {
     this.pixeldata  = new Uint8ClampedArray (this.num_x * this.num_y * this.pixelbytes);
 
     // init pixel rects	
-    //var r_init = 192;
-    //var g_init = 192;
-    //var b_init = 192;
 	
     var r_init = 0;
     var g_init = 0;
@@ -150,18 +147,12 @@ var PixelEditor = function (options) {
         }
     }
 
-    //this.canv       = document.createElement("canvas");
     var ps = + options.pixelsize;
     var cx = ps * options.num_x;
     var cy = ps * options.num_y;
     this.canv       = createHiDPICanvas (cx, cy);  console.log ("cx: " + cx + "      cy: " + cy);
     this.pixelsize  = Number(options.pixelsize);
     this.pp         = Number(options.pp);
-    
-    //canv = document.getElementById(options.id);
-    //var ps = + options.pixelsize;
-    //var cx = ps * options.num_x;
-    //var cy = ps * options.num_y;
  
     var canv = this.canv;
     canv.options = options;
@@ -172,8 +163,6 @@ var PixelEditor = function (options) {
     // canvas style
     canv.setAttribute("id", options.id);
     canv.setAttribute("class",  "pixel_editor");
-    //canv.setAttribute("width",  cx+"dp");
-    //canv.setAttribute("height", cy+"dp");
     canv.setAttribute("margin", 0);
     canv.setAttribute("padding",0);
 
@@ -192,7 +181,6 @@ var PixelEditor = function (options) {
         canv.curR = r;
         canv.curG = g;
         canv.curB = b;
-        //alert (rgbhex_style);
     }
 
     // init color
@@ -243,7 +231,6 @@ var PixelEditor = function (options) {
         }
 
         // draw pixels
-        //var pp = Number(canv.options.pp);
 
         var i=0, r, g, b;
         for (y=0; y<canv.options.num_y; y++) {
@@ -358,7 +345,6 @@ var ColorPicker = function (options) {
         }, false);
 
     }
-    //img.crossOrigin="crossdomain.xml"; //$$$Mark Yang, this is to avoid "Cross-Origin data" exception
     img.src = options.image_src;
 }
 
@@ -382,8 +368,6 @@ function UpdateUIElems (options) {
 var g_randomRGB ="";
 function ComposeShareLink (options) {
     console.log ("ComponseSharedLink() - options: " + options);
-    //var titleElem = document.getElementById(options.title_id);
-    //var title = encodeURIComponent(titleElem.value);
     var pixelbytes = options.pixelbytes;
     var num_x = options.num_x;
     var num_y = options.num_y;
@@ -456,10 +440,8 @@ if (location.search.length > 1) {
            for (var i=0;i<v.length;i++) {
                    var pair = v[i].split("=");
 
-                   //console.log (pair[0] + ":" + pair[1]);
                    if(pair[0] == paramname) { return decodeURIComponent(pair[1]); }
            }
-           //return (false);
     }
 
     pe_options.url_title = QueryVar ('title');
@@ -473,7 +455,6 @@ if (location.search.length > 1) {
 
 // pixel editor
 var pe = new PixelEditor(pe_options);
-//var pe = new PixelEditor({parent_id:'pe_area', id:"pixel_editor", pixelsize:'50', num_x:'7', num_y:'7', pp:'3', title_id: "pixelart_title", sharelink_id:"sharelink"});
 pe.Render();
 
 // pixel editor preview
@@ -484,8 +465,6 @@ pep_options.pixelsize = '5';
 pep_options.num_x     = pe_options.num_x;
 pep_options.num_y     = pe_options.num_y;
 pep_options.pp        = '0';
-//pep_options.title_id  = 'pixelart_title';
-//pep_options.sharelink_id = 'sharelink';
 pep_options.url_nx = pe_options.url_nx;
 pep_options.url_ny = pe_options.url_ny;
 pep_options.url_pd = pe_options.url_pd;
@@ -501,14 +480,8 @@ console.log ("pep_options.editable: "+pep_options.editable);
 var cp = new ColorPicker({parent_id:'cp_area', id:"color_picker", image_src:"images/img_colormap.gif"});
 var counter = 0;
 function repeatSelf() {
-   //document.getElementById("demo").innerHTML +=  counter++;
-   //var tmp = 'cpf.set(\"rgb led\",Math.floor((Math.random() * 255) + 1) ,Math.floor((Math.random() * 255) + 1) ,Math.floor((Math.random() * 255) + 1) );';
-     //if(cpf) {
-     //   cpf.setChainableLed(randomRGB);
-	sensordata = cpf.get("light sensor");
-	document.getElementById("demo").innerHTML += sensordata + "<br>";
-	//console.log ("num_x:" + num_x+ " num_x:"+ num_x+ " pixeldata[" + i + "]" +  pixeldata[i] );
-    //}
+   sensordata = cpf.get("light sensor");
+   document.getElementById("demo").innerHTML += sensordata + "<br>";
    setTimeout(repeatSelf,1000);
 }
 	
@@ -519,7 +492,6 @@ function myFunction() {
     cpf.setChainableLed(g_randomRGB);
 	g_randomRGB = "";	
    }  	
-	//repeatSelf();
 }
 	
 var fLen,i;
