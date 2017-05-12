@@ -201,7 +201,6 @@ var PixelEditor = function (options) {
         
         ps = ps - pp * 2 + 0.5; // pixel size is reduced by paddings
         
-        //this.setRGB (r, g, b);
         ctx.fillStyle = "#" + rgbToHex (r, g, b);
         ctx.fillRect (rect_x, rect_y, ps, ps);
     }
@@ -285,14 +284,6 @@ var PixelEditor = function (options) {
             options.pixeldata[dataIdx + 1] = g;
             options.pixeldata[dataIdx + 2] = b;
 
-            // generate & set the shared link
-            /*
-            var link = ComposeShareLink (options);
-            var shareElemId = options.sharelink_id;
-            var shareElem   = document.getElementById(shareElemId);
-            shareElem.value = link;
-            console.log(shareElem);
-            */
             UpdateUIElems (options);
         }
         
