@@ -108,7 +108,18 @@
 
 <script>
 
-	setup();
+	if (window.Worker) {
+		var worker = new Worker("worker.js");
+		worker.postMessage('cpf setup');
+			
+		worker.onmessage = function(e) {
+			 console.log(e.data);
+		}
+			
+		//worker.terminate();
+	}
+
+	//setup();
 	
 	var tempValue;
 	var lightValue;
@@ -216,16 +227,7 @@
 
 	// cpf setup
 	function setup(){
-		if (window.Worker) {
-			var worker = new Worker("worker.js");
-			worker.postMessage('cpf setup');
-			
-			worker.onmessage = function(e) {
-			  console.log(e.data);
-			}
-			
-			//worker.terminate();
-		}
+		
 	}
 
 </script>
