@@ -218,7 +218,8 @@
 	function setup(){
 		if (window.Worker) {
 			var worker = new Worker("worker.js");
-			worker.postMessage();
+			var a = 1;
+			worker.postMessage(a);
 		}
 	}
 
