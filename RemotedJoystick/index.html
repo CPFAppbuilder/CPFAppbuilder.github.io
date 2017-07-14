@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<!--2017/07/14 Andy Song - A remoted joystick with GoGoCam for CPF web app -->
+<head>
+<title>Remote Control Car</title>
 
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<center>
+<div id="content">
+<img src="./images/controller.png" id="controller">
+<img src="./images/left_right_control.png" id="left_right_control"/>
+	<img src="./images/left.png" id="left_control">
+	<img src="./images/right.png" id="right_control">
+<img src="./images/top_bottom_control.png" id="top_bottom_control"/>
+	<img src="./images/top.png" id="top_control">
+	<img src="./images/bottom.png" id="bottom_control">
+<span id="lightValue">123</span>
+
+<img src="./images/right_button.png" id="right_button"/>
+<img src="./images/left_button.png" id="left_button"/>
+</div>
+
+</center>
+
+
+</body>
+
+<script>
+	setup();
+
+	var going = document.getElementById("top_control");
+	var back = document.getElementById("bottom_control");
+	var left = document.getElementById("left_control");
+	var right = document.getElementById("right_control");
+	var function1 = document.getElementById("left_button");
+	var function2 = document.getElementById("right_button");
+	var lightValue = 0;
+	
+	//顯示光數值
+	function loop() {
+		if(cpf){
+		
+			lightValue = cpf.get("light sensor");
+			document.getElementById("lightValue").innerHTML = lightValue;
+				
+		}
+		setTimeout("loop()", 1000);
+	}
+	
+	loop();
+
+	// 前進
+	going.addEventListener('touchstart', function(event) {
+		document.getElementById("top_bottom_control").src= './images/top_event.png';
+		cpf.set("d2", 1);
+		cpf.set("d4", 1);
+	});
+
+	going.addEventListener('touchend', function(event) {
+		document.getElementById("top_bottom_control").src= './images/top_bottom_control.png';
+		cpf.set("d2", 0);
+		cpf.set("d4", 0);
+	});
+
+	// 後退
+	back.addEventListener('touchstart', function(event) {
+		document.getElementById("top_bottom_control").src= './images/bottom_event.png';
+		cpf.set("d7", 1);
+		cpf.set("d8", 1);
+	});
+
+	back.addEventListener('touchend', function(event) {
+		document.getElementById("top_bottom_control").src= './images/top_bottom_control.png';
+		cpf.set("d7", 0);
+		cpf.set("d8", 0);
+	});
+
+	// 左轉
+	left.addEventListener('touchstart', function(event) {
+		document.getElementById("left_right_control").src= './images/left_event.png';
+		cpf.set("d2", 1);
+		cpf.set("d4", 0);
+	});
+
+	left.addEventListener('touchend', function(event) {
+		document.getElementById("left_right_control").src= './images/left_right_control.png';
+		cpf.set("d2", 0);
+		cpf.set("d4", 0);
+	});
+
+	// 右轉
+	right.addEventListener('touchstart', function(event) {
+		document.getElementById("left_right_control").src= './images/right_event.png';
+		cpf.set("d2", 0);
+		cpf.set("d4", 1);
+	});
+
+	right.addEventListener('touchend', function(event) {
+		document.getElementById("left_right_control").src= './images/left_right_control.png';
+		cpf.set("d2", 0);
+		cpf.set("d4", 0);
+	});
+	
+	// 左按鈕(自訂功能1)
+	function1.addEventListener('touchstart', function(event) {
+		document.getElementById("controller").src= './images/controller_2.png';
+	});
+
+	function1.addEventListener('touchend', function(event) {
+		document.getElementById("controller").src= './images/controller.png';
+	});
+	
+	// 右按鈕(自訂功能1)
+	function2.addEventListener('touchstart', function(event) {
+		document.getElementById("controller").src= './images/controller_1.png';
+	});
+
+	function2.addEventListener('touchend', function(event) {
+		document.getElementById("controller").src= './images/controller.png';
+	});
+
+	// cpf setup
+	function setup(){
+		if(cpf)
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "digital", 2, "OUTPUT"],["setPinMode", "digital", 3,"OUTPUT"],["setPinMode", "digital", 4,"OUTPUT"],["setPinMode", "digital", 5,"OUTPUT"]');
+			
+	}
+	
+</script>
+
+</html>
