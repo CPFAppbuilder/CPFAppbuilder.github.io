@@ -218,14 +218,13 @@
 	function setup(){
 		if (window.Worker) {
 			var worker = new Worker("worker.js");
-			var a = 1;
-			worker.postMessage(a);
+			worker.postMessage('cpf setup');
 			
 			worker.onmessage = function(e) {
-			  alert('cpf setup');
+			  console.log(e.data);
 			}
 			
-			worker.terminate();
+			//worker.terminate();
 		}
 	}
 
