@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<!--2017/07/14 Andy Song - A smart home interface for CPF web app -->
+<head>
+
+<title>Smart Home</title>
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<meta charset="UTF-8">
+
+</head>
+<body>
+
+<div id="content">
+	<center>
+		<div class="analog">
+			<div class="analog_img">
+				<img src="./images/temp.png" class="sensors">
+			</div>
+			<div class="analog_title">
+				<h2>Temperature</h2>
+			</div>
+			<hr>
+			<div class="analog_value" >
+				<img src="./images/nice.png" id="tempStatus" class="status" />
+				<span id="tempValue">32</span><font class="unit">℃</font>
+			</div>
+		</div>
+		<div class="analog">
+			<div class="analog_img">
+				<img src="./images/light.png" class="sensors" style="width: 35%;">
+			</div>
+			<div class="analog_title">
+				<h2>Brightness</h2>
+			</div>
+			<hr>
+			<div class="analog_value">
+			<img src="./images/nice.png" id="lightStatus" class="status" />
+				<span id="lightValue">567</span>
+			</div>
+		</div>
+		<div class="analog">
+			<div class="analog_img">
+				<img src="./images/elec.png" class="sensors">
+			</div>
+			<div class="analog_title">
+				<h2>Electricity</h2>
+			</div>
+			<hr>
+			<div class="analog_value">
+			<img src="./images/warn.png" id="elecStatus" class="status" />
+				<span id="elecValue">390</span><font class="unit">mA</font>
+			</div>
+		</div>
+		<div class="analog">
+			<div class="analog_img">
+				<img src="./images/thief.png" style="width: 60%; top: 18%" class="sensors">
+			</div>
+			<div class="analog_title">
+				<h2>Thief</h2>
+			</div>
+			<hr>
+			<div class="analog_value">
+				<img src="./images/thief_off.png" id="thief">
+			</div>
+		</div>
+		<div class="analog">
+			<div class="analog_img">
+				<img src="./images/co.png" class="sensors" style="width: 40%; top: 25%">
+			</div>
+			<div class="analog_title">
+				<h2>Carbon monoxide</h2>
+			</div>
+			<hr>
+			<div class="analog_value">
+				<img src="./images/danger.png" id="COStatus" class="status" />
+				<span id="COValue">20</span><font class="unit">PPM</font>
+			</div>
+		</div>
+		<p>
+		<div class="output">
+			<div class="output_title">
+				<h2 style="margin-top: 5px;">Fan</h2>
+			</div>
+			<hr style="margin-top: 0px;">
+			<div class="output_img">
+				<img src="./images/fan.png" class="sensors" style="width: 55%; top: 5%;">
+			</div>
+			<div class="output_content">
+				<input Onchange="fan(this.value);" type="range" id="fan" style="margin-top: 25%;" value="0" min="0" max="255">
+			</div>
+		</div>
+		<div class="output">
+			<div class="output_title">
+				<h2 style="margin-top: 5px;">Lighting</h2>
+			</div>
+			<hr style="margin-top: 0px;">
+			<div class="output_img">
+				<img src="./images/bulb.png" id="bulb" class="sensors" style="width: 30%; top: 5%;">
+			</div>
+			<div class="output_content">
+				<img src="./images/lighton.png" class="lighting" id="lighton">
+				<img src="./images/light_off.png" class="lighting" id="lightoff">
+			</div>
+		</div>
+	</center>
+</div>
+
+</body>
+
+<script>
+
+	setup();
+	
+	var tempValue;
+	var lightValue;
+	var elecValue;
+	var thief;
+	var COValue;
+	
+	var lighton = document.getElementById("lighton");
+	var lightoff = document.getElementById("lightoff");
+	
+	// 上排數值顯示
+	function loop() {
+		if(cpf){
+			
+			// 溫度感測
+			tempValue = toCelsius(cpf.get("socket a1"));
+			document.getElementById("tempValue").innerHTML = tempValue;
+			
+			// 切換溫度狀態
+			if (tempValue <= 20 || tempValue >= 35 ) {
+				document.getElementById("tempStatus").src= './images/warn.png';
+			}else if ( tempValue <= 15 || tempValue >= 40 ) {
+				document.getElementById("tempStatus").src= './images/danger.png';
+			}else {
+				document.getElementById("tempStatus").src= './images/nice.png';
+			}
+			
+			// 光敏感測
+			lightValue = cpf.get("socket a0");
+			document.getElementById("lightValue").innerHTML = lightValue;
+			
+			// 切換光敏狀態
+			if (lightValue <= 50 ) {
+				document.getElementById("lightStatus").src= './images/warn.png';
+			}else {
+				document.getElementById("lightStatus").src= './images/nice.png';
+			}
+			
+			// 電流感測
+			elecValue = cpf.get("socket a2");
+			document.getElementById("elecValue").innerHTML = elecValue;
+			
+			// 切換電流狀態
+			if (elecValue >= 500 ) {
+				document.getElementById("elecStatus").src= './images/warn.png';
+			}else if ( elecValue >= 1000 ) {
+				document.getElementById("elecStatus").src= './images/danger.png';
+			}else {
+				document.getElementById("elecStatus").src= './images/nice.png';
+			}
+			
+			// 人體感測
+			thief = cpf.get("socket d7");
+			if(thief == 1) {
+				document.getElementById("thief").src = './images/thief_on.png';
+			}else {
+				document.getElementById("thief").src = './images/thief_off.png';
+			}
+			
+			// 一氧化碳
+			COValue = cpf.get("socket a3");
+			document.getElementById("COValue").innerHTML = COValue;
+			
+			// 切換一氧化碳狀態
+			if (COValue >= 50 ) {
+				document.getElementById("COStatus").src= './images/warn.png';
+			}else if ( elecValue >= 500 ) {
+				document.getElementById("COStatus").src= './images/danger.png';
+			}else {
+				document.getElementById("COStatus").src= './images/nice.png';
+			}
+			
+		}
+		// 設置loop間隔
+		setTimeout("loop()", 1000);
+	}
+	
+	loop();
+	
+	// 風扇
+	function fan(value) {
+		cpf.set("socket d3", Number(value));
+	}
+	
+	// LED開燈
+	lighton.addEventListener('touchstart', function(event) {
+		lighton.src= './images/light_on.png';
+		lightoff.src= './images/lightoff.png';
+		cpf.set("socket d2", 1);
+	});
+	// LED關燈
+	lightoff.addEventListener('touchstart', function(event) {
+		lightoff.src= './images/light_off.png';
+		lighton.src= './images/lighton.png';
+		cpf.set("socket d2", 0);
+	});
+	
+	// 溫度轉攝氏
+	function toCelsius(value) {
+		var resistance = parseFloat((1023-value) * 10000 / value);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+		
+		return temperature.toFixed(2);
+	}
+
+	// cpf setup
+	function setup(){
+		if(cpf)
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1, "INPUT"],["setPinMode", "analog", 2, "INPUT"],["setPinMode", "analog", 3, "INPUT"],["setPinMode", "digital", 2,"OUTPUT"],["setPinMode", "digital", 3,"PWM"],["setPinMode", "digital", 7,"INPUT"]');
+			
+	}
+
+</script>
+
+</html>
 
