@@ -221,7 +221,7 @@
 			var a = 1;
 			worker.postMessage(a);
 			
-			myWorker.onmessage = function(e) {
+			worker.onmessage = function(e) {
 			  console.log('cpf setup');
 			}
 			
