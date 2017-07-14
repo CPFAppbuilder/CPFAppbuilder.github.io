@@ -220,6 +220,12 @@
 			var worker = new Worker("worker.js");
 			var a = 1;
 			worker.postMessage(a);
+			
+			myWorker.onmessage = function(e) {
+			  console.log('cpf setup');
+			}
+			
+			worker.terminate();
 		}
 	}
 
