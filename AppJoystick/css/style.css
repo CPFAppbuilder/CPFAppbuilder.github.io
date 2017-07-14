@@ -1,0 +1,279 @@
+html {
+	overflow: hidden;
+}
+
+#content {
+	position: relative;
+	width: 100%;
+	height: 36em;
+}
+
+#controller {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	width: 80%;
+}
+
+#left_right_control {
+	position: absolute;
+	top: 6%;
+	left: 17%;
+	width: 20%;
+}
+
+#top_bottom_control {
+	position: absolute;
+	top: 6%;
+	left: 63%;
+	width: 20%;
+}
+
+#left_control {
+	position: absolute;
+	width: 10%;
+	top: 8%;
+	left: 17%;
+	opacity: 0;
+}
+
+#right_control {
+	position: absolute;
+	width: 10%;
+	top: 8%;
+	left: 27%; /*left_control left + left_control width*/
+	opacity: 0;
+}
+
+#top_control {
+	position: absolute;
+	width: 20%;
+	top: 8%;
+	left: 63%;
+	opacity: 0;
+}
+
+#bottom_control {
+	position: absolute;
+	width: 20%;
+	top: 26%;
+	left: 63%;
+	opacity: 0;
+}
+
+@font-face {
+  font-family: IrisUPC;
+  src: url(./upcil.ttf);
+}
+
+#lightValue {
+	position: absolute;
+	top: 21%;
+	left: 47%;
+	font-family: IrisUPC;
+	font-size: 45pt;
+	color: #77FFEE;
+	text-align: center;
+	opacity: 0.8;
+	font-weight: normal;
+}
+
+#right_button {
+	position: absolute;
+	top: 45%;
+	left: 56.2%;
+	width: 10%;
+	opacity: 0;
+}
+
+#left_button {
+	position: absolute;
+	top: 45%;
+	left: 33.5%;
+	width: 10%;
+	opacity: 0;
+}
+
+@media (max-width: 1280px) {
+	#lightValue {
+		font-size: 40pt;
+	}
+	#content {
+		height: 34em;
+	}
+}
+
+@media (max-width: 1200px) {
+	#content {
+		height: 31em;
+	}
+}
+
+@media (max-width: 1100px) {
+	#lightValue {
+		font-size: 36pt;
+	}
+	#content {
+		height: 29em;
+	}
+}
+
+@media (max-width: 1030px) {
+	#content {
+		height: 27em;
+	}
+}
+
+@media (max-width: 980px) {
+	#lightValue {
+		font-size: 32pt;
+	}
+	#content {
+		height: 26em;
+	}
+}
+
+@media (max-width: 925px) {
+	#content {
+		height: 24em;
+	}
+}
+
+@media (max-width: 870px) {
+	#lightValue {
+		font-size: 28pt;
+	}
+	#speed {
+		left: 43%;
+	}
+	#content {
+		height: 23em;
+	}
+}
+
+@media (max-width: 810px) {
+	#content {
+		height: 21em;
+	}
+}
+
+@media (max-width: 750px) {
+	#content {
+		height: 20em;
+	}
+}
+
+@media (max-width: 725px) {
+	#content {
+		height: 19em;
+	}
+}
+
+@media (max-width: 700px) {
+	#lightValue {
+		font-size: 26pt;
+	}
+	#content {
+		height: 17em;
+	}
+}
+
+@media (max-width: 600px) {
+	#content {
+		height: 15em;
+	}
+}
+
+@media (max-width: 550px) {
+	#lightValue {
+		font-size: 20pt;
+	}
+	#content {
+		height: 14em;
+	}
+}
+
+@media (max-width: 500px) {
+	#lightValue {
+		font-size: 20pt;
+	}
+	#content {
+		height: 13em;
+	}
+}
+
+@media (max-width: 450px) {
+	#lightValue {
+		font-size: 16pt;
+	}
+	#content {
+		height: 11em;
+	}
+}
+
+@media (max-width: 390px) {
+	#content {
+		height: 10em;
+	}
+}
+
+@media (max-width: 360px) {
+	#content {
+		height: 9em;
+	}
+}
+
+/*@media (max-width: 500px){
+	#content {
+		width: 150%;
+	}
+	#controller {
+		margin-top: 100px;
+		margin-left: -40px;
+	}
+	#left_right_control {
+		top: 115px;
+		left: 1px;
+	}
+	#top_bottom_control {
+		top: 115px;
+		left: 47%;
+	}
+	#left_control {
+		top: 115px;
+		left: 1px;
+	}
+	#right_control {
+		top: 115px;
+		left: 10%;
+	}
+
+	#top_control {
+		top: 115px;
+		left: 47%;
+	}
+
+	#bottom_control {
+		top: 175px;
+		left: 47%;
+	}
+	#lightValue {
+		top: 150px;
+		left: 30%;
+		font-size: 28pt;
+	}
+
+	#right_button {
+		top: 125%;
+		left: 40%;
+		opacity: 1;
+	}
+
+	#left_button {
+		top: 125%;
+		left: 18%;
+		opacity: 1;
+	}
+}*/
+
