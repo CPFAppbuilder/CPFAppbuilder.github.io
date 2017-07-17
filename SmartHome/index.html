@@ -113,13 +113,13 @@
 		worker.postMessage('cpf setup');
 			
 		worker.onmessage = function(e) {
-			 alert(e.data);
+			 console.log(e.data);
 		}
 			
 		//worker.terminate();
 	}
 
-	//setup();
+	setup();
 	
 	var tempValue;
 	var lightValue;
