@@ -115,11 +115,11 @@
 		worker.onmessage = function(e) {
 			 console.log(e.data);
 		}
-			
-		//worker.terminate();
 	}
 
-	//setup();
+	setup();
+	
+	var request = new Object();
 	
 	var tempValue;
 	var lightValue;
@@ -134,7 +134,10 @@
 	function loop() {
 		if(cpf){
 			
-			// 溫度感測
+			// 透過執行緒一次讀取所有數值
+			request = {};
+			
+			// 溫度感測			
 			tempValue = toCelsius(cpf.get("socket a1"));
 			document.getElementById("tempValue").innerHTML = tempValue;
 			
@@ -226,11 +229,11 @@
 	}
 
 	// cpf setup
-	/*function setup(){
+	function setup(){
 		if(cpf)
 			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1, "INPUT"],["setPinMode", "analog", 2, "INPUT"],["setPinMode", "analog", 3, "INPUT"],["setPinMode", "digital", 2,"OUTPUT"],["setPinMode", "digital", 3,"PWM"],["setPinMode", "digital", 7,"INPUT"]');
 		
-	}*/
+	}
 
 </script>
 
