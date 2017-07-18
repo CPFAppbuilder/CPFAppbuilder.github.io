@@ -114,7 +114,7 @@
 
 	setup();
 	
-	//var json = new Object();
+	var json = new Object();
 	
 	var tempValue;
 	var lightValue;
@@ -218,6 +218,14 @@
 		lighton.src= './images/lighton.png';
 		cpf.set("socket d2", 0);
 	});
+	
+	// 溫度轉攝氏
+	function toCelsius(value) {
+		var resistance = parseFloat((1023-value) * 10000 / value);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+			
+		return temperature.toFixed(2);
+	}
 
 	// cpf setup
 	function setup(){
