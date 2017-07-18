@@ -108,9 +108,9 @@
 
 <script>
 
-	if (window.Worker) {
+	/*if (window.Worker) {
 		var worker = new Worker("worker.js");
-	}
+	}*/
 
 	setup();
 	
@@ -128,17 +128,17 @@
 	// 上排數值顯示
 	function loop() {
 		
-			// 透過執行緒一次讀取所有數值
+			/*// 透過執行緒一次讀取所有數值
 			json = {"request": "read", "write": {"pin":"0", "value":"0"}};
 			
 			worker.postMessage(json);
 			
 			worker.onmessage = function(result) {
 				alert(result.data.tempValue);
-			}
+			}*/
 			
 			// 溫度感測
-			//tempValue = toCelsius(cpf.get("socket a1"));
+			tempValue = toCelsius(cpf.get("socket a1"));
 			document.getElementById("tempValue").innerHTML = tempValue;
 			
 			// 切換溫度狀態
@@ -151,7 +151,7 @@
 			}
 			
 			// 光敏感測
-			//lightValue = cpf.get("socket a0");
+			lightValue = cpf.get("socket a0");
 			document.getElementById("lightValue").innerHTML = lightValue;
 			
 			// 切換光敏狀態
@@ -162,7 +162,7 @@
 			}
 			
 			// 電流感測
-			//elecValue = cpf.get("socket a2");
+			elecValue = cpf.get("socket a2");
 			document.getElementById("elecValue").innerHTML = elecValue;
 			
 			// 切換電流狀態
@@ -175,7 +175,7 @@
 			}
 			
 			// 人體感測
-			//thief = cpf.get("socket d7");
+			thief = cpf.get("socket d7");
 			if(thief == 1) {
 				document.getElementById("thief").src = './images/thief_on.png';
 			}else {
@@ -183,7 +183,7 @@
 			}
 			
 			// 一氧化碳
-			//COValue = cpf.get("socket a3");
+			COValue = cpf.get("socket a3");
 			document.getElementById("COValue").innerHTML = COValue;
 			
 			// 切換一氧化碳狀態
