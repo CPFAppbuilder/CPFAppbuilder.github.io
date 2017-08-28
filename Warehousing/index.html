@@ -158,11 +158,11 @@
 		switch(itemName) {
 			case 'cpf':
 				cpf.set("d2", 1);
+				cpf.set("d10", 1);
 				cpf.set("d0", 1);
 				break;
 		}
-		//cpf.set("d0", 1);
-		//alert('set');
+		cpf.set("d0", 0);
 	}
 	
 	function changeItem(name, node) {
@@ -194,7 +194,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 0, "OUTPUT"],["setPinMode", "digital", 1, "OUTPUT"],["setPinMode", "digital", 2, "OUTPUT"]');
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 2, "OUTPUT"],["setPinMode", "digital", 3, "OUTPUT"],["setPinMode", "digital", 4, "OUTPUT"],["setPinMode", "digital", 5, "OUTPUT"],["setPinMode", "digital", 6, "OUTPUT"],["setPinMode", "digital", 9, "OUTPUT"],["setPinMode", "digital", 10, "OUTPUT"],["setPinMode", "digital", 11, "OUTPUT"],["setPinMode", "digital", 12, "OUTPUT"]');
 		
 	}
 
