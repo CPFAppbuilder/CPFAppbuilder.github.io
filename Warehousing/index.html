@@ -56,7 +56,8 @@
 	</tr>
 </table>
 
-<button id="export" onclick="robotics()">出庫</button>
+<button id="export" class="btn" onclick="robotics()">出庫</button>
+<button id="import" class="btn" onclick="instorage()">入庫</button>
 
 
 <div id="belt_div">
@@ -67,18 +68,19 @@
 
 <script>
 	
-	setup();
+	//setup();
 	
 	var is_export = false;
 	var itemName = 'cpf';
 	document.getElementById("cpf").classList.add('itemclick');
+	document.getElementById("import").style.display = 'none';
 
 	function robotics() {
 	
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		cpf_fun();
+		//cpf_fun();
 		
 		var item = document.getElementById("target");
 		var arm = document.getElementById("arm");
@@ -95,7 +97,7 @@
 				outpos = downpos + 17;
 				setTimeout(function(){
 					moveout = setInterval(moveout, 5);
-					exportItem();
+					outstorage();
 				}, 1000);
 			} else if(downpos <= 105) {
 				downpos -= 0.1;
@@ -129,7 +131,7 @@
 		
 	}
 
-	function exportItem() {
+	function outstorage() {
 		document.getElementById("belt").src="./images/belt.gif";
 		
 		var item = document.getElementById("target");
@@ -140,6 +142,7 @@
 			if(pos >= 85) {
 				clearInterval(move);
 				document.getElementById("belt").src="./images/belt.png";
+				document.getElementById("import").style.display = 'block';
 			} else {
 				pos += 0.03;
 				console.log(pos);
@@ -239,6 +242,12 @@
 				cpf.set("d11", 255);
 		}
 		cpf.set("d10", 255);
+		cpf.set("d11", 255);
+		cpf.set("d11", 0);
+	}
+	
+	function instorage() {
+		cpf.set("d10", 0);
 		cpf.set("d11", 255);
 		cpf.set("d11", 0);
 	}
