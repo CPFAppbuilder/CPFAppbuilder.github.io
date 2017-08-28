@@ -155,13 +155,91 @@
 
 	
 	function cpf_fun() {
+	
+		var x = Math.floor(Math.random() * 2);
+		
 		switch(itemName) {
 			case 'cpf':
+				if(x == 0) {
+					cpf.set("d2", 1);
+				} else {
+					cpf.set("d4", 1);
+				}
+				break;
+			case 'laptop':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+				} else {
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);
+				}
+				break;
+			case 'screen':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);
+				} else {
+					cpf.set("d6", 255);
+				}
+				break;
+			case 'desktop':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d5", 255);
+				} else {
+					cpf.set("d3", 255);
+					cpf.set("d6", 255);
+				}
+				break;
+			case 'tablet':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+					cpf.set("d6", 255);
+				} else {
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);
+					cpf.set("d6", 255);
+				}
+				break;
+			case 'projector':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d4", 1);
+					cpf.set("d6", 255);
+				} else {
+					cpf.set("d5", 255);
+					cpf.set("d6", 255);
+				}
+				break;
+			case 'ds':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d5", 255);
+					cpf.set("d6", 255);
+				} else {
+					cpf.set("d3", 255);
+					cpf.set("d9", 255);
+				}
+				break;
+			case 'head':
+				if(x == 0) {
+					cpf.set("d2", 1);
+					cpf.set("d9", 255);
+				} else {
+					cpf.set("d4", 1);
+					cpf.set("d9", 255);
+				}
+				break;
+			default:
 				cpf.set("d2", 1);
 				cpf.set("d10", 255);
 				cpf.set("d11", 255);
-				break;
 		}
+		cpf.set("d10", 255);
+		cpf.set("d11", 255);
 		cpf.set("d11", 0);
 	}
 	
