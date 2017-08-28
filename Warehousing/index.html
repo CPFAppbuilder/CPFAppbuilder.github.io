@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+<title>CPF倉儲系統</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<table id="list">
+	<tr>
+		<td id="parent">
+			<div class="item" id="cpf" onclick="changeItem('cpf',1)">
+				<img class="itemimg" src="./images/cpf2.png" style="margin-top: 20px;" />
+				<div class="itemname">
+				acer 雲教授<p>x 10</p>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('laptop',3)">
+				<img class="itemimg" src="./images/acer_laptop.png" style="margin-top: 15px;" />
+				<div class="itemname">
+				acer 筆記型電腦<p>x 2</p>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('screen',5)">
+				<img class="itemimg" src="./images/acer_screen.png" />
+				<div class="itemname">
+				acer 顯示器<p>x 2</p>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('desktop',7)">
+				<img class="itemimg" src="./images/acer_desktop.png" />
+				<div class="itemname">
+				acer 桌上型電腦<p>x 3</p>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('tablet',9)">
+				<img class="itemimg" src="./images/acer_tablet.png" style="margin-top: 7px;" />
+				<div class="itemname">
+				acer 平板電腦<p>x 5</p>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('projector',11)">
+				<img class="itemimg" src="./images/acer_projector.png" />
+				<div class="itemname">
+				acer 投影機<p>x 4</p>
+				</div>
+				</div>
+			</div>
+			<div class="item" onclick="changeItem('ds',13)">
+				<img class="itemimg" src="./images/acer_ds.png" />
+				<div class="itemname">
+				acer Digital Signage<p>x 3</p>
+				</div>
+			</div>
+			<!--<div class="item">
+				<img class="itemimg" src="./images/acer_vr.png" style="top: 25px; width: 40%" />
+				<div class="itemname">
+				acer VR<p>x 2</p>
+				</div>
+			</div>-->
+		</td>
+	</tr>
+</table>
+
+<button id="export" onclick="robotics()">出庫</button>
+
+
+<div id="belt_div">
+	<img id="arm" src="./images/arm.png"/>
+	<img id="target" src="./images/item/cpf.png" />
+	<img id="belt" src="./images/belt.png">
+</div>
+
+<script>
+	
+	setup();
+	
+	var is_export = false;
+	var itemName = 'cpf';
+	document.getElementById("cpf").classList.add('itemclick');
+
+	function robotics() {
+	
+		is_export = true;
+		document.getElementById("export").style.display = 'none';
+		
+		cpf();
+		
+		var item = document.getElementById("target");
+		var arm = document.getElementById("arm");
+		item.style.display = 'block';
+		var down = setInterval(downItem, 9);
+		var downpos = 265;
+		var outpos;
+		var moveout;
+		
+		function downItem() {
+			if(downpos <= 99) {
+				clearInterval(down);
+				arm.src = './images/arm03.gif';
+				outpos = downpos + 17;
+				setTimeout(function(){
+					moveout = setInterval(moveout, 5);
+					exportItem();
+				}, 1000);
+			} else if(downpos <= 105) {
+				downpos -= 0.1;
+				item.style.bottom = downpos + '%';
+				arm.style.bottom = downpos + 17 + '%';
+			} else if(downpos <= 110) {
+				downpos -= 0.2;
+				item.style.bottom = downpos + '%';
+				arm.style.bottom = downpos + 17 + '%';
+			} else if(downpos <= 120) {
+				downpos -= 0.3;
+				item.style.bottom = downpos + '%';
+				arm.style.bottom = downpos + 17 + '%';
+			} else {
+				downpos -= 1;
+				item.style.bottom = downpos + '%';
+				arm.style.bottom = downpos + 17 + '%';
+			}
+		}
+		
+		function moveout() {
+			if(outpos >= 260) {
+				clearInterval(moveout);
+				arm.style.display = 'none';
+				
+			} else {
+				outpos += 0.7;
+				arm.style.bottom = outpos + '%';
+			}
+		}
+		
+	}
+
+	function exportItem() {
+		document.getElementById("belt").src="./images/belt.gif";
+		
+		var item = document.getElementById("target");
+		var pos = 2.5;
+		var move = setInterval(moveItem, 5);
+		
+		function moveItem() {
+			if(pos >= 85) {
+				clearInterval(move);
+				document.getElementById("belt").src="./images/belt.png";
+			} else {
+				pos += 0.03;
+				console.log(pos);
+				item.style.left = pos + '%';
+			}
+		}
+		
+		// Belt slide
+		document.getElementById("belt_div").className = "beltSlideLeft";
+		document.getElementById("belt_div").style.left = '-25%';
+		
+	}
+
+	
+	function cpf() {
+		switch(itemName) {
+			case 'cpf':
+				cpf.set("d2", 1);
+				break;
+		}
+		cpf.set("d0", 1);
+	}
+	
+	function changeItem(name, node) {
+		
+		if(is_export) return;
+		
+		itemName = name;
+		
+		document.getElementById("target").src= './images/item/' + name + '.png';
+		
+		var parent = document.getElementById("parent").childNodes;
+		if(parent[node].nodeName != 'DIV') {
+			console.log('errNode');
+		} else {
+			for(var i = 1; i <= 13; i+=2) {
+				parent[i].classList.remove('itemclick');
+			}
+			parent[node].classList.add('itemclick');
+		}
+		
+		if (name == 'laptop') {
+			document.getElementById("target").style.width = '13.2%';
+			document.getElementById("target").style.left = '1.5%';
+		} else if (name == 'cpf') {
+			document.getElementById("target").style.width = '11.1%';
+		}
+	}
+	
+	// cpf setup
+	function setup(){
+		if(cpf)
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 0, "INPUT"],'
+												+ '["setPinMode", "digital", 1, "INPUT"],'
+												+ '["setPinMode", "digital", 2, "INPUT"],'
+												+ '["setPinMode", "digital", 3, "INPUT"],'
+												+ '["setPinMode", "digital", 4, "INPUT"],'
+												+ '["setPinMode", "digital", 5, "INPUT"],'
+												+ '["setPinMode", "digital", 6, "INPUT"],'
+												+ '["setPinMode", "digital", 9, "INPUT"],'
+												+ '["setPinMode", "digital", 10, "INPUT"],'
+												+ '["setPinMode", "digital", 11, "INPUT"],'
+												+ '["setPinMode", "digital", 12, "INPUT"],');
+		
+	}
+
+</script>
+
+</body>
+</html>

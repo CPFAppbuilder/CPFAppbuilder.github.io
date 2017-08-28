@@ -1,0 +1,159 @@
+html {
+	overflow: hidden;
+	//background-image: url("./images/bg.png");
+	background-color: rgb(196, 224, 220);
+	font-family: Microsoft JhengHei; 
+}
+body {
+	margin: 0;
+}
+
+/************** Animation ***************/
+
+.slideLeft{
+	animation-name: slideLeft;
+    -webkit-animation-name: slideLeft;
+    animation-duration: 9s;
+    -webkit-animation-duration: 9s;
+    visibility: visible;
+}
+@keyframes slideLeft {
+	0% {
+        -webkit-transform: translateX(0%);
+	}
+	100% {
+        -webkit-transform: translateX(-100%);
+	}
+}
+
+.beltSlideLeft{
+	animation-name: beltSlideLeft;
+    -webkit-animation-name: beltSlideLeft;
+    animation-duration: 10s;
+    -webkit-animation-duration: 10s;
+    visibility: visible;
+}
+@keyframes beltSlideLeft {
+	0% {
+        left: 10%;
+	}
+	100% {
+        left: -25%;
+	}
+}
+
+/*****************************/
+
+/************* Storage List *************/
+table {
+	position: fixed;
+	display: block;
+	background-color: white;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 100%;
+	-webkit-box-shadow: 0px 2px 6px rgba(30,30,30,0.3);
+	z-index: 10;
+	white-space: nowrap; //強制一行
+}
+
+#list::-webkit-scrollbar-track
+{
+	background-color: white;
+}
+
+#list::-webkit-scrollbar
+{
+	width: 5px;
+	height: 8px;
+	background-color: #F5F5F5;
+}
+
+#list::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+	background: #bbb;
+	//display: none;
+}
+
+.item {
+	display: inline-block;
+	margin: 3px 5px;
+	height: 100%;
+	width: 300px;
+	background: linear-gradient(#ddd, #eee);
+	box-shadow: 0px 1px 4px rgba(50, 50, 50, 0.7);
+	cursor: pointer;
+}
+
+.item:hover {
+	border: 2px solid #FFCC22;
+	border-radius: 5px;
+	box-shadow: 0px 0px 0px rgba(255, 136, 0, 0.6);
+}
+
+.itemclick {
+	border: 2px solid #FFCC22;
+	border-radius: 5px;
+	box-shadow: 0px 0px 0px rgba(255, 136, 0, 0.6);
+}
+
+.item .itemimg {
+	position: relative;
+	left: 15px;
+	width: 35%;
+	top: 10px;
+	float: left;
+	vertical-align: middle;
+}
+
+.item .itemname {
+	float: right;
+	width: 60%;
+	font-size: 14pt;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 25px;
+	color: #666666;
+}
+
+/*****************************/
+
+#export {
+	position: absolute;
+	width: 130px;
+	height: 60px;
+	top: 200px;
+	right: 100px;
+	font-size: 18pt;
+}
+
+#belt_div {
+	position: absolute;
+	bottom: 10px;
+	left: 10%;
+	width: 110%;
+}
+
+#belt {
+	width: 100%;
+}
+
+#target {
+	position: absolute;
+	left: 2.5%;
+	bottom: 265%;
+	width: 11%;
+	display: none;
+}
+
+#arm {
+	position: absolute;
+	left: -2.5%;
+	bottom: 265%;
+	width: 21%; 
+	z-index: 5;
+}
+
+
+
