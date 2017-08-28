@@ -73,7 +73,7 @@
 
 <script>
 	
-	setup();
+	
 	
 	var is_export = false;
 	var itemName = 'cpf';
@@ -195,12 +195,11 @@
 			document.getElementById("target").style.width = '11.1%';
 		}
 	}
-	
+	setup();
 	// cpf setup
 	function setup(){
 		if(cpf)
-			//var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 0, "OUTPUT"],["setPinMode", "digital", 1, "OUTPUT"],["setPinMode", "digital", 2, "OUTPUT"]');
-			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["grove_newChainableLED", 7, 8, 1]');
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1, "INPUT"],["setPinMode", "analog", 2, "INPUT"],["setPinMode", "analog", 3, "INPUT"],["setPinMode", "digital", 2,"OUTPUT"],["setPinMode", "digital", 3,"PWM"],["setPinMode", "digital", 7,"INPUT"]');
 	}
 
 </script>
