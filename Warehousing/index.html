@@ -157,7 +157,7 @@
 	function cpf_fun() {
 		switch(itemName) {
 			case 'cpf':
-				alert('cpf');
+				alert('setting');
 				cpf.set("d2", 1);
 				break;
 		}
@@ -175,7 +175,7 @@
 		
 		var parent = document.getElementById("parent").childNodes;
 		if(parent[node].nodeName != 'DIV') {
-			console.log('errNode');
+			alert('errNode');
 		} else {
 			for(var i = 1; i <= 13; i+=2) {
 				parent[i].classList.remove('itemclick');
