@@ -78,7 +78,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		//cpf();
+		cpf_fun();
 		
 		var item = document.getElementById("target");
 		var arm = document.getElementById("arm");
@@ -154,13 +154,14 @@
 	}
 
 	
-	/*function cpfzxc() {
+	function cpf_fun() {
 		switch(itemName) {
 			case 'cpf':
-				
+				cpf.set("d2", 1);
 				break;
 		}
-	}*/
+		cpf.set("d0", 1);
+	}
 	
 	function changeItem(name, node) {
 		
@@ -191,7 +192,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 2, "OUTPUT"]');
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 0, "OUTPUT"],["setPinMode", "digital", 1, "OUTPUT"],["setPinMode", "digital", 2, "OUTPUT"]');
 		
 	}
 
