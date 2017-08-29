@@ -64,14 +64,13 @@ table {
 
 #list::-webkit-scrollbar
 {
-	width: 5px;
-	height: 8px;
+	height: 4px;
 	background-color: #F5F5F5;
 }
 
 #list::-webkit-scrollbar-thumb
 {
-	border-radius: 5px;
+	border-radius: 3px;
 	background: #bbb;
 	//display: none;
 }
@@ -79,7 +78,7 @@ table {
 .item {
 	position: relative;
 	display: inline-block;
-	margin: 3px 5px;
+	margin: 0px 3px;
 	height: 90px;
 	width: 200px;
 	background: linear-gradient(#ddd, #eee);
