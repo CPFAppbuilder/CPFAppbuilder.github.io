@@ -63,19 +63,21 @@
 <div id="belt_div">
 	<img id="arm" src="./images/arm.png"/>
 	<img id="target" src="./images/item/cpf.png" />
-	<img id="belt" src="./images/belt.png">
-	<!--<img src="./images/track.png" style="width:30%; position: absolute;" />-->
+	<img id="belt" class="belt" src="./images/belt.png" style="float: left;" />
+	<img id="belt2" class="belt" src="./images/belt.png" style="position:absolute; float: right; right: 4.5%;" />
 </div>
-<div id="track_div">
-	
-</div>
+<!--<div id="track_div">
+	<img src="./images/track.png" style="width:30%; position: absolute;" />
+</div>-->
 
 <script>
 	
 	setup();
 	
 	var is_export = false;
-	var itemName = 'cpf';
+	
+	var target = document.getElementById("target");
+	
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
 
@@ -84,16 +86,11 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		cpf.set("d10", 255);
+		start(true);
 		
-		setTimeout(function(){
-			cpf.set("d11", 255);
-			cpf.set("d11", 0);
-		},1000);
-		
-		var item = document.getElementById("target");
 		var arm = document.getElementById("arm");
-		item.style.display = 'block';
+		target.style.display = 'block';
+		arm.style.display = 'block';
 		var down = setInterval(downItem, 9);
 		var downpos = 265;
 		var outpos;
@@ -102,7 +99,7 @@
 		function downItem() {
 			if(downpos <= 99) {
 				clearInterval(down);
-				arm.src = './images/arm03.gif';
+				arm.src = './images/arm.gif';
 				outpos = downpos + 17;
 				setTimeout(function(){
 					moveout = setInterval(moveout, 5);
@@ -110,19 +107,19 @@
 				}, 1000);
 			} else if(downpos <= 105) {
 				downpos -= 0.1;
-				item.style.bottom = downpos + '%';
+				target.style.bottom = downpos + '%';
 				arm.style.bottom = downpos + 17 + '%';
 			} else if(downpos <= 110) {
 				downpos -= 0.2;
-				item.style.bottom = downpos + '%';
+				target.style.bottom = downpos + '%';
 				arm.style.bottom = downpos + 17 + '%';
 			} else if(downpos <= 120) {
 				downpos -= 0.3;
-				item.style.bottom = downpos + '%';
+				target.style.bottom = downpos + '%';
 				arm.style.bottom = downpos + 17 + '%';
 			} else {
 				downpos -= 1;
-				item.style.bottom = downpos + '%';
+				target.style.bottom = downpos + '%';
 				arm.style.bottom = downpos + 17 + '%';
 			}
 		}
@@ -141,30 +138,57 @@
 	}
 
 	function outstorage() {
-		document.getElementById("belt").src="./images/belt.gif";
+	
+		document.getElementById("import").style.display = 'none';
+		document.getElementById("belt").src="./images/belt_right.gif";
+		document.getElementById("belt2").src="./images/belt_right.gif";
 		
-		var item = document.getElementById("target");
-		var pos = 2.5;
-		var move = setInterval(moveItem, 5);
+		var pos = 0.85;
+		var move_out = setInterval(move_out, 5);
 		
-		function moveItem() {
-			if(pos >= 85) {
-				clearInterval(move);
+		function move_out() {
+			if(pos >= 90) {
+				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
+				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
 			} else {
-				pos += 0.03;
+				pos += 0.02;
 				console.log(pos);
-				item.style.left = pos + '%';
+				target.style.left = pos + '%';
 			}
 		}
 		
 		// Belt slide
 		document.getElementById("belt_div").className = "beltSlideLeft";
-		document.getElementById("belt_div").style.left = '-50%';
+		document.getElementById("belt_div").style.left = '-150%';
 		
 	}
 
+	function instorage() {
+		document.getElementById("belt").src="./images/belt_left.gif";
+		document.getElementById("belt2").src="./images/belt_left.gif";
+		
+		var pos = 90;
+		var move_in = setInterval(move_in, 5);
+		
+		function move_in() {
+			if(pos <= 0.85) {
+				clearInterval(move_in);
+				document.getElementById("belt").src="./images/belt.png";
+				document.getElementById("belt2").src="./images/belt.png";
+				document.getElementById("export").style.display = 'block';
+			} else {
+				pos -= 0.02;
+				console.log(pos);
+				target.style.left = pos + '%';
+			}
+		}
+		
+		// Belt slide
+		document.getElementById("belt_div").className = "beltSlideRight";
+		document.getElementById("belt_div").style.left = '10%';
+	}
 	
 	function cpf_fun(item) {
 	
@@ -269,9 +293,13 @@
 		cpf.set("d9", 0);
 	}
 	
-	function instorage() {
-		is_export = false;
-		cpf.set("d10", 0);
+	function start(flag) {
+		if(flag) {
+			cpf.set("d10", 255);
+		} else {
+			is_export = false;
+			cpf.set("d10", 0);
+		}	
 		
 		setTimeout(function(){
 			cpf.set("d11", 255);
@@ -298,11 +326,9 @@
 		}
 		
 		if (name == 'laptop') {
-			document.getElementById("target").style.width = '13.2%';
-			document.getElementById("target").style.left = '1.5%';
-		} else if (name == 'cpf') {
-			document.getElementById("target").style.width = '11.1%';
-		}
+			document.getElementById("target").style.width = '7.9%';
+			document.getElementById("target").style.left = '0.2%';
+		} 
 	}
 	
 	// cpf setup
