@@ -79,17 +79,11 @@ table {
 .item {
 	display: inline-block;
 	margin: 3px 5px;
-	height: 100%;
-	width: 300px;
+	height: 100px;
+	width: 200px;
 	background: linear-gradient(#ddd, #eee);
 	box-shadow: 0px 1px 4px rgba(50, 50, 50, 0.7);
 	cursor: pointer;
-}
-
-.item:hover {
-	border: 2px solid #FFCC22;
-	border-radius: 5px;
-	box-shadow: 0px 0px 0px rgba(255, 136, 0, 0.6);
 }
 
 .itemclick {
@@ -101,20 +95,24 @@ table {
 .item .itemimg {
 	position: relative;
 	left: 15px;
-	width: 35%;
-	top: 10px;
-	float: left;
-	vertical-align: middle;
+	width: 40%;
 }
 
 .item .itemname {
-	float: right;
-	width: 60%;
-	font-size: 14pt;
+	margin-top: 10px;
+	font-size: 13pt;
 	font-weight: bold;
 	text-align: center;
-	margin-top: 25px;
 	color: #666666;
+}
+
+.item .itemcount {
+	//position: absolute;
+	float: right;
+	font-size: 13pt;
+	font-weight: bold;
+	margin-right: 20px;
+	margin-top: 20px;
 }
 
 /*****************************/

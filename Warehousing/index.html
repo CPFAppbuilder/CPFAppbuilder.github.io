@@ -10,53 +10,45 @@
 	<tr>
 		<td id="parent">
 			<div class="item" id="cpf" onclick="changeItem('cpf',1)">
-				<img class="itemimg" src="./images/cpf.png" style="margin-top: 20px;" />
-				<div class="itemname">
-				acer 雲教授<p>x 10</p>
-				</div>
+				<div class="itemname">宏碁-雲教授</div>
+				<img class="itemimg" src="./images/cpf.png" style="margin-top: 5px;" />
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('laptop',3)">
-				<img class="itemimg" src="./images/acer_laptop.png" style="margin-top: 15px;" />
-				<div class="itemname">
-				acer 筆記型電腦<p>x 2</p>
-				</div>
+				<div class="itemname">宏碁-筆記型電腦</div>
+				<img class="itemimg" src="./images/acer_laptop.png" style="margin-top: 5px;" />
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('screen',5)">
+				<div class="itemname">acer 顯示器</div>
 				<img class="itemimg" src="./images/acer_screen.png" />
-				<div class="itemname">
-				acer 顯示器<p>x 2</p>
-				</div>
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('desktop',7)">
+				<div class="itemname">acer 桌上型電腦</div>
 				<img class="itemimg" src="./images/acer_desktop.png" />
-				<div class="itemname">
-				acer 桌上型電腦<p>x 3</p>
-				</div>
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('tablet',9)">
-				<img class="itemimg" src="./images/acer_tablet.png" style="margin-top: 7px;" />
-				<div class="itemname">
-				acer 平板電腦<p>x 5</p>
-				</div>
+				<div class="itemname">acer 平板電腦</div>
+				<img class="itemimg" src="./images/acer_tablet.png" />
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('projector',11)">
+				<div class="itemname">acer 投影機</div>
 				<img class="itemimg" src="./images/acer_projector.png" />
-				<div class="itemname">
-				acer 投影機<p>x 4</p>
-				</div>
-				</div>
+				<span class="itemcount">x 2</span>
 			</div>
 			<div class="item" onclick="changeItem('ds',13)">
+				<div class="itemname">acer Digital Signage</div>
 				<img class="itemimg" src="./images/acer_ds.png" />
-				<div class="itemname">
-				acer Digital Signage<p>x 3</p>
-				</div>
+				<span class="itemcount">x 2</span>
 			</div>
 		</td>
 	</tr>
 </table>
 
-<button id="export" class="btn" onclick="robotics()">出庫</button>
+<button id="export" class="btn" onclick="arm_down()">出庫</button>
 <button id="import" class="btn" onclick="instorage()">入庫</button>
 
 
@@ -77,18 +69,19 @@
 	var is_export = false;
 	
 	var target = document.getElementById("target");
+	var arm = document.getElementById("arm");
 	
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
 
-	function robotics() {
+	// 出庫
+	function arm_down() {
 	
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
 		start(true);
 		
-		var arm = document.getElementById("arm");
 		target.style.display = 'block';
 		arm.style.display = 'block';
 		var down = setInterval(downItem, 9);
@@ -134,12 +127,10 @@
 				arm.style.bottom = outpos + '%';
 			}
 		}
-		
 	}
 
 	function outstorage() {
 	
-		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_right.gif";
 		document.getElementById("belt2").src="./images/belt_right.gif";
 		
@@ -165,8 +156,12 @@
 		
 	}
 
+	// 入庫
 	function instorage() {
+		
 		start(false);
+		
+		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
 		document.getElementById("belt2").src="./images/belt_left.gif";
 		
@@ -179,6 +174,8 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("export").style.display = 'block';
+				arm_up();
+				is_export = false;
 			} else {
 				pos -= 0.02;
 				console.log(pos);
@@ -191,6 +188,43 @@
 		document.getElementById("belt_div").style.left = '10%';
 	}
 	
+	function arm_up() {
+		arm.src = './images/arm2.png';
+		arm.style.display = 'block';
+		var armDown = setInterval(armDown, 9);
+		var downpos = 265;
+		var outpos;
+		var moveout;
+		
+		function armDown() {
+			if(downpos <= 99) {
+				clearInterval(armDown);
+				arm.src = './images/arm2.gif';
+				outpos = downpos;
+				setTimeout(function(){
+					moveout = setInterval(moveout, 5);
+				}, 1000);
+			} else {
+				downpos -= 1;
+				arm.style.bottom = downpos + 17 + '%';
+			}
+		}
+		
+		function moveout() {
+			if(outpos >= 260) {
+				clearInterval(moveout);
+				arm.style.display = 'none';
+				target.style.display = 'none';
+			} else {
+				outpos += 0.7;
+				target.style.bottom = outpos + '%';
+				arm.style.bottom = outpos + 17 + '%';
+			}
+		}
+		
+	}
+	
+	// CPF功能
 	function cpf_fun(item) {
 	
 		var x = Math.floor(Math.random() * 2);
@@ -298,7 +332,6 @@
 		if(flag) {
 			cpf.set("d10", 255);
 		} else {
-			is_export = false;
 			cpf.set("d10", 0);
 		}	
 		
@@ -308,6 +341,7 @@
 		},1000);
 	}
 	
+	// 商品選擇
 	function changeItem(name, node) {
 		
 		if(is_export) return;
