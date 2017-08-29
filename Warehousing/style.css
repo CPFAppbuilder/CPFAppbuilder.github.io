@@ -124,14 +124,11 @@ table {
 }
 
 #belt_div {
-	position: relative;
-	top: 70vh;
 	left: 10%;
 	width: 200%;
 }
 
 .belt {
-	position:absolute;
 	width: 50%;
 }
 
