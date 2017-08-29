@@ -10,27 +10,11 @@ body {
 
 /************** Animation ***************/
 
-.slideLeft{
-	animation-name: slideLeft;
-    -webkit-animation-name: slideLeft;
-    animation-duration: 9s;
-    -webkit-animation-duration: 9s;
-    visibility: visible;
-}
-@keyframes slideLeft {
-	0% {
-        -webkit-transform: translateX(0%);
-	}
-	100% {
-        -webkit-transform: translateX(-100%);
-	}
-}
-
 .beltSlideLeft{
 	animation-name: beltSlideLeft;
     -webkit-animation-name: beltSlideLeft;
-    animation-duration: 10s;
-    -webkit-animation-duration: 10s;
+    animation-duration: 35s;
+    -webkit-animation-duration: 35s;
     visibility: visible;
 }
 @keyframes beltSlideLeft {
@@ -38,7 +22,23 @@ body {
         left: 10%;
 	}
 	100% {
-        left: -25%;
+        left: -150%;
+	}
+}
+
+.beltSlideRight{
+	animation-name: beltSlideRight;
+    -webkit-animation-name: beltSlideRight;
+    animation-duration: 35s;
+    -webkit-animation-duration: 35s;
+    visibility: visible;
+}
+@keyframes beltSlideRight {
+	0% {
+        left: -150%;
+	}
+	100% {
+        left: 10%;
 	}
 }
 
@@ -131,27 +131,28 @@ table {
 	position: absolute;
 	bottom: 10px;
 	left: 10%;
-	width: 110%;
+	width: 200%;
 }
 
-#belt {
-	width: 100%;
+.belt {
+	width: 50%;
 }
 
 #target {
 	position: absolute;
-	left: 2.5%;
+	left: 0.85%;
 	bottom: 265%;
-	width: 11%;
+	width: 6.5%;
 	display: none;
 }
 
 #arm {
 	position: absolute;
-	left: -2.5%;
+	left: -2%;
 	bottom: 265%;
-	width: 21%; 
+	width: 12.2%; 
 	z-index: 5;
+	display: none;
 }
 
 
