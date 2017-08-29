@@ -51,7 +51,6 @@
 <button id="export" class="btn" onclick="arm_down()">出庫</button>
 <button id="import" class="btn" onclick="instorage()">入庫</button>
 
-
 <div id="belt_div">
 	<img id="arm" src="./images/arm.png"/>
 	<img id="target" src="./images/item/cpf.png" />
@@ -80,7 +79,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		start(true);
+		//start(true);
 		
 		target.style.display = 'block';
 		arm.style.display = 'block';
@@ -159,7 +158,7 @@
 	// 入庫
 	function instorage() {
 		
-		start(false);
+		//start(false);
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
@@ -346,7 +345,7 @@
 		
 		if(is_export) return;
 		
-		cpf_fun(name);
+		//cpf_fun(name);
 		
 		document.getElementById("target").src= './images/item/' + name + '.png';
 		
@@ -361,8 +360,8 @@
 		}
 		
 		if (name == 'laptop') {
-			document.getElementById("target").style.width = '7.9%';
-			document.getElementById("target").style.left = '0.2%';
+			//document.getElementById("target").style.width = '7.9%';
+			//document.getElementById("target").style.left = '0.2%';
 		} 
 	}
 	
