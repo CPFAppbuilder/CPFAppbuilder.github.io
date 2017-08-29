@@ -64,6 +64,10 @@
 	<img id="arm" src="./images/arm.png"/>
 	<img id="target" src="./images/item/cpf.png" />
 	<img id="belt" src="./images/belt.png">
+	<!--<img src="./images/track.png" style="width:30%; position: absolute;" />-->
+</div>
+<div id="track_div">
+	
 </div>
 
 <script>
@@ -80,7 +84,12 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		cpf_fun();
+		cpf.set("d10", 255);
+		
+		setTimeout(function(){
+			cpf.set("d11", 255);
+			cpf.set("d11", 0);
+		},1000);
 		
 		var item = document.getElementById("target");
 		var arm = document.getElementById("arm");
@@ -152,17 +161,18 @@
 		
 		// Belt slide
 		document.getElementById("belt_div").className = "beltSlideLeft";
-		document.getElementById("belt_div").style.left = '-25%';
+		document.getElementById("belt_div").style.left = '-50%';
 		
 	}
 
 	
-	function cpf_fun() {
+	function cpf_fun(item) {
 	
 		var x = Math.floor(Math.random() * 2);
 		
-		switch(itemName) {
+		switch(item) {
 			case 'cpf':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 				} else {
@@ -170,6 +180,7 @@
 				}
 				break;
 			case 'laptop':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
@@ -179,6 +190,7 @@
 				}
 				break;
 			case 'screen':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
@@ -188,6 +200,7 @@
 				}
 				break;
 			case 'desktop':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
@@ -197,6 +210,7 @@
 				}
 				break;
 			case 'tablet':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
@@ -208,6 +222,7 @@
 				}
 				break;
 			case 'projector':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d4", 1);
@@ -218,6 +233,7 @@
 				}
 				break;
 			case 'ds':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
@@ -228,6 +244,7 @@
 				}
 				break;
 			case 'head':
+				cpf_clear();
 				if(x == 0) {
 					cpf.set("d2", 1);
 					cpf.set("d9", 255);
@@ -236,27 +253,37 @@
 					cpf.set("d9", 255);
 				}
 				break;
-			default:
+			/*default:
 				cpf.set("d2", 1);
 				cpf.set("d10", 255);
-				cpf.set("d11", 255);
+				cpf.set("d11", 255);*/
 		}
-		cpf.set("d10", 255);
-		cpf.set("d11", 255);
-		cpf.set("d11", 0);
+	}
+	
+	function cpf_clear() {
+		cpf.set("d2", 0);
+		cpf.set("d3", 0);
+		cpf.set("d4", 0);
+		cpf.set("d5", 0);
+		cpf.set("d6", 0);
+		cpf.set("d9", 0);
 	}
 	
 	function instorage() {
+		
 		cpf.set("d10", 0);
-		cpf.set("d11", 255);
-		cpf.set("d11", 0);
+		
+		setTimeout(function(){
+			cpf.set("d11", 255);
+			cpf.set("d11", 0);
+		},1000);
 	}
 	
 	function changeItem(name, node) {
 		
 		if(is_export) return;
 		
-		itemName = name;
+		cpf_fun(name);
 		
 		document.getElementById("target").src= './images/item/' + name + '.png';
 		
