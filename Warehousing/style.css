@@ -124,6 +124,8 @@ table {
 }
 
 #belt_div {
+	position: absolute;
+	bottom: 0px;
 	left: 10%;
 	width: 200%;
 }
