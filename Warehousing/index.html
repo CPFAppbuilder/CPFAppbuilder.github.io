@@ -193,8 +193,8 @@
 	function instorage() {
 		
 		start(false);
-		//item_speed = item_speed + 0.02;
-		//belt_speed = belt_speed + 0.02;
+		item_speed = item_speed + 0.01;
+		belt_speed = belt_speed + 0.01;
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
@@ -224,7 +224,7 @@
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
-				downpos += 0.15;
+				downpos += 0.14;
 				target.style.bottom = downpos + '%';
 			} else {
 				pos -= item_speed;
