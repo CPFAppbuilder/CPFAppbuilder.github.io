@@ -148,12 +148,12 @@
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
-				//var is_stop = setInterval(function(){
-				//	if(cpf.get(a0) == 0) {
-				//		clearInterval(is_stop);
+				var is_stop = setInterval(function(){
+					if(cpf.get("a0") == 0) {
+						clearInterval(is_stop);
 						document.getElementById("import").style.display = 'block';
-				//	}
-				//}, 100);
+					}
+				}, 100);
 			} if(pos >= 92) {
 				pos += item_speed;
 				downpos -= 0.15;
@@ -189,10 +189,8 @@
 	function instorage() {
 		
 		start(false);
-		item_speed = item_speed + 0.02;
-		belt_speed = belt_speed + 0.02;
-		
-		document.getElementById("track").style.display = 'none';
+		//item_speed = item_speed + 0.02;
+		//belt_speed = belt_speed + 0.02;
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
@@ -208,13 +206,13 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				arm_up();
-				//var is_stop = setInterval(function(){
-				//	if(cpf.get(a0) == 0) {
-				//		clearInterval(is_stop);
+				var is_stop = setInterval(function(){
+					if(cpf.get("a0") == 0) {
+						clearInterval(is_stop);
 						document.getElementById("export").style.display = 'block';
 						is_export = false;
-				//	}
-				//}, 100);
+					}
+				}, 100);
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
@@ -240,6 +238,7 @@
 			} else {
 				beltpos += belt_speed;
 				document.getElementById("belt_div").style.left = beltpos + '%';
+				document.getElementById("track").style.left = beltpos + 188 + '%';
 			}
 		}
 	}
