@@ -9,8 +9,8 @@ body {
 }
 
 .container {
-	position: fixed;
-	overflow: hidden;
+	//position: fixed;
+	//overflow: hidden;
 	min-height: 100vh;
 	min-width: 100%;
 }
@@ -94,9 +94,9 @@ table {
 }
 
 .itemclick {
-	border: 2px solid #FFCC22;
+	border: 1px solid #FFCC22;
 	border-radius: 5px;
-	box-shadow: 0px 0px 0px rgba(255, 136, 0, 0.6);
+	box-shadow: inset 0px 0px 10px rgba(255, 136, 0, 0.9);
 }
 
 .item .itemimg {
@@ -142,6 +142,14 @@ table {
 	width: 50%;
 }
 
+#track {
+	width: 65%; 
+	position: absolute;
+	left: 201%;
+	bottom: 0px;
+	opacity: 0.6;
+}
+
 #target {
 	position: absolute;
 	left: 0.85%;
@@ -158,6 +166,4 @@ table {
 	z-index: 5;
 	display: none;
 }
-
-
 

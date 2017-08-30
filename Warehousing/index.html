@@ -16,35 +16,35 @@
 				<img class="itemimg" src="./images/cpf.png" style="margin-top: 5px; width: 45%;" />
 				<span class="itemcount">x 2</span>
 			</div>
-			<div class="item" onclick="changeItem('laptop',3)">
+			<div class="item" onclick="changeItem('nb',3)">
 				<div class="itemname">宏碁-筆記型電腦</div>
 				<img class="itemimg" src="./images/acer_laptop.png" style="margin-top: 5px; width: 45%;" />
 				<span class="itemcount">x 2</span>
 			</div>
-			<div class="item" onclick="changeItem('screen',5)">
+			<div class="item" onclick="changeItem('lcd',5)">
 				<div class="itemname">宏碁-顯示器</div>
 				<img class="itemimg" src="./images/acer_screen.png" />
 				<span class="itemcount">x 2</span>
 			</div>
-			<div class="item" onclick="changeItem('desktop',7)">
+			<div class="item" onclick="changeItem('pc',7)">
 				<div class="itemname">宏碁-桌上型電腦</div>
-				<img class="itemimg" src="./images/acer_desktop.png" />
+				<img class="itemimg" src="./images/acer_desktop.png" style="margin-top: -5px;" />
 				<span class="itemcount">x 2</span>
 			</div>
-			<div class="item" onclick="changeItem('tablet',9)">
-				<div class="itemname">宏碁-平板電腦</div>
-				<img class="itemimg" src="./images/acer_tablet.png" />
-				<span class="itemcount">x 2</span>
-			</div>
-			<div class="item" onclick="changeItem('projector',11)">
+			<div class="item" onclick="changeItem('pj',9)">
 				<div class="itemname">宏碁-投影機</div>
 				<img class="itemimg" src="./images/acer_projector.png" />
 				<span class="itemcount">x 2</span>
 			</div>
-			<div class="item" onclick="changeItem('ds',13)">
+			<div class="item" onclick="changeItem('abs',11)">
 				<div class="itemname">acer Digital Signage</div>
 				<img class="itemimg" src="./images/acer_ds.png" />
 				<span class="itemcount">x 2</span>
+			</div>
+			<div class="item" onclick="changeItem('egg',13)">
+				<div class="itemname">宏碁-彩蛋</div>
+				<img class="itemimg" src="./images/egg.png" style="width: 30%; margin-top: 5px;" />
+				<span class="itemcount">x 3</span>
 			</div>
 		</td>
 	</tr>
@@ -59,9 +59,9 @@
 	<img id="belt" class="belt" src="./images/belt.png" style="float: left;" />
 	<img id="belt2" class="belt" src="./images/belt.png" style="position: absolute; float: right; right: 4.5%;" />
 </div>
-<!--<div id="track_div">
-	<img src="./images/track.png" style="width:30%; position: absolute;" />
-</div>-->
+<div id="track_div">
+	<img src="./images/track.png" id="track" />
+</div>
 </div>
 <script>
 	
@@ -139,12 +139,16 @@
 		var move_out = setInterval(move_out, 5);
 		
 		function move_out() {
-			if(pos >= 90) {
+			if(pos >= 102) {
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
-			} else {
+			} if(pos >= 95) {
+				pos += 0.01;
+				target.style.left = pos + '%';
+			}
+			else {
 				pos += 0.01;
 				target.style.left = pos + '%';
 			}
@@ -163,6 +167,7 @@
 			} else {
 				beltpos -= 0.02;
 				document.getElementById("belt_div").style.left = beltpos + '%';
+				document.getElementById("track").style.left = beltpos + 191 + '%';
 			}
 		}
 		
@@ -251,89 +256,105 @@
 	// CPF功能
 	function cpf_fun(item) {
 	
-		var x = Math.floor(Math.random() * 2);
+		var x;
 		
 		switch(item) {
 			case 'cpf':
+				x = Math.floor(Math.random() * 2);
 				cpf_clear();
 				if(x == 0) {
-					cpf.set("d2", 1);
-				} else {
-					cpf.set("d4", 1);
-				}
-				break;
-			case 'laptop':
-				cpf_clear();
-				if(x == 0) {
-					cpf.set("d2", 1);
-					cpf.set("d3", 255);
-				} else {
-					cpf.set("d3", 255);
-					cpf.set("d4", 1);
-				}
-				break;
-			case 'screen':
-				cpf_clear();
-				if(x == 0) {
-					cpf.set("d2", 1);
-					cpf.set("d3", 255);
+					// 4
 					cpf.set("d4", 1);
 				} else {
+					// 18
+					cpf.set("d5", 255);
 					cpf.set("d6", 255);
 				}
 				break;
-			case 'desktop':
+			case 'nb':
+				x = Math.floor(Math.random() * 3);
 				cpf_clear();
 				if(x == 0) {
+					// 6
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);
+				} else if(x == 1) {
+					// 9
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 				} else {
-					cpf.set("d3", 255);
-					cpf.set("d6", 255);
+					// 24
+					cpf.set("d4", 1);
+					cpf.set("d9", 255);
 				}
 				break;
-			case 'tablet':
+			case 'lcd':
+				x = Math.floor(Math.random() * 3);
 				cpf_clear();
 				if(x == 0) {
+					// 1
 					cpf.set("d2", 1);
+				} else if (x == 1) {
+					// 12
 					cpf.set("d3", 255);
 					cpf.set("d6", 255);
 				} else {
-					cpf.set("d3", 255);
-					cpf.set("d4", 1);
-					cpf.set("d6", 255);
+					// 21
+					cpf.set("d2", 1);
+					cpf.set("d9", 255);
 				}
 				break;
-			case 'projector':
+			case 'pc':
+				x = Math.floor(Math.random() * 2);
 				cpf_clear();
 				if(x == 0) {
-					cpf.set("d2", 1);
-					cpf.set("d4", 1);
+					// 10
 					cpf.set("d6", 255);
 				} else {
-					cpf.set("d5", 255);
+					// 22
+					cpf.set("d3", 255);
+					cpf.set("d9", 255);
+				}
+				break;
+			case 'pj':
+				x = Math.floor(Math.random() * 2);
+				cpf_clear();
+				if(x == 0) {
+					// 3
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+				} else {
+					// 15
+					cpf.set("d2", 1);
+					cpf.set("d4", 1);
 					cpf.set("d6", 255);
 				}
 				break;
 			case 'ds':
 				cpf_clear();
+				// 7
+				cpf.set("d2", 1);
+				cpf.set("d3", 255);
+				cpf.set("d4", 1);				
+				break;
+			case 'egg':
+				x = Math.floor(Math.random() * 3);
+				cpf_clear();
 				if(x == 0) {
+					// 13 (stan)
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+					cpf.set("d6", 255);
+				} else if(x == 1) {
+					// 16 (牛)
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);
+					cpf.set("d6", 255);
+				} else {
+					// 19 (George)
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
-				} else {
-					cpf.set("d3", 255);
-					cpf.set("d9", 255);
-				}
-				break;
-			case 'head':
-				cpf_clear();
-				if(x == 0) {
-					cpf.set("d2", 1);
-					cpf.set("d9", 255);
-				} else {
-					cpf.set("d4", 1);
-					cpf.set("d9", 255);
 				}
 				break;
 			/*default:
