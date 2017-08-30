@@ -55,7 +55,7 @@
 	<img id="arm" src="./images/arm.png" />
 	<img id="target" src="./images/item/cpf.png" />
 	<img id="belt" class="belt" src="./images/belt.png" style="float: left;" />
-	<img id="belt2" class="belt" src="./images/belt.png" style="position: absolute; float: right; right: 4.5%;" />
+	<!--<img id="belt2" class="belt" src="./images/belt.png" style="position: absolute; float: right; right: 4.5%;" />-->
 </div>
 <!--<div id="track_div">
 	<img src="./images/track.png" style="width:30%; position: absolute;" />
@@ -131,7 +131,7 @@
 	function outstorage() {
 	
 		document.getElementById("belt").src="./images/belt_right.gif";
-		document.getElementById("belt2").src="./images/belt_right.gif";
+		//document.getElementById("belt2").src="./images/belt_right.gif";
 		
 		var pos = 0.85;
 		var move_out = setInterval(move_out, 5);
@@ -140,7 +140,7 @@
 			if(pos >= 90) {
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
-				document.getElementById("belt2").src="./images/belt.png";
+				//document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
 			} else {
 				pos += 0.02;
@@ -162,7 +162,7 @@
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
-		document.getElementById("belt2").src="./images/belt_left.gif";
+		//document.getElementById("belt2").src="./images/belt_left.gif";
 		
 		var pos = 90;
 		var move_in = setInterval(move_in, 5);
@@ -171,7 +171,7 @@
 			if(pos <= 0.85) {
 				clearInterval(move_in);
 				document.getElementById("belt").src="./images/belt.png";
-				document.getElementById("belt2").src="./images/belt.png";
+				//document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("export").style.display = 'block';
 				arm_up();
 				is_export = false;
