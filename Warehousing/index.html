@@ -12,7 +12,7 @@
 	<tr>
 		<td id="parent">
 			<div class="item" id="cpf" onclick="changeItem('cpf',1)">
-				<div class="itemname">雲教授</div>
+				<div class="itemname">雲教授<span id="a0">a0</span></div>
 				<img class="itemimg" src="./images/cpf.png" style="margin-top: 5px; width: 45%;" />
 				<span class="itemcount">x 2</span>
 			</div>
@@ -77,7 +77,12 @@
 	
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
-
+	
+	setInterval(function(){
+		var a0 = cpf.get("a0");
+		document.getElementById("a0").innerHTML = a0;
+	}, 1000);
+	
 	// 出庫
 	function arm_down() {
 	
@@ -279,11 +284,6 @@
 		
 	}
 	
-	function is_stop() {
-		var a0 = cpf.get("a0");
-		
-	}
-	
 	// CPF功能
 	function cpf_fun(item) {
 	
@@ -477,7 +477,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "digital", 2, "OUTPUT"],["setPinMode", "digital", 3, "PWM"],["setPinMode", "digital", 4, "OUTPUT"],["setPinMode", "digital", 5, "PWM"],["setPinMode", "digital", 6, "PWM"],["setPinMode", "digital", 9, "PWM"],["setPinMode", "digital", 10, "PWM"],["setPinMode", "digital", 11, "PWM"],["setPinMode", "digital", 12, "OUTPUT"]');
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "digital", 2, "OUTPUT"],["setPinMode", "digital", 3, "PWM"],["setPinMode", "digital", 4, "OUTPUT"],["setPinMode", "digital", 5, "PWM"],["setPinMode", "digital", 6, "PWM"],["setPinMode", "digital", 9, "PWM"],["setPinMode", "digital", 10, "PWM"],["setPinMode", "digital", 11, "PWM"],["setPinMode", "digital", 12, "OUTPUT"]');
 		
 	}
 
