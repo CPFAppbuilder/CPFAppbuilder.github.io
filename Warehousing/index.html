@@ -145,15 +145,26 @@
 				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
 			} else {
-				pos += 0.02;
-				console.log(pos);
+				pos += 0.01;
 				target.style.left = pos + '%';
 			}
 		}
 		
 		// Belt slide
-		document.getElementById("belt_div").className = "beltSlideLeft";
-		document.getElementById("belt_div").style.left = '-150%';
+		var beltpos = 10;
+		var belt_moveR;
+		setTimeout(function(){
+			belt_moveR = setInterval(belt_moveR, 5);
+		}, 1500);
+		
+		function belt_moveR() {
+			if(beltpos <= -150) {
+				clearInterval(belt_moveR);
+			} else {
+				beltpos -= 0.02;
+				document.getElementById("belt_div").style.left = beltpos + '%';
+			}
+		}
 		
 	}
 
@@ -178,15 +189,27 @@
 				arm_up();
 				is_export = false;
 			} else {
-				pos -= 0.02;
-				console.log(pos);
+				pos -= 0.01;
 				target.style.left = pos + '%';
 			}
 		}
 		
 		// Belt slide
-		document.getElementById("belt_div").className = "beltSlideRight";
-		document.getElementById("belt_div").style.left = '10%';
+		var beltpos = -150;
+		var belt_moveL;
+		
+		setTimeout(function(){
+			belt_moveL = setInterval(belt_moveL, 5);
+		}, 500);
+		
+		function belt_moveL() {
+			if(beltpos >= 10) {
+				clearInterval(belt_moveL);
+			} else {
+				beltpos += 0.02;
+				document.getElementById("belt_div").style.left = beltpos + '%';
+			}
+		}
 	}
 	
 	function arm_up() {
