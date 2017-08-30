@@ -143,11 +143,10 @@ table {
 }
 
 #track {
-	width: 65%; 
+	width: 75%; 
 	position: absolute;
-	left: 201%;
+	left: 198%;
 	bottom: 0px;
-	opacity: 0.6;
 }
 
 #target {

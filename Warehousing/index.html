@@ -81,7 +81,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		start(true);
+		//start(true);
 		
 		target.style.display = 'block';
 		arm.style.display = 'block';
@@ -136,6 +136,7 @@
 		document.getElementById("belt2").src="./images/belt_right.gif";
 		
 		var pos = 0.85;
+		var downpos = 99;
 		var move_out = setInterval(move_out, 5);
 		
 		function move_out() {
@@ -144,9 +145,11 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
-			} if(pos >= 95) {
-				pos += 0.01;
+			} if(pos >= 92) {
+				pos += 0.02;
+				downpos -= 0.05;
 				target.style.left = pos + '%';
+				target.style.bottom = downpos + '5%';
 			}
 			else {
 				pos += 0.01;
@@ -167,7 +170,7 @@
 			} else {
 				beltpos -= 0.02;
 				document.getElementById("belt_div").style.left = beltpos + '%';
-				document.getElementById("track").style.left = beltpos + 191 + '%';
+				document.getElementById("track").style.left = beltpos + 188 + '%';
 			}
 		}
 		
@@ -177,6 +180,8 @@
 	function instorage() {
 		
 		start(false);
+		
+		document.getElementById("track").style.display = 'none';
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
