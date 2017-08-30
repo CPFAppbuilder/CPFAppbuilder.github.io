@@ -70,6 +70,7 @@
 	var is_export = false;
 	var item_speed = 0;
 	var belt_speed = 0;
+	var itemName = 'cpf';
 	
 	var target = document.getElementById("target");
 	var arm = document.getElementById("arm");
@@ -83,6 +84,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
+		cpf_fun(itemName);
 		start(true);
 		
 		target.style.display = 'block';
@@ -146,7 +148,12 @@
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
-				document.getElementById("import").style.display = 'block';
+				var is_stop = setInterval(function(){
+					if(cpf.get(a0) == 0) {
+						clearInterval(is_stop);
+						document.getElementById("import").style.display = 'block';
+					}
+				}, 100);
 			} if(pos >= 92) {
 				pos += item_speed;
 				downpos -= 0.15;
@@ -182,8 +189,8 @@
 	function instorage() {
 		
 		start(false);
-		item_speed = item_speed + 0.04 ;
-		belt_speed = belt_speed + 0.04;
+		item_speed = item_speed + 0.02;
+		belt_speed = belt_speed + 0.02;
 		
 		document.getElementById("track").style.display = 'none';
 		
@@ -200,9 +207,14 @@
 				clearInterval(move_in);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
-				document.getElementById("export").style.display = 'block';
 				arm_up();
-				is_export = false;
+				var is_stop = setInterval(function(){
+					if(cpf.get(a0) == 0) {
+						clearInterval(is_stop);
+						document.getElementById("export").style.display = 'block';
+						is_export = false;
+					}
+				}, 100);
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
@@ -226,7 +238,7 @@
 			if(beltpos >= 10) {
 				clearInterval(belt_moveL);
 			} else {
-				beltpos += 0.02;
+				beltpos += belt_speed;
 				document.getElementById("belt_div").style.left = beltpos + '%';
 			}
 		}
@@ -265,6 +277,11 @@
 				arm.style.bottom = outpos + 17 + '%';
 			}
 		}
+		
+	}
+	
+	function is_stop() {
+		var a0 = cpf.get("a0");
 		
 	}
 	
@@ -438,7 +455,7 @@
 		
 		if(is_export) return;
 		
-		cpf_fun(name);
+		itemName = name;
 		
 		document.getElementById("target").src= './images/item/' + name + '.png';
 		
