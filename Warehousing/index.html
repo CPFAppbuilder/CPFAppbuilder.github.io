@@ -65,7 +65,7 @@
 </div>
 <script>
 	
-	//setup();
+	setup();
 	
 	var is_export = false;
 	
@@ -81,7 +81,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		//start(true);
+		start(true);
 		
 		target.style.display = 'block';
 		arm.style.display = 'block';
@@ -171,7 +171,7 @@
 	// 入庫
 	function instorage() {
 		
-		//start(false);
+		start(false);
 		
 		document.getElementById("import").style.display = 'none';
 		document.getElementById("belt").src="./images/belt_left.gif";
@@ -370,7 +370,7 @@
 		
 		if(is_export) return;
 		
-		//cpf_fun(name);
+		cpf_fun(name);
 		
 		document.getElementById("target").src= './images/item/' + name + '.png';
 		
