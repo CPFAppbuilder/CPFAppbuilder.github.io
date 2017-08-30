@@ -150,14 +150,11 @@
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
-				if(cpf.get("a0") == 0) {
-					setTimeout(function(){
-						if(cpf.get("a0") == 0) {
-							clearInterval(is_stop);
-							document.getElementById("import").style.display = 'block';
-						}
-					}, 5000);
-				}
+				setTimeout(function(){
+					if(cpf.get("a0") == 0) {
+						document.getElementById("import").style.display = 'block';
+					}
+				}, 5000);
 			} if(pos >= 92) {
 				pos += item_speed;
 				downpos -= 0.15;
@@ -213,14 +210,11 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				arm_up();
-				if(cpf.get("a0") == 0) {
-					setTimeout(function(){
-						if(cpf.get("a0") == 0) {
-							clearInterval(is_stop);
-							document.getElementById("export").style.display = 'block';
-						}
-					}, 5000);
-				}
+				setTimeout(function(){
+					if(cpf.get("a0") == 0) {
+						document.getElementById("export").style.display = 'block';
+					}
+				}, 5000);
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
