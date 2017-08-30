@@ -152,7 +152,7 @@
 				target.style.bottom = downpos + '5%';
 			}
 			else {
-				pos += 0.01;
+				pos += 0.05;
 				target.style.left = pos + '%';
 			}
 		}
@@ -168,7 +168,7 @@
 			if(beltpos <= -150) {
 				clearInterval(belt_moveR);
 			} else {
-				beltpos -= 0.02;
+				beltpos -= 0.08;
 				document.getElementById("belt_div").style.left = beltpos + '%';
 				document.getElementById("track").style.left = beltpos + 188 + '%';
 			}
