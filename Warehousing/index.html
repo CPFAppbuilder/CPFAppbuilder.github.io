@@ -12,7 +12,7 @@
 	<tr>
 		<td id="parent">
 			<div class="item" id="cpf" onclick="changeItem('cpf',1)">
-				<div class="itemname">雲教授<span id="a0">a0</span></div>
+				<div class="itemname">雲教授</div>
 				<img class="itemimg" src="./images/cpf.png" style="margin-top: 5px; width: 45%;" />
 				<span id="cpf_count" class="itemcount">x 1</span>
 			</div>
@@ -156,6 +156,7 @@
 							if(cpf.get("a0") == 0) {
 								clearInterval(is_stop);
 								document.getElementById("import").style.display = 'block';
+								return;
 							}
 						}, 7000);
 					}
@@ -222,6 +223,7 @@
 								clearInterval(is_stop);
 								document.getElementById("export").style.display = 'block';
 								is_export = false;
+								return;
 							}
 						}, 7000);
 					}
