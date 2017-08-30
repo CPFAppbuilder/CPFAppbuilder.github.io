@@ -65,9 +65,11 @@
 </div>
 <script>
 	
-	setup();
+	//setup();
 	
 	var is_export = false;
+	var item_speed = 0;
+	var belt_speed = 0;
 	
 	var target = document.getElementById("target");
 	var arm = document.getElementById("arm");
@@ -81,7 +83,7 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		start(true);
+		//start(true);
 		
 		target.style.display = 'block';
 		arm.style.display = 'block';
@@ -131,7 +133,7 @@
 	}
 
 	function outstorage() {
-	
+		
 		document.getElementById("belt").src="./images/belt_right.gif";
 		document.getElementById("belt2").src="./images/belt_right.gif";
 		
@@ -146,13 +148,13 @@
 				document.getElementById("belt2").src="./images/belt.png";
 				document.getElementById("import").style.display = 'block';
 			} if(pos >= 92) {
-				pos += 0.02;
+				pos += item_speed;
 				downpos -= 0.05;
 				target.style.left = pos + '%';
 				target.style.bottom = downpos + '5%';
 			}
 			else {
-				pos += 0.05;
+				pos += item_speed;
 				target.style.left = pos + '%';
 			}
 		}
@@ -168,7 +170,7 @@
 			if(beltpos <= -150) {
 				clearInterval(belt_moveR);
 			} else {
-				beltpos -= 0.08;
+				beltpos -= belt_speed;
 				document.getElementById("belt_div").style.left = beltpos + '%';
 				document.getElementById("track").style.left = beltpos + 188 + '%';
 			}
@@ -179,7 +181,7 @@
 	// 入庫
 	function instorage() {
 		
-		start(false);
+		//start(false);
 		
 		document.getElementById("track").style.display = 'none';
 		
@@ -270,10 +272,14 @@
 				if(x == 0) {
 					// 4
 					cpf.set("d4", 1);
+					item_speed = 0.08;
+					belt_speed = 0.11;
 				} else {
 					// 18
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
+					item_speed = 0.08;
+					belt_speed = 0.11;
 				}
 				break;
 			case 'nb':
@@ -283,14 +289,20 @@
 					// 6
 					cpf.set("d3", 255);
 					cpf.set("d4", 1);
+					item_speed = 0.08;
+					belt_speed = 0.11;
 				} else if(x == 1) {
 					// 9
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
+					item_speed = 0.06;
+					belt_speed = 0.09;	
 				} else {
 					// 24
 					cpf.set("d4", 1);
 					cpf.set("d9", 255);
+					item_speed = 0.04;
+					belt_speed = 0.07;
 				}
 				break;
 			case 'lcd':
@@ -299,14 +311,20 @@
 				if(x == 0) {
 					// 1
 					cpf.set("d2", 1);
+					item_speed = 0.1;
+					belt_speed = 0.12;	
 				} else if (x == 1) {
 					// 12
 					cpf.set("d3", 255);
 					cpf.set("d6", 255);
+					item_speed = 0.04;
+					belt_speed = 0.07;
 				} else {
 					// 21
 					cpf.set("d2", 1);
 					cpf.set("d9", 255);
+					item_speed = 0.06;
+					belt_speed = 0.09;	
 				}
 				break;
 			case 'pc':
@@ -315,10 +333,14 @@
 				if(x == 0) {
 					// 10
 					cpf.set("d6", 255);
+					item_speed = 0.04;
+					belt_speed = 0.07;
 				} else {
 					// 22
 					cpf.set("d3", 255);
 					cpf.set("d9", 255);
+					item_speed = 0.04;
+					belt_speed = 0.07;
 				}
 				break;
 			case 'pj':
@@ -328,11 +350,15 @@
 					// 3
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
+					item_speed = 0.08;
+					belt_speed = 0.11;	
 				} else {
 					// 15
 					cpf.set("d2", 1);
 					cpf.set("d4", 1);
 					cpf.set("d6", 255);
+					item_speed = 0.08;
+					belt_speed = 0.11;	
 				}
 				break;
 			case 'ds':
@@ -340,7 +366,9 @@
 				// 7
 				cpf.set("d2", 1);
 				cpf.set("d3", 255);
-				cpf.set("d4", 1);				
+				cpf.set("d4", 1);		
+				item_speed = 0.06;
+				belt_speed = 0.09;					
 				break;
 			case 'egg':
 				x = Math.floor(Math.random() * 3);
@@ -350,16 +378,22 @@
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
 					cpf.set("d6", 255);
+					item_speed = 0.1;
+					belt_speed = 0.12;	
 				} else if(x == 1) {
 					// 16 (牛)
 					cpf.set("d3", 255);
 					cpf.set("d4", 1);
 					cpf.set("d6", 255);
+					item_speed = 0.08;
+					belt_speed = 0.11;	
 				} else {
 					// 19 (George)
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
+					item_speed = 0.06;
+					belt_speed = 0.09;	
 				}
 				break;
 			/*default:
