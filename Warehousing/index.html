@@ -277,18 +277,10 @@
 			case 'cpf':
 				x = Math.floor(Math.random() * 2);
 				cpf_clear();
-				if(x == 0) {
-					// 4
-					cpf.set("d4", 1);
-					item_speed = 0.08;
-					belt_speed = 0.11;
-				} else {
-					// 18
-					cpf.set("d5", 255);
-					cpf.set("d6", 255);
-					item_speed = 0.08;
-					belt_speed = 0.11;
-				}
+				// 4
+				cpf.set("d4", 1);
+				item_speed = 0.08;
+				belt_speed = 0.11;
 				break;
 			case 'nb':
 				x = Math.floor(Math.random() * 3);
@@ -336,19 +328,27 @@
 				}
 				break;
 			case 'pc':
-				x = Math.floor(Math.random() * 2);
+				x = Math.floor(Math.random() * 3);
 				cpf_clear();
 				if(x == 0) {
-					// 10
-					cpf.set("d6", 255);
-					item_speed = 0.04;
-					belt_speed = 0.07;
-				} else {
+					// 7
+					cpf.set("d2", 1);
+					cpf.set("d3", 255);
+					cpf.set("d4", 1);		
+					item_speed = 0.06;
+					belt_speed = 0.09;
+				} else if(x == 1) {
 					// 22
 					cpf.set("d3", 255);
 					cpf.set("d9", 255);
 					item_speed = 0.04;
 					belt_speed = 0.07;
+				} else {
+					// 18
+					cpf.set("d5", 255);
+					cpf.set("d6", 255);
+					item_speed = 0.08;
+					belt_speed = 0.11;
 				}
 				break;
 			case 'pj':
@@ -371,18 +371,16 @@
 				break;
 			case 'abs':
 				cpf_clear();
-				// 7
-				cpf.set("d2", 1);
-				cpf.set("d3", 255);
-				cpf.set("d4", 1);		
-				item_speed = 0.06;
-				belt_speed = 0.09;					
+				// 10
+				cpf.set("d6", 255);
+				item_speed = 0.04;
+				belt_speed = 0.07;
 				break;
 			case 'egg':
 				x = Math.floor(Math.random() * 3);
 				cpf_clear();
 				if(x == 0) {
-					// 13 (stan)
+					// 13 (George)
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
 					cpf.set("d6", 255);
@@ -396,7 +394,7 @@
 					item_speed = 0.08;
 					belt_speed = 0.11;	
 				} else {
-					// 19 (George)
+					// 19 (Stan)
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
