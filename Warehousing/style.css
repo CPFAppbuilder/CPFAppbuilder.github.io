@@ -9,8 +9,8 @@ body {
 }
 
 .container {
-	//position: fixed;
-	//overflow: hidden;
+	position: fixed;
+	overflow: hidden;
 	min-height: 100vh;
 	min-width: 100%;
 }
