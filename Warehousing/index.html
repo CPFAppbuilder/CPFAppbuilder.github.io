@@ -70,6 +70,7 @@
 	var is_export = false;
 	var item_speed = 0;
 	var belt_speed = 0;
+	var is_stop;
 	var itemName = 'cpf';
 	
 	var target = document.getElementById("target");
@@ -150,7 +151,7 @@
 				clearInterval(move_out);
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
-				var is_stop = setInterval(function(){
+				is_stop = setInterval(function(){
 					if(cpf.get("a0") == 0) {
 						setTimeout(function(){
 							if(cpf.get("a0") == 0) {
@@ -217,7 +218,7 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				arm_up();
-				var is_stop = setInterval(function(){
+				is_stop = setInterval(function(){
 					if(cpf.get("a0") == 0) {
 						setTimeout(function(){
 							if(cpf.get("a0") == 0) {
