@@ -78,11 +78,6 @@
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
 	
-	setInterval(function(){
-		var a0 = cpf.get("a0");
-		document.getElementById("a0").innerHTML = a0;
-	}, 2000);
-	
 	// 出庫
 	function arm_down() {
 	
@@ -155,8 +150,12 @@
 				document.getElementById("belt2").src="./images/belt.png";
 				var is_stop = setInterval(function(){
 					if(cpf.get("a0") == 0) {
-						clearInterval(is_stop);
-						document.getElementById("import").style.display = 'block';
+						setTimeout(function(){
+							if(cpf.get("a0") == 0) {
+								clearInterval(is_stop);
+								document.getElementById("import").style.display = 'block';
+							}
+						}, 7000);
 					}
 				}, 100);
 			} if(pos >= 92) {
@@ -213,9 +212,13 @@
 				arm_up();
 				var is_stop = setInterval(function(){
 					if(cpf.get("a0") == 0) {
-						clearInterval(is_stop);
-						document.getElementById("export").style.display = 'block';
-						is_export = false;
+						setTimeout(function(){
+							if(cpf.get("a0") == 0) {
+								clearInterval(is_stop);
+								document.getElementById("export").style.display = 'block';
+								is_export = false;
+							}
+						}, 7000);
 					}
 				}, 100);
 			} if(pos >= 92) {
