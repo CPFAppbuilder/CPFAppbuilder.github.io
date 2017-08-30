@@ -1,5 +1,4 @@
 html {
-	overflow: hidden;
 	background-color: rgb(196, 224, 220);
 	font-family: Microsoft JhengHei; 
 }
@@ -10,7 +9,8 @@ body {
 }
 
 .container {
-	overflow: hidden!important;
+	position: fixed;
+	overflow: hidden;
 	min-height: 100vh;
 	min-width: 100%;
 }
