@@ -72,6 +72,10 @@
 	var belt_speed = 0;
 	var itemName = 'cpf';
 	
+	if (window.Worker) {
+		var worker = new Worker("./worker.js");
+	}
+	
 	var target = document.getElementById("target");
 	var arm = document.getElementById("arm");
 	
@@ -84,8 +88,12 @@
 		is_export = true;
 		document.getElementById("export").style.display = 'none';
 		
-		cpf_fun(itemName);
-		start(true);
+		//var json = {"name": itemName, "bool": true};
+		
+		worker.postMessage(itemName);
+		
+		//cpf_fun(itemName);
+		//start(true);
 		
 		minus(itemName);
 		
