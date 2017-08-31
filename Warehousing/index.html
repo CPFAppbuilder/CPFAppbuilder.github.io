@@ -214,7 +214,7 @@
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
-				downpos += 0.11;
+				downpos += 0.12;
 				target.style.bottom = downpos + '%';
 			} else {
 				pos -= item_speed;
@@ -298,7 +298,7 @@
 				// 4
 				cpf.set("d4", 1);
 				item_speed = 0.08;
-				belt_speed = 0.13;
+				belt_speed = 0.14;
 				break;
 			case 'nb':
 				x = Math.floor(Math.random() * 3);
@@ -308,19 +308,19 @@
 					cpf.set("d3", 255);
 					cpf.set("d4", 1);
 					item_speed = 0.08;
-					belt_speed = 0.13;
+					belt_speed = 0.14;
 				} else if(x == 1) {
 					// 9
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 					item_speed = 0.06;
-					belt_speed = 0.09;	
+					belt_speed = 0.1;	
 				} else {
 					// 24
 					cpf.set("d4", 1);
 					cpf.set("d9", 255);
 					item_speed = 0.04;
-					belt_speed = 0.07;
+					belt_speed = 0.08;
 				}
 				break;
 			case 'lcd':
@@ -336,13 +336,13 @@
 					cpf.set("d3", 255);
 					cpf.set("d6", 255);
 					item_speed = 0.04;
-					belt_speed = 0.07;
+					belt_speed = 0.08;
 				} else {
 					// 21
 					cpf.set("d2", 1);
 					cpf.set("d9", 255);
 					item_speed = 0.06;
-					belt_speed = 0.09;	
+					belt_speed = 0.10;	
 				}
 				break;
 			case 'pc':
@@ -354,19 +354,19 @@
 					cpf.set("d3", 255);
 					cpf.set("d4", 1);		
 					item_speed = 0.06;
-					belt_speed = 0.09;
+					belt_speed = 0.10;
 				} else if(x == 1) {
 					// 22
 					cpf.set("d3", 255);
 					cpf.set("d9", 255);
 					item_speed = 0.04;
-					belt_speed = 0.07;
+					belt_speed = 0.08;
 				} else {
 					// 18
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
 					item_speed = 0.08;
-					belt_speed = 0.13;
+					belt_speed = 0.14;
 				}
 				break;
 			case 'pj':
@@ -377,14 +377,14 @@
 					cpf.set("d2", 1);
 					cpf.set("d3", 255);
 					item_speed = 0.08;
-					belt_speed = 0.13;	
+					belt_speed = 0.14;	
 				} else {
 					// 15
 					cpf.set("d2", 1);
 					cpf.set("d4", 1);
 					cpf.set("d6", 255);
 					item_speed = 0.08;
-					belt_speed = 0.13;	
+					belt_speed = 0.14;	
 				}
 				break;
 			case 'abs':
@@ -392,7 +392,7 @@
 				// 10
 				cpf.set("d6", 255);
 				item_speed = 0.04;
-				belt_speed = 0.07;
+				belt_speed = 0.08;
 				break;
 			case 'egg':
 				x = Math.floor(Math.random() * 3);
@@ -410,21 +410,21 @@
 					cpf.set("d4", 1);
 					cpf.set("d6", 255);
 					item_speed = 0.08;
-					belt_speed = 0.13;	
+					belt_speed = 0.14;	
 				} else {
 					// 19 (Stan)
 					cpf.set("d2", 1);
 					cpf.set("d5", 255);
 					cpf.set("d6", 255);
 					item_speed = 0.06;
-					belt_speed = 0.09;	
+					belt_speed = 0.10;	
 				}
 				break;
 			default:
 				// 4
 				cpf.set("d4", 1);
 				item_speed = 0.08;
-				belt_speed = 0.13;
+				belt_speed = 0.14;
 				break;
 		}
 	}
