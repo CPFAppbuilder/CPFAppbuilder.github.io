@@ -210,7 +210,7 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				arm_up();
-				setTimeout(export_btn(), 5000);
+				setTimeout(out_btn, 5000);
 			} if(pos >= 92) {
 				pos -= item_speed;
 				target.style.left = pos + '%';
@@ -222,11 +222,11 @@
 			}
 		}
 		
-		function export_btn() {
+		function out_btn() {
 			if(cpf.get("a0") == 0) {
 				document.getElementById("export").style.display = 'block';
 			} else {
-				setTimeout(export_btn(), 5000);
+				setTimeout(out_btn, 5000);
 			}
 		}
 		
