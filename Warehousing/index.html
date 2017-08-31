@@ -186,15 +186,15 @@
 		document.getElementById("import").style.display = 'none';
 		
 		start(false);
-		item_speed = item_speed + 0.015;
-		belt_speed = belt_speed + 0.015;
+		item_speed = item_speed + 0.01;
+		belt_speed = belt_speed + 0.01;
 		
 		minus();
 
 		document.getElementById("belt").src="./images/belt_left.gif";
 		document.getElementById("belt2").src="./images/belt_left.gif";
 		
-		var pos = 105;
+		var pos = 100;
 		var move_in = setInterval(move_in, 5);
 		
 		function move_in() {
