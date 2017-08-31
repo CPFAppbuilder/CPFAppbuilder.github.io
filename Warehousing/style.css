@@ -124,13 +124,9 @@ table {
 /*****************************/
 .btn {
 	position: absolute;
-	width: 110px;
-	height: 60px;
+	width: 20%;
 	top: 160px;
-	right: 43%;
-	font-size: 14pt;
-	border-radius: 5px;
-	font-weight: bold;
+	right: 41%;
 }
 
 #belt_div {
