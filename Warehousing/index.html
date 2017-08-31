@@ -142,7 +142,6 @@
 		document.getElementById("belt2").src="./images/belt_right.gif";
 		
 		var pos = 0.85;
-		var downpos = 99;
 		var move_out = setInterval(move_out, 5);
 		
 		function move_out() {
@@ -155,11 +154,6 @@
 						document.getElementById("import").style.display = 'block';
 					}
 				}, 5000);
-			} if(pos >= 92) {
-				pos += item_speed;
-				downpos -= 0.25;
-				target.style.left = pos + '%';
-				target.style.bottom = downpos + '%';
 			}
 			else {
 				pos += item_speed;
@@ -201,7 +195,6 @@
 		document.getElementById("belt2").src="./images/belt_left.gif";
 		
 		var pos = 105;
-		var downpos = 75;
 		var move_in = setInterval(move_in, 5);
 		
 		function move_in() {
@@ -211,11 +204,6 @@
 				document.getElementById("belt2").src="./images/belt.png";
 				arm_up();
 				setTimeout(out_btn, 5000);
-			} if(pos >= 92) {
-				pos -= item_speed;
-				target.style.left = pos + '%';
-				downpos += 0.12;
-				target.style.bottom = downpos + '%';
 			} else {
 				pos -= item_speed;
 				target.style.left = pos + '%';
