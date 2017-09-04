@@ -60,6 +60,7 @@
 		<tr><td><b>6</b></td><td id="num6"></td></tr>
 		<tr><td><b>7</b></td><td id="num7"></td></tr>
 		<tr><td><b>9</b></td><td id="num9"></td></tr>
+		<tr><td><b>10</b></td><td id="num10"></td></tr>
 		<tr><td><b>12</b></td><td id="num12"></td></tr>
 		<tr><td><b>13</b></td><td id="num13"></td></tr>
 		<tr><td><b>15</b></td><td id="num15"></td></tr>
@@ -563,7 +564,7 @@
 		
 		for(var key in obj) {
 			if(key != 'check'){
-				document.getElementById("num"+Number(key)).innerHTML = obj[key];
+				document.getElementById("num"+key).innerHTML = obj[key];
 			}
 		}
 		
