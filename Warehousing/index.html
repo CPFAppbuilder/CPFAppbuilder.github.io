@@ -561,12 +561,11 @@
 		var store = aop.getStore("store2");
 		var obj = JSON.parse(store);
 		
-		/*for(var key in obj) {
+		for(var key in obj) {
 			if(key != 'check'){
-				document.getElementById("num1").innerHTML = obj[key];
+				document.getElementById("num"+Number(key)).innerHTML = obj[key];
 			}
-		}*/
-		alert(store);
+		}
 		
 		document.getElementById("bg").style.display = 'inline';
 		document.getElementById("log").style.display = 'inline';
