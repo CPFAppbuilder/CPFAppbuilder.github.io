@@ -7,7 +7,7 @@
 <body>
 
 <div class="container">
-
+<div id="bg"></div>
 <table id="list">
 	<tr>
 		<td id="parent">
@@ -50,6 +50,28 @@
 	</tr>
 </table>
 
+<img src="./images/cloud.png" id="log_btn" onclick="cloud_fun()" />
+<div id="log">
+	<table>
+		<tr><td>倉庫編號</td><td>出入庫次數</td></tr>
+		<tr><td><b>1</b></td><td id="num1"></td></tr>
+		<tr><td><b>3</b></td><td id="num3"></td></tr>
+		<tr><td><b>4</b></td><td id="num4"></td></tr>
+		<tr><td><b>6</b></td><td id="num6"></td></tr>
+		<tr><td><b>7</b></td><td id="num7"></td></tr>
+		<tr><td><b>9</b></td><td id="num9"></td></tr>
+		<tr><td><b>12</b></td><td id="num12"></td></tr>
+		<tr><td><b>13</b></td><td id="num13"></td></tr>
+		<tr><td><b>15</b></td><td id="num15"></td></tr>
+		<tr><td><b>16</b></td><td id="num16"></td></tr>
+		<tr><td><b>18</b></td><td id="num18"></td></tr>
+		<tr><td><b>19</b></td><td id="num19"></td></tr>
+		<tr><td><b>21</b></td><td id="num21"></td></tr>
+		<tr><td><b>22</b></td><td id="num22"></td></tr>
+		<tr><td><b>24</b></td><td id="num24"></td></tr>
+	</table>
+</div>
+
 <button id="export" onclick="arm_down()"><img class="btn" src="./images/outbtn.png" /></button>
 <button id="import" onclick="instorage()"><img class="btn" src="./images/inbtn.png" /></button>
 
@@ -86,7 +108,7 @@
 		document.getElementById("export").style.display = 'none';
 		
 		cpf_fun(itemName);
-		start(true);
+		//start(true);
 		
 		minus(itemName);
 		
@@ -151,10 +173,10 @@
 				document.getElementById("belt").src="./images/belt.png";
 				document.getElementById("belt2").src="./images/belt.png";
 				setTimeout(function(){
-					if(cpf.get("a0") == 0) {
+					//if(cpf.get("a0") == 0) {
 						document.getElementById("import").style.display = 'block';
 						aop_store();
-					}
+					//}
 				}, 5000);
 				if(itemName == 'egg') {
 					setTimeout(function(){
@@ -204,6 +226,7 @@
 			data[num] += 1;
 		} else {
 			data = {"1":0,"3":0,"4":0,"6":0,"7":0,"9":0,"10":0,"12":0,"13":0,"15":0,"16":0,"18":0,"19":0,"21":0,"22":0,"24":0,"check":1};
+			data[num] += 1;
 		}
 		
 		var str = JSON.stringify(data);
@@ -536,12 +559,27 @@
 			}
 			parent[node].classList.add('itemclick');
 		}
-		
-		if (name == 'laptop') {
-			//document.getElementById("target").style.width = '7.9%';
-			//document.getElementById("target").style.left = '0.2%';
-		} 
 	}
+	
+	// log show
+	function cloud_fun() {
+		var json = aop.getStore(1);
+		var data = JSON.parse(json);
+		
+		for(var key in data) {
+			if(key != 'check'){
+				document.getElementById("num"+key).innerHTML = data[key];
+			}
+		}
+		
+		document.getElementById("bg").style.display = 'inline';
+		document.getElementById("log").style.display = 'inline';
+	}
+	
+	document.getElementById("bg").addEventListener("click", function(){
+		document.getElementById("bg").style.display = 'none';
+		document.getElementById("log").style.display = 'none';
+	});
 	
 	// cpf setup
 	function setup(){
