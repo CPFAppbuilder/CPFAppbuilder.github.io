@@ -181,10 +181,10 @@ body {
 }
 
 #log {
-	height: 320px;
-	width: 240px;
+	height: 330px;
+	width: 260px;
 	position: absolute;
-	right: 42%;
+	right: 40%;
 	top: 110px;
 	background-color: white;
 	z-index: 20;
@@ -196,7 +196,7 @@ body {
 
 #log table td {
 	border: 1px solid #ddd;
-	padding: 5px 20px;
+	padding: 6px 25px;
 }
 
 #log::-webkit-scrollbar-track
