@@ -219,7 +219,7 @@
 	}
 	
 	function aop_store() {
-		var json = aop.getStore(1);
+		var json = aop.getStore(store1);
 		var data = JSON.parse(json);
 		
 		if(data["check"] != undefined && data["check"] == 1) {
@@ -230,8 +230,7 @@
 		}
 		
 		var str = JSON.stringify(data);
-		var status = aop.setStore(1, str);
-		alert(str);
+		var status = aop.setStore(store1, str);
 	}
 
 	// 入庫
@@ -564,14 +563,14 @@
 	
 	// log show
 	function cloud_fun() {
-		/*var json = aop.getStore(1);
+		var json = aop.getStore(store1);
 		var data = JSON.parse(json);
 		
 		for(var key in data) {
 			if(key != 'check'){
 				document.getElementById("num"+key).innerHTML = data[key];
 			}
-		}*/
+		}
 		
 		document.getElementById("bg").style.display = 'inline';
 		document.getElementById("log").style.display = 'inline';
