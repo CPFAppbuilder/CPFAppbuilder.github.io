@@ -57,8 +57,8 @@
 			lightdata = cpf.get("light sensor");
 			tempdata = cpf.get("temperature sensor");
 			celsius = toCelsius(tempdata);
-				
-			document.getElementById("lightvalue").innerHTML = lightdata;
+			var ret = cpf.request('["tone_play",9,262,300]');	
+			document.getElementById("lightvalue").innerHTML = ret;
 			document.getElementById("temperaturevalue").innerHTML = celsius;
 			
 		}
@@ -95,7 +95,7 @@
 	// cpf setup
 	function setup(){
 		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["grove_newChainableLED", 7, 8, 1]'); 
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "digital", 9,"TONE"],["grove_newChainableLED", 7, 8, 1]'); 
 			//document.getElementById("demo").innerHTML += ret + "<br>";
 	}
 	
