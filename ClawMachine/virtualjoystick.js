@@ -347,7 +347,7 @@ VirtualJoystick.prototype._buildJoystickStick	= function()
 	canvas.height	= 216;
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
-	ctx.fillStyle = 'cyan';
+	ctx.fillStyle = 'red';
 	ctx.strokeStyle	= 'black'; 
 	ctx.lineWidth	= 2; 
 	ctx.arc( canvas.width/2, canvas.width/2, 80, 0, Math.PI*2, true);
