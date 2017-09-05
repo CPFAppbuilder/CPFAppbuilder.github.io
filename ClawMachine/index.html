@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>ClawMachine</title>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<meta charset="UTF-8">
+
+<script src="./TouchControl.js" ></script>
+
+</head>
+<body>
+
+<div id="btn"></div>
+<div id="result"></div>
+
+<script>
+
+var elem = document.getElementById("btn");
+
+var settings = {
+	pretendArrowKeys: true,
+	mindistance: 25,
+	maxdistance: 75,
+	middleLeft: 25,
+	middleTop: 25
+};
+
+var joystick = new SQUARIFIC.framework.TouchControl(elem, settings);
+
+joystick.on("pretendKeydown", function(event) {
+	console.log(event);
+});
+
+joystick.on("pretendKeyup", function(event) {
+	console.log(event);
+});
+
+</script>
+
+</body>
+</html>
