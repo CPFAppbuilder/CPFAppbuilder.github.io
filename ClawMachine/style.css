@@ -1,0 +1,16 @@
+
+
+body {
+	margin: 0px;
+}
+
+#btn {
+	position: absolute;
+	left: 40%;
+	top: 40%;
+	height: 80px;
+	width: 80px;
+	background-color: red;
+	border-radius: 50%;
+	border: 1px solid black;
+}
