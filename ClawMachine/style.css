@@ -1,14 +1,17 @@
 
-
 body {
-	margin: 0px;
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+}
+
+#container {
+	background-color: #404040;
+	height: 100%;
+	width: 50%;
 }
 
 #btn {
-	display: block;
-	position: absolute;
-	left: 250px;
-	bottom: 250px;
 	height: 80px;
 	width: 80px;
 	background-color: red;

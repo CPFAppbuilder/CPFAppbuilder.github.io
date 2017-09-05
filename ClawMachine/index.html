@@ -3,36 +3,49 @@
 <title>ClawMachine</title>
 <link rel="stylesheet" type="text/css" href="./style.css">
 <meta charset="UTF-8">
-
-<script src="./TouchControl.js" ></script>
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
 </head>
 <body>
 
-<div id="btn"></div>
+<div id="container"></div>
+
 <div id="result"></div>
 
+<script src="./virtualjoystick.js" ></script>
 <script>
 
-var elem = document.getElementById("btn");
+var btn = document.getElementById("btn");
 
-var settings = {
-	pretendArrowKeys: true,
-	mindistance: 25,
-	maxdistance: 200,
-	middleLeft: 25,
-	middleTop: 25
-};
-
-var joystick = new SQUARIFIC.framework.TouchControl(elem, settings);
-
-joystick.on("pretendKeydown", function(event) {
-	console.log(event);
+var joystick = new VirtualJoystick({
+	container: document.getElementById("container"),
+	mouseSupport	: true,
+	stationaryBase	: true,
+	limitStickTravel: true,
+	//stickElement: btn,
+	stickRadius	: 70,
+	baseX		: 250,
+	baseY		: 250
 });
 
-joystick.on("pretendKeyup", function(event) {
-	console.log(event);
-});
+joystick.addEventListener('touchStart', function(){
+	console.log('down')
+})
+joystick.addEventListener('touchEnd', function(){
+	console.log('up')
+})
+
+setInterval(function(){
+	var outputEl	= document.getElementById('result');
+	outputEl.innerHTML	= '<b>Result:</b> '
+		+ ' dx:'+joystick.deltaX()
+		+ ' dy:'+joystick.deltaY()
+		+ (joystick.right()	? ' right'	: '')
+		+ (joystick.up()	? ' up'		: '')
+		+ (joystick.left()	? ' left'	: '')
+		+ (joystick.down()	? ' down' 	: '')	
+}, 1/30 * 1000);
+
 
 </script>
 
