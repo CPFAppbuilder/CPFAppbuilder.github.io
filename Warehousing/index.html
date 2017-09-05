@@ -50,26 +50,28 @@
 	</tr>
 </table>
 
-<img src="./images/cloud.png" id="log_btn" onclick="cloud_fun()" />
+<img src="./images/info.png" id="log_btn" onclick="cloud_fun()" />
 <div id="log">
 	<table>
-		<tr><td>倉庫編號</td><td>出入庫次數</td></tr>
-		<tr><td><b>1</b></td><td id="num1"></td></tr>
-		<tr><td><b>3</b></td><td id="num3"></td></tr>
-		<tr><td><b>4</b></td><td id="num4"></td></tr>
-		<tr><td><b>6</b></td><td id="num6"></td></tr>
-		<tr><td><b>7</b></td><td id="num7"></td></tr>
-		<tr><td><b>9</b></td><td id="num9"></td></tr>
-		<tr><td><b>10</b></td><td id="num10"></td></tr>
-		<tr><td><b>12</b></td><td id="num12"></td></tr>
-		<tr><td><b>13</b></td><td id="num13"></td></tr>
-		<tr><td><b>15</b></td><td id="num15"></td></tr>
-		<tr><td><b>16</b></td><td id="num16"></td></tr>
-		<tr><td><b>18</b></td><td id="num18"></td></tr>
-		<tr><td><b>19</b></td><td id="num19"></td></tr>
-		<tr><td><b>21</b></td><td id="num21"></td></tr>
-		<tr><td><b>22</b></td><td id="num22"></td></tr>
-		<tr><td><b>24</b></td><td id="num24"></td></tr>
+		<div class="log_title"></div>
+		<tr style="color: white; font-weight: bold; font-size: 13pt; height: 50px; text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.3);"><td style="border:0;">倉庫編號</td><td style="border:0;">出入庫次數</td></tr>
+		<tr><td class="log_num" style="border:0;">1</td><td id="num1" style="border:0;"></td></tr>
+		<tr><td class="log_num">3</td><td id="num3"></td></tr>
+		<tr><td class="log_num">4</td><td id="num4"></td></tr>
+		<tr><td class="log_num">6</td><td id="num6"></td></tr>
+		<tr><td class="log_num">7</td><td id="num7"></td></tr>
+		<tr><td class="log_num">9</td><td id="num9"></td></tr>
+		<tr><td class="log_num">10</td><td id="num10"></td></tr>
+		<tr><td class="log_num">12</td><td id="num12"></td></tr>
+		<tr><td class="log_num">13</td><td id="num13"></td></tr>
+		<tr><td class="log_num">15</td><td id="num15"></td></tr>
+		<tr><td class="log_num">16</td><td id="num16"></td></tr>
+		<tr><td class="log_num">18</td><td id="num18"></td></tr>
+		<tr><td class="log_num">19</td><td id="num19"></td></tr>
+		<tr><td class="log_num">21</td><td id="num21"></td></tr>
+		<tr><td class="log_num">22</td><td id="num22"></td></tr>
+		<tr><td class="log_num">24</td><td id="num24"></td></tr>
+		<tr><td class="log_num">total</td><td id="total"></td></tr>
 	</table>
 </div>
 
@@ -223,11 +225,13 @@
 		var json = aop.getStore("store2");
 		var data = JSON.parse(json);
 		
-		if(data["check"] != undefined && data["check"] == 1) {
+		if(data["total"] != undefined) {
 			data[num] += 1;
+			data["total"] += 1;
 		} else {
-			data = {"1":0,"3":0,"4":0,"6":0,"7":0,"9":0,"10":0,"12":0,"13":0,"15":0,"16":0,"18":0,"19":0,"21":0,"22":0,"24":0,"check":1};
+			data = {"1":0,"3":0,"4":0,"6":0,"7":0,"9":0,"10":0,"12":0,"13":0,"15":0,"16":0,"18":0,"19":0,"21":0,"22":0,"24":0,"total":0};
 			data[num] += 1;
+			data["total"] += 1;
 		}
 		
 		var str = JSON.stringify(data);
@@ -563,7 +567,9 @@
 		var obj = JSON.parse(store);
 		
 		for(var key in obj) {
-			if(key != 'check'){
+			if(key == 'total'){
+				document.getElementById("total").innerHTML = obj[key];
+			} else {
 				document.getElementById("num"+key).innerHTML = obj[key];
 			}
 		}

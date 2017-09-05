@@ -19,7 +19,7 @@ body {
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	background-color: rgba(10, 10, 10, 0.4);
+	background-color: rgba(50, 50, 60, 0.5);
 	z-index: 15;
 	display: none;
 }
@@ -181,22 +181,37 @@ body {
 }
 
 #log {
-	height: 330px;
-	width: 260px;
+	height: 350px;
+	width: 350px;
 	position: absolute;
-	right: 40%;
-	top: 110px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	top: 70px;
 	background-color: white;
 	z-index: 20;
 	text-align: center;
-	overflow-y :scroll;
-	box-shadow: 0px 0px 5px rgba(10, 10, 10, 0.5);
+	overflow-y: scroll;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.8);
 	display: none;
 }
 
+#log table {
+	display: block;
+	border-collapse:separate;
+	border-spacing: 35px 3px;
+	margin-left: -15px;
+}
+
+#log table .log_num {
+	font-weight: bold;
+}
+
 #log table td {
-	border: 1px solid #ddd;
-	padding: 6px 25px;
+	border-top: 1px solid #8c8c8c;
+	width: 130px;
+	padding: 6px 0px;
 }
 
 #log::-webkit-scrollbar-track
@@ -214,3 +229,11 @@ body {
 	background: #bbb;
 }
 
+.log_title {
+	position: absolute;
+	background-color: #80ccff;
+	width: 100%;
+	height: 57px;
+	box-shadow: 1px 0px 3px rgba(20, 20, 20, 0.8);
+	z-index: -5;
+}
