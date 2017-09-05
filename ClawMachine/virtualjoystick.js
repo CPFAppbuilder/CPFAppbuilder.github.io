@@ -325,7 +325,7 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 	ctx.beginPath(); 
 	ctx.strokeStyle = this._strokeStyle; 
 	ctx.lineWidth	= 6; 
-	ctx.arc( canvas.width/2, canvas.width/2, 100, 0, Math.PI*2, true); 
+	ctx.arc( canvas.width/2, canvas.width/2, 80, 0, Math.PI*2, true); 
 	ctx.stroke();	
 
 	ctx.beginPath(); 
@@ -350,7 +350,7 @@ VirtualJoystick.prototype._buildJoystickStick	= function()
 	ctx.fillStyle = 'red';
 	ctx.strokeStyle	= 'black'; 
 	ctx.lineWidth	= 2; 
-	ctx.arc( canvas.width/2, canvas.width/2, 100, 0, Math.PI*2, true);
+	ctx.arc( canvas.width/2, canvas.width/2, 80, 0, Math.PI*2, true);
 	ctx.fill();
 	ctx.stroke();
 	return canvas;
