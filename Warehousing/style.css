@@ -200,8 +200,8 @@ body {
 #log table {
 	display: block;
 	border-collapse:separate;
-	border-spacing: 35px 3px;
-	margin-left: -15px;
+	border-spacing: 40px 3px;
+	margin-left: 0px;
 }
 
 #log table .log_num {

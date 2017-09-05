@@ -71,7 +71,7 @@
 		<tr><td class="log_num">21</td><td id="num21"></td></tr>
 		<tr><td class="log_num">22</td><td id="num22"></td></tr>
 		<tr><td class="log_num">24</td><td id="num24"></td></tr>
-		<tr><td class="log_num">total</td><td id="total"></td></tr>
+		<tr><td class="log_num">Total</td><td id="total"></td></tr>
 	</table>
 </div>
 
@@ -225,7 +225,7 @@
 		var json = aop.getStore("store2");
 		var data = JSON.parse(json);
 		
-		if(data["total"] != undefined) {
+		if(data["total"] != undefined && data[num] != undefined) {
 			data[num] += 1;
 			data["total"] += 1;
 		} else {
@@ -563,7 +563,7 @@
 	
 	// log show
 	function cloud_fun() {
-		var store = aop.getStore("store2");
+		/*var store = aop.getStore("store2");
 		var obj = JSON.parse(store);
 		
 		for(var key in obj) {
@@ -572,7 +572,7 @@
 			} else {
 				document.getElementById("num"+key).innerHTML = obj[key];
 			}
-		}
+		}*/
 		
 		document.getElementById("bg").style.display = 'inline';
 		document.getElementById("log").style.display = 'inline';
