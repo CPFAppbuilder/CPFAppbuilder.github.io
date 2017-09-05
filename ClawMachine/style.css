@@ -3,10 +3,19 @@ body {
 	overflow	: hidden;
 	padding		: 0;
 	margin		: 0;
+	background-color: #ffecb3;
 }
 
 #container {
+	margin: 0 auto;
+	margin-top: 5%;
+	height: 85%;
+	width: 95%;
 	background-color: #404040;
+	border-radius: 20px;
+}
+
+#panel {
 	height: 100%;
 	width: 50%;
 }
@@ -17,4 +26,11 @@ body {
 	background-color: red;
 	border-radius: 50%;
 	border: 1px solid black;
+}
+
+#grab {
+	position: absolute;
+	width: 15%;
+	right: 18%;
+	top: 52%;
 }

@@ -8,9 +8,15 @@
 </head>
 <body>
 
-<div id="container"></div>
+<div id="container">
 
-<div id="result"></div>
+	<div id="panel"></div>
+
+	<div id="result" style="display:none;"></div>
+
+	<img id="grab" src="./images/grab.png" />
+
+</div>
 
 <script src="./virtualjoystick.js" ></script>
 <script>
@@ -18,14 +24,14 @@
 var btn = document.getElementById("btn");
 
 var joystick = new VirtualJoystick({
-	container: document.getElementById("container"),
+	container: document.getElementById("panel"),
 	mouseSupport	: true,
 	stationaryBase	: true,
 	limitStickTravel: true,
 	//stickElement: btn,
-	stickRadius	: 200,
-	baseX		: 320,
-	baseY		: 320
+	stickRadius	: 150,
+	baseX		: 300,
+	baseY		: 300
 });
 
 joystick.addEventListener('touchStart', function(){
