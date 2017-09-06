@@ -154,6 +154,8 @@ VirtualJoystick.prototype._onUp	= function()
 {
 	this._pressed	= false; 
 	//this._stickEl.style.display	= "none";
+	this._stickEl.style.left = "32%";
+	this._stickEl.style.top = "22%";
 	
 	if(this._stationaryBase == false){	
 		this._baseEl.style.display	= "none";
