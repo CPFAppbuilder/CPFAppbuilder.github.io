@@ -28,6 +28,13 @@ body {
 	
 }
 
+#grabgif {
+	position: absolute;
+	width: 20%;
+	right: 15.5%;
+	top: 12%;
+}
+
 #grab {
 	position: absolute;
 	width: 15%;
