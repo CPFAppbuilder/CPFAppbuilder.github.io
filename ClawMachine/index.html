@@ -11,13 +11,16 @@
 <div id="container">
 
 	<div id="panel">
-		<img id="joystick" src="./images/joystick.png" />
+		<img id="joystick" src="./images/joystick/stick.png" />
+		<img id="base" src="./images/joystick/base.png" style="width:50%; display:none;" />
 	</div>
 
-	<div id="result" style="display:none;"></div>
+	<div id="result" style="display:block;"></div>
 	
 	<img id="grabgif" src="./images/grab.gif" />
-	<img id="grab" src="./images/grab.png" />
+	<img id="grab" src="./images/btn.png" />
+	
+	<img id="set" src="./images/set.png" />
 
 </div>
 
@@ -25,14 +28,17 @@
 <script>
 
 var joystick = document.getElementById("joystick");
+var grab = document.getElementById("grab");
+var base = document.getElementById("base");
 
-/*var joystick = new VirtualJoystick({
+var joystick = new VirtualJoystick({
 	container: document.getElementById("panel"),
 	mouseSupport	: true,
 	stationaryBase	: true,
 	limitStickTravel: true,
-	//stickElement: joystick,
-	stickRadius	: 150,
+	baseElement: base,
+	stickElement: joystick,
+	stickRadius	: 80,
 	baseX		: 300,
 	baseY		: 300
 });
@@ -53,8 +59,15 @@ setInterval(function(){
 		+ (joystick.up()	? ' up'		: '')
 		+ (joystick.left()	? ' left'	: '')
 		+ (joystick.down()	? ' down' 	: '')	
-}, 1/30 * 1000);*/
+}, 1/30 * 1000);
 
+grab.addEventListener("touchstart", function(event) {
+	grab.src="./images/btn_grab.png";
+});
+
+grab.addEventListener("touchend", function(event) {
+	grab.src="./images/btn.png";
+});
 
 </script>
 
