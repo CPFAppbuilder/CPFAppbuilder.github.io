@@ -12,10 +12,10 @@
 
 	<div id="panel">
 		<img id="joystick" src="./images/joystick/stick.png" />
-		<img id="base" src="./images/joystick/base.png" style="width:50%; display:none;" />
+		<img id="base" src="./images/joystick/base.png" style="width:50%;" />
 	</div>
 
-	<div id="result" style="display:block;"></div>
+	<div id="result" style="display:none;"></div>
 	
 	<img id="grabgif" src="./images/grab.gif" />
 	<img id="grab" src="./images/btn.png" />
@@ -40,7 +40,7 @@ var joystick = new VirtualJoystick({
 	stickElement: joystick,
 	stickRadius	: 80,
 	baseX		: 300,
-	baseY		: 300
+	baseY		: 260
 });
 
 joystick.addEventListener('touchStart', function(){

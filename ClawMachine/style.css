@@ -19,13 +19,14 @@ body {
 #panel {
 	height: 100%;
 	width: 50%;
+	//background-color: red;
 }
 
 #joystick {
 	position: absolute;
 	width: 25%;
-	left: 34%;
-	top: 20%;
+	left: 32%;
+	top: 18%;
 }
 
 #grabgif {

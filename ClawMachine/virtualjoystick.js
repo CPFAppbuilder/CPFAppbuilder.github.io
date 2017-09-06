@@ -25,10 +25,15 @@ var VirtualJoystick	= function(opts)
 	this._pressed	= false;
 	this._touchIdx	= null;
 	
+	this._screenWidth = window.screen.width;
+	this._screenHeight = window.screen.height;
+	
 	if(this._stationaryBase === true){
 		this._baseEl.style.display	= "";
-		this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
-		this._baseEl.style.top		= (this._baseY - this._baseEl.height/10)+"px";
+		//this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
+		//this._baseEl.style.top		= (this._baseY - this._baseEl.height/2)+"px";
+		this._baseEl.style.left		= "20%";
+		this._baseEl.style.top		= "40%";
 	}
     
 	this._transform	= this._useCssTransform ? this._getTransformProperty() : false;
@@ -148,7 +153,7 @@ VirtualJoystick.prototype.left	= function(){
 VirtualJoystick.prototype._onUp	= function()
 {
 	this._pressed	= false; 
-	this._stickEl.style.display	= "none";
+	//this._stickEl.style.display	= "none";
 	
 	if(this._stationaryBase == false){	
 		this._baseEl.style.display	= "none";
@@ -226,6 +231,9 @@ VirtualJoystick.prototype._onMouseDown	= function(event)
 	event.preventDefault();
 	var x	= event.clientX;
 	var y	= event.clientY;
+	//var xPercent = x / this._screenWidth * 100;
+	//var yPercent = y / this._screenHeight * 100;
+	//console.log(xPercent+','+yPercent);
 	return this._onDown(x, y);
 }
 
@@ -257,7 +265,7 @@ VirtualJoystick.prototype._onTouchStart	= function(event)
 	var touch	= event.changedTouches[0];
 	// set the touchIdx of this joystick
 	this._touchIdx	= touch.identifier;
-
+	
 	// forward the action
 	var x		= touch.pageX;
 	var y		= touch.pageY;
