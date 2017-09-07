@@ -27,7 +27,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	setup();
+	//setup();
 
 	var m_one = 90;
 	var m_three = 90;
@@ -35,6 +35,7 @@
 	var joystick = document.getElementById("joystick");
 	var grab = document.getElementById("grab");
 	var base = document.getElementById("base");
+	var panel = document.getElementById("panel");
 
 	var joystick = new VirtualJoystick({
 		container: document.getElementById("panel"),
@@ -52,7 +53,7 @@
 		var worker = new Worker("worker.js");
 	}
 	
-	/*setInterval(function(){
+	setInterval(function(){
 		var outputEl	= document.getElementById('result');
 		outputEl.innerHTML	= '<b>Result:</b> '
 			+ ' dx:'+joystick.deltaX()
@@ -63,22 +64,38 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);
 	
-	joystick.addEventListener('touchStart', function(){
+	panel.addEventListener('click', function(){
 		if(joystick.deltaX() > 0) {
 			m_one += 10;
 		} else if(joystick.deltaX() < 0) {
 			m_one -= 10;
 		}
-		if(joystick.deltaY() > 0)
+		if(joystick.deltaY() > 0) {
+			m_three += 10;
+		} else if(joystick.deltaY() < 0) {
+			m_three -= 10;
+		}
+		
+		if(m_one > 180) {
+			m_one = 180;
+		} else if(m_three > 180) {
+			m_three = 180;
+		} else if(m_one < 0) {
+			m_one = 0;
+		} else if(m_three < 0) {
+			m_three = 0;
+		}
+		
+		cpf.request('["braccio_movement", 30, m_one, 90, m_three, 90, 90, 60]');
+
+		console.log(m_one+','+m_three);
 	});
-	joystick.addEventListener('touchEnd', function(){
-		console.log('up')
-	});*/
+	joystick.addEventListener('touchend', function(){
+		
+	});
 	
 	grab.addEventListener("touchstart", function(event) {
 		grab.src="./images/btn_grab.png";
-		
-		worker.postMessage(cpf);
 		
 	});
 
