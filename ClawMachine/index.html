@@ -27,7 +27,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	//setup();
+	setup();
 
 	var joystick = document.getElementById("joystick");
 	var grab = document.getElementById("grab");
@@ -60,7 +60,7 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);*/
 
-	grab.addEventListener("click", function(event) {
+	grab.addEventListener("touchstart", function(event) {
 		grab.src="./images/btn_grab.png";
 		
 		worker.postMessage('arm');
