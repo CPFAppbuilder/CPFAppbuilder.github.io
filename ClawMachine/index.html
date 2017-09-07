@@ -29,6 +29,9 @@
 	
 	setup();
 
+	var m1 = 90;
+	var m3 = 90;
+	
 	var joystick = document.getElementById("joystick");
 	var grab = document.getElementById("grab");
 	var base = document.getElementById("base");
@@ -48,7 +51,7 @@
 	if(window.Worker) {
 		var worker = new Worker("worker.js");
 	}
-
+	
 	/*setInterval(function(){
 		var outputEl	= document.getElementById('result');
 		outputEl.innerHTML	= '<b>Result:</b> '
@@ -58,12 +61,19 @@
 			+ (joystick.up()	? ' up'		: '')
 			+ (joystick.left()	? ' left'	: '')
 			+ (joystick.down()	? ' down' 	: '')	
-	}, 1/30 * 1000);*/
-
+	}, 1/30 * 1000);
+	
+	joystick.addEventListener('touchStart', function(){
+		if(joystick.deltaX() > 0) 
+	});
+	joystick.addEventListener('touchEnd', function(){
+		console.log('up')
+	});*/
+	
 	grab.addEventListener("touchstart", function(event) {
 		grab.src="./images/btn_grab.png";
 		
-		worker.postMessage('arm1');
+		worker.postMessage('arm');
 		
 	});
 
