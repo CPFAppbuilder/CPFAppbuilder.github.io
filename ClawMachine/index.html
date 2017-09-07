@@ -64,12 +64,12 @@
 		grab.src="./images/btn_grab.png";
 		
 		worker.postMessage();
-		cpf.request('["braccio_movement", 30, 125, 90, 90, 90, 60, 40]');
 		
 	});
 
 	grab.addEventListener("touchend", function(event) {
 		grab.src="./images/btn.png";
+		cpf.request('["braccio_movement", 30, 90, 90, 90, 90, 90, 60]');
 	});
 
 	// cpf setup
