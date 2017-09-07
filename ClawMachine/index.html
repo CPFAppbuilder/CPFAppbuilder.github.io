@@ -64,7 +64,7 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);
 	
-	panel.addEventListener('touchstart', function(){
+	panel.addEventListener('click', function(){
 		if(joystick.deltaX() > 0) {
 			m_one += 10;
 		} else if(joystick.deltaX() < 0) {
