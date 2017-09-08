@@ -20,7 +20,7 @@ var VirtualJoystick	= function(opts)
 	this._baseEl.style.display	= "none"
 	this._container.appendChild(this._stickEl)
 	this._stickEl.style.position	= "absolute"
-	//this._stickEl.style.display	= "none"
+	this._stickEl.style.display	= "none"
 
 	this._pressed	= false;
 	this._touchIdx	= null;
@@ -360,7 +360,7 @@ VirtualJoystick.prototype._buildJoystickStick	= function()
 	ctx.fillStyle = 'red';
 	ctx.strokeStyle	= 'black'; 
 	ctx.lineWidth	= 2; 
-	ctx.arc( canvas.width/2, canvas.width/2, 30, 0, Math.PI*2, true);
+	ctx.arc( canvas.width/2, canvas.width/2, 20, 0, Math.PI*2, true);
 	ctx.fill();
 	ctx.stroke();
 	return canvas;

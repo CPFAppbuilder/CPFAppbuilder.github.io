@@ -10,10 +10,10 @@
 
 <div id="container">
 
-	<!--<div id="panel">
-		<img id="joystick" src="./images/joystick/stick.png" />
-		<img id="base" src="./images/joystick/base.png" style="width:50%;" />
-	</div>-->
+	<div id="panel">
+		<!--<img id="joystick" src="./images/joystick/stick.png" />
+		<img id="base" src="./images/joystick/base.png" style="width:50%;" />-->
+	</div>
 
 	<div id="result" style="position: absolute; top: -25px;"></div>
 	
@@ -27,11 +27,11 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	//setup();
+	setup();
 
 	var m_one = 90;
-	var m_three = 90;
-	var m_four = 90;
+	var m_five = 90;
+	var stickRadius = 220;
 	var touched;
 	
 	var joystick = document.getElementById("joystick");
@@ -40,15 +40,15 @@
 	var panel = document.getElementById("panel");
 
 	var joystick = new VirtualJoystick({
-		//container: document.getElementById("panel"),
+		container: document.getElementById("panel"),
 		mouseSupport	: true,
 		stationaryBase	: true,
 		limitStickTravel: true,
 		//baseElement: base,
 		//stickElement: joystick,
-		stickRadius	: 210,
-		baseX		: 380,
-		baseY		: 320
+		stickRadius	: stickRadius,
+		baseX		: 350,
+		baseY		: 310
 	});
 
 	if(window.Worker) {
@@ -66,40 +66,15 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);
 	
-	panel.addEventListener('touchstart', function(){
+	panel.addEventListener('click', function(){
 	
 		touched = setInterval(function() {
 		
-			if(joystick.deltaX() > 0) {
-				m_one -= 10;
-			} else if(joystick.deltaX() < 0) {
-				m_one += 10;
+			if(joystick.deltaY() >= 0) {
+				m_one = 90 + Math.round(joystick.deltaX()  / 2.5);
+				m_five = 90 + Math.round(joystick.deltaY()  / 2.5);
+				cpf.request('["braccio_movement", 30, '+m_one+', 90, 90, 90, '+m_five+', 60]');
 			}
-			if(joystick.deltaY() > 0) {
-				m_three -= 10;
-				m_four -= 5;
-			} else if(joystick.deltaY() < 0) {
-				m_three += 10;
-				m_four += 5;
-			}
-			
-			if(m_one > 180) {
-				m_one = 180;
-			} else if (m_one < 0) {
-				m_one = 0;
-			}
-			if(m_three > 180) {
-				m_three = 180;
-			} else if (m_three < 0) {
-				m_three = 0;
-			}
-			if(m_four > 180) {
-				m_four = 180;
-			} else if (m_four < 0) {
-				m_four = 0;
-			}
-			
-			cpf.request('["braccio_movement", 30, '+m_one+', 90, '+m_three+', '+m_four+', 90, 60]');
 			
 		}, 500);
 
