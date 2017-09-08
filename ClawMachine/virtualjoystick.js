@@ -189,6 +189,9 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 			this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 			this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
 		}
+		if(deltaY < 0) {
+			this._stickY = this._baseY;
+		}
 	}
 	
 	this._stickEl.style.display	= "";
@@ -211,7 +214,10 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 			
 				this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 				this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
-			} 		
+			} 
+			if(deltaY < 0) {
+				this._stickY = this._baseY;
+			}
 		}
 		
         	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));	
