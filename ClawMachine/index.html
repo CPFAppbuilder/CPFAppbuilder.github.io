@@ -27,7 +27,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	//setup();
+	setup();
 
 	var m_one = 90;
 	var m_three = 90;
@@ -86,10 +86,8 @@
 			m_three = 0;
 		}
 		
-		//cpf.request('["braccio_movement", 30, m_one, 90, m_three, 90, 90, 60]');
-		alert('touch');
+		cpf.request('["braccio_movement", 30, 120, 90, 120, 90, 90, 60]');
 
-		console.log(m_one+','+m_three);
 	});
 	joystick.addEventListener('touchend', function(){
 		
