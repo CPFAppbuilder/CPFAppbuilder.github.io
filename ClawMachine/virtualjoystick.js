@@ -188,7 +188,7 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 			
 			this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 			this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
-		} 	
+		}
 	}
 	
 	this._stickEl.style.display	= "";
