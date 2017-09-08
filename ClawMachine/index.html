@@ -75,7 +75,9 @@
 
 	});
 	panel.addEventListener('touchend', function(){
-		clearInterval(touched);
+		setTimeout(function(){
+			clearInterval(touched);
+		}, 500);
 	});
 	
 	grab.addEventListener("touchstart", function(event) {
