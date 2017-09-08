@@ -27,7 +27,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	setup();
+	//setup();
 
 	var m_one = 90;
 	var m_three = 90;
@@ -64,7 +64,7 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);
 	
-	panel.addEventListener('click', function(){
+	panel.addEventListener('touchstart', function(){
 		if(joystick.deltaX() > 0) {
 			m_one += 10;
 		} else if(joystick.deltaX() < 0) {
@@ -86,7 +86,8 @@
 			m_three = 0;
 		}
 		
-		cpf.request('["braccio_movement", 30, m_one, 90, m_three, 90, 90, 60]');
+		//cpf.request('["braccio_movement", 30, m_one, 90, m_three, 90, 90, 60]');
+		alert('touch');
 
 		console.log(m_one+','+m_three);
 	});
