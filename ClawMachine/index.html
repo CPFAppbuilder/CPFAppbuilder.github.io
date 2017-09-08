@@ -30,7 +30,7 @@
 	setup();
 
 	var m_one = 90;
-	var m_five = 90;
+	var m_four = 90;
 	var touched;
 	
 	var joystick = document.getElementById("joystick");
@@ -71,8 +71,8 @@
 		
 			if(joystick.deltaY() >= 0) {
 				m_one = 90 + Math.round(joystick.deltaX()  / 2.5);
-				m_five = 90 + Math.round(joystick.deltaY()  / 2.5);
-				cpf.request('["braccio_movement", 30, '+m_one+', 90, 90, 90, '+m_five+', 60]');
+				m_four = 90 + Math.round(joystick.deltaY()  / 2.5);
+				cpf.request('["braccio_movement", 30, '+m_one+', 90, 90, 90, '+m_four+', 60]');
 			}
 			
 		}, 500);
