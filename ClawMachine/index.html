@@ -49,10 +49,6 @@
 		baseX		: 350,
 		baseY		: 310
 	});
-
-	if(window.Worker) {
-		var worker = new Worker("worker.js");
-	}
 	
 	setInterval(function(){
 		var outputEl	= document.getElementById('result');
