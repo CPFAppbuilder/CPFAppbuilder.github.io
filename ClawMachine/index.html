@@ -10,10 +10,10 @@
 
 <div id="container">
 
-	<div id="panel">
+	<!--<div id="panel">
 		<img id="joystick" src="./images/joystick/stick.png" />
 		<img id="base" src="./images/joystick/base.png" style="width:50%;" />
-	</div>
+	</div>-->
 
 	<div id="result" style="position: absolute; top: -25px;"></div>
 	
@@ -27,7 +27,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	setup();
+	//setup();
 
 	var m_one = 90;
 	var m_three = 90;
@@ -40,15 +40,15 @@
 	var panel = document.getElementById("panel");
 
 	var joystick = new VirtualJoystick({
-		container: document.getElementById("panel"),
+		//container: document.getElementById("panel"),
 		mouseSupport	: true,
 		stationaryBase	: true,
 		limitStickTravel: true,
-		baseElement: base,
-		stickElement: joystick,
-		stickRadius	: 80,
-		baseX		: 280,
-		baseY		: 250
+		//baseElement: base,
+		//stickElement: joystick,
+		stickRadius	: 210,
+		baseX		: 380,
+		baseY		: 320
 	});
 
 	if(window.Worker) {

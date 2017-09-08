@@ -30,10 +30,10 @@ var VirtualJoystick	= function(opts)
 	
 	if(this._stationaryBase === true){
 		this._baseEl.style.display	= "";
-		//this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
-		//this._baseEl.style.top		= (this._baseY - this._baseEl.height/2)+"px";
-		this._baseEl.style.left		= "20%";
-		this._baseEl.style.top		= "40%";
+		this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
+		this._baseEl.style.top		= (this._baseY - this._baseEl.height/2)+"px";
+		//this._baseEl.style.left		= "20%";
+		//this._baseEl.style.top		= "40%";
 	}
     
 	this._transform	= this._useCssTransform ? this._getTransformProperty() : false;
@@ -154,8 +154,8 @@ VirtualJoystick.prototype._onUp	= function()
 {
 	this._pressed	= false; 
 	//this._stickEl.style.display	= "none";
-	this._stickEl.style.left = "32%";
-	this._stickEl.style.top = "22%";
+	//this._stickEl.style.left = "32%";
+	//this._stickEl.style.top = "22%";
 	
 	if(this._stationaryBase == false){	
 		this._baseEl.style.display	= "none";
@@ -328,20 +328,20 @@ VirtualJoystick.prototype._onTouchMove	= function(event)
 VirtualJoystick.prototype._buildJoystickBase	= function()
 {
 	var canvas	= document.createElement( 'canvas' );
-	canvas.width	= 256;
-	canvas.height	= 256;
+	canvas.width	= 500;
+	canvas.height	= 500;
 	
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
 	ctx.strokeStyle = this._strokeStyle; 
 	ctx.lineWidth	= 6; 
-	ctx.arc( canvas.width/2, canvas.width/2, 80, 0, Math.PI*2, true); 
+	ctx.arc( canvas.width/2, canvas.width/2, 50, 0, Math.PI*2, true); 
 	ctx.stroke();	
 
 	ctx.beginPath(); 
 	ctx.strokeStyle	= this._strokeStyle; 
 	ctx.lineWidth	= 2; 
-	ctx.arc( canvas.width/2, canvas.width/2, 120, 0, Math.PI*2, true); 
+	ctx.arc( canvas.width/2, canvas.width/2, 240, 0, Math.PI*2, true); 
 	ctx.stroke();
 	
 	return canvas;
@@ -353,14 +353,14 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 VirtualJoystick.prototype._buildJoystickStick	= function()
 {
 	var canvas	= document.createElement( 'canvas' );
-	canvas.width	= 216;
-	canvas.height	= 216;
+	canvas.width	= 156;
+	canvas.height	= 156;
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
 	ctx.fillStyle = 'red';
 	ctx.strokeStyle	= 'black'; 
 	ctx.lineWidth	= 2; 
-	ctx.arc( canvas.width/2, canvas.width/2, 80, 0, Math.PI*2, true);
+	ctx.arc( canvas.width/2, canvas.width/2, 30, 0, Math.PI*2, true);
 	ctx.fill();
 	ctx.stroke();
 	return canvas;
