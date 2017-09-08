@@ -70,8 +70,8 @@
 		touched = setInterval(function() {
 		
 			if(joystick.deltaY() >= 0) {
-				m_one = 90 - Math.round(joystick.deltaX()  / 2.5);
-				m_four = 90 + Math.round(joystick.deltaY()  / 2.5);
+				m_one = 90 - Math.round(joystick.deltaX() / 2.5);
+				m_four = 90 + Math.round(joystick.deltaY() / 2.5);
 				cpf.request('["braccio_movement", 30, '+m_one+', 90, 90, 90, '+m_four+', 60]');
 			}
 			
