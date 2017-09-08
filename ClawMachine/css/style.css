@@ -1,0 +1,51 @@
+
+body {
+	overflow	: hidden;
+	padding		: 0;
+	margin		: 0;
+	background-color: #FFDDAA;
+}
+
+#container {
+	position: relative;
+	margin: 0 auto;
+	margin-top: 2%;
+	height: 95%;
+	width: 95%;
+	background-color: #404040;
+	border-radius: 15px;
+}
+
+#panel {
+	height: 100%;
+	width: 50%;
+	//background-color: red;
+}
+
+#joystick {
+	position: absolute;
+	width: 25%;
+	left: 32%;
+	top: 22%;
+}
+
+#grabgif {
+	position: absolute;
+	width: 21%;
+	right: 18.2%;
+	top: 12%;
+}
+
+#grab {
+	position: absolute;
+	width: 19%;
+	right: 19%;
+	top: 52%;
+}
+
+#set {
+	position: absolute;
+	width: 3.5%;
+	right: 0.5%;
+	top: 1%;
+}
