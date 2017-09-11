@@ -31,6 +31,7 @@
 
 	var m_one = 90;
 	var m_four = 90;
+	var stickRadius = 220;
 	var touched;
 	
 	//var joystick = document.getElementById("joystick");
@@ -45,7 +46,7 @@
 		limitStickTravel: true,
 		//baseElement: base,
 		//stickElement: joystick,
-		stickRadius	: 220,
+		stickRadius	: stickRadius,
 		baseX		: 350,
 		baseY		: 310
 	});
@@ -65,17 +66,26 @@
 	
 		touched = setInterval(function() {
 		
+			var stickDistance = Math.sqrt( (joystick.deltaX() * joystick.deltaX()) + (joystick.deltaY() * joystick.deltaY()) );
+		
 			if(joystick.deltaY() >= 0) {
 				m_one = 90 - Math.round(joystick.deltaX() / 2.5);
-				m_four = 90 + Math.round(joystick.deltaY() / 2.5);
+				
+				if(stickDistance > stickRadius) {
+					m_four = 180;
+				} else {
+					m_four = 90 + Math.round(stickDistance / 2.5);
+				}
+				
 				cpf.request('["braccio_movement", 15, '+m_one+', 90, 90, '+m_four+', 90, 60]');
 			}
 			
 		}, 200);
 
 	});
+	
 	panel.addEventListener('touchend', function(){
-		setTimeout(function(){
+		setTimeout(function() {
 			clearInterval(touched);
 		}, 500);
 	});
@@ -87,7 +97,7 @@
 
 	grab.addEventListener("touchend", function(event) {
 		grab.src="./images/btn.png";
-		cpf.request('["braccio_movement", 30, 90, 90, 90, 90, 90, 60]');
+		
 	});
 
 	// cpf setup
