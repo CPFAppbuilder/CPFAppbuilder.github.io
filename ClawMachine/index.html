@@ -90,8 +90,10 @@
 			+ (joystick.down()	? ' down' 	: '')	
 	}, 1/30 * 1000);
 	
-	panel.addEventListener('touchstart', function(){
+	panel.addEventListener('click', function(){
 	
+		clearInterval(touched);
+		
 		touched = setInterval(function() {
 		
 			var stickDistance = Math.sqrt( (joystick.deltaX() * joystick.deltaX()) + (joystick.deltaY() * joystick.deltaY()) );
@@ -118,8 +120,6 @@
 	});
 	
 	grab.addEventListener("touchstart", function(event) {
-		
-		clearInterval(touched);
 		
 		grab.src="./images/btn_grab.png";
 		
