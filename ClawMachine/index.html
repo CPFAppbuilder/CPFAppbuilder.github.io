@@ -31,7 +31,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	setup();
+	//setup();
 
 	var m_one = 90;
 	var m_four = 90;
@@ -79,7 +79,7 @@
 				if(stickDistance > stickRadius) {
 					m_four = 180;
 				} else {
-					m_four = 90 + Math.round(stickDistance / 2.5);
+					m_four = 90 - Math.round(stickDistance / 2.5);
 				}
 				
 				cpf.request('["braccio_movement", 15, '+m_one+', 90, 70, '+m_four+', 90, 30]');
