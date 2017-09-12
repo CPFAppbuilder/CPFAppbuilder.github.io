@@ -30,8 +30,8 @@ var VirtualJoystick	= function(opts)
 	
 	if(this._stationaryBase === true){
 		this._baseEl.style.display	= "";
-		this._baseEl.style.left		= (this._baseX - this._baseEl.width /2)+"px";
-		this._baseEl.style.top		= (this._baseY - this._baseEl.height/2)+"px";
+		this._baseEl.style.left		= (this._baseX - this._baseEl.width /1.76)+"px";
+		this._baseEl.style.top		= (this._baseY - this._baseEl.height/1.76)+"px";
 		//this._baseEl.style.left		= "20%";
 		//this._baseEl.style.top		= "40%";
 	}
@@ -195,7 +195,7 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 	}
 	
 	this._stickEl.style.display	= "";
-	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.5), (this._stickY - this._stickEl.height/1.5));	
+	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.2), (this._stickY - this._stickEl.height/1.2));	
 }
 
 VirtualJoystick.prototype._onMove	= function(x, y)
@@ -221,7 +221,7 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 			}
 		}
 		
-        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.5), (this._stickY - this._stickEl.height/1.5));	
+        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.2), (this._stickY - this._stickEl.height/1.2));	
 	}	
 }
 

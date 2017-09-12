@@ -10,13 +10,30 @@
 
 <div id="bg"></div>
 
-<div id="setpanel"></div>
+<div id="setpanel">
+	<div class="settitle">機械手臂設定</div>
+	<table>
+		<tr>
+			<td>M1: <input tpye="text" /></td>
+			<td>M2: <input tpye="text" /></td>
+		</tr>
+		<tr>
+			<td>M3: <input tpye="text" /></td>
+			<td>M4: <input tpye="text" /></td>
+		</tr>
+		<tr>
+			<td>M5: <input tpye="text" /></td>
+			<td>M6: <input tpye="text" /></td>
+		</tr>
+	</table>
+	<button>確定</button>
+</div>
 
 <div id="container">
 
 	<div id="panel">
-		<!--<img id="joystick" src="./images/joystick/stick.png" />
-		<img id="base" src="./images/joystick/base.png" style="width:50%;" />-->
+		<!--<img id="joystick" src="./images/joystick/stick.png" />-->
+		<img id="base" src="./images/base.png" style="width:75%;" />
 	</div>
 
 	<div id="result" style="position: absolute; top: -25px;"></div>
@@ -31,7 +48,7 @@
 <script src="./virtualjoystick.js" ></script>
 <script>
 	
-	setup();
+	//setup();
 
 	var m_one = 90;
 	var m_four = 90;
@@ -40,7 +57,7 @@
 	
 	//var joystick = document.getElementById("joystick");
 	var grab = document.getElementById("grab");
-	//var base = document.getElementById("base");
+	var base = document.getElementById("base");
 	var panel = document.getElementById("panel");
 	var set = document.getElementById("set");
 
@@ -49,11 +66,11 @@
 		mouseSupport	: true,
 		stationaryBase	: true,
 		limitStickTravel: true,
-		//baseElement: base,
+		baseElement: base,
 		//stickElement: joystick,
 		stickRadius	: stickRadius,
-		baseX		: 350,
-		baseY		: 310
+		baseX		: 380,
+		baseY		: 340
 	});
 	
 	setInterval(function(){
@@ -77,7 +94,7 @@
 				m_one = 90 - Math.round(joystick.deltaX() / 2.5);
 				
 				if(stickDistance > stickRadius) {
-					m_four = 0;
+					m_four = 90;
 				} else {
 					m_four = Math.round(stickDistance / 2.5);
 				}
@@ -120,6 +137,11 @@
 	set.addEventListener("click", function(event) {
 		document.getElementById("bg").style.display = 'inline';
 		document.getElementById("setpanel").style.display = 'inline';
+	});
+	
+	document.getElementById("bg").addEventListener("click", function(event) {
+		document.getElementById("bg").style.display = 'none';
+		document.getElementById("setpanel").style.display = 'none';
 	});
 	
 	// cpf setup
