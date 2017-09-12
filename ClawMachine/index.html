@@ -77,9 +77,9 @@
 				m_one = 90 - Math.round(joystick.deltaX() / 2.5);
 				
 				if(stickDistance > stickRadius) {
-					m_four = 180;
+					m_four = 0;
 				} else {
-					m_four = 90 - Math.round(stickDistance / 2.5);
+					m_four = Math.round(stickDistance / 2.5);
 				}
 				
 				cpf.request('["braccio_movement", 15, '+m_one+', 90, 70, '+m_four+', 90, 30]');
