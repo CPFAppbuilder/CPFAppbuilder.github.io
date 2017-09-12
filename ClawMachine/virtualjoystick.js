@@ -195,7 +195,7 @@ VirtualJoystick.prototype._onDown	= function(x, y)
 	}
 	
 	this._stickEl.style.display	= "";
-	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));	
+	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.5), (this._stickY - this._stickEl.height/1.5));	
 }
 
 VirtualJoystick.prototype._onMove	= function(x, y)
@@ -214,13 +214,14 @@ VirtualJoystick.prototype._onMove	= function(x, y)
 			
 				this._stickX = stickNormalizedX * this._stickRadius + this._baseX;
 				this._stickY = stickNormalizedY * this._stickRadius + this._baseY;
-			} 
+			}
+			
 			if(deltaY < 0) {
 				this._stickY = this._baseY;
 			}
 		}
 		
-        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /2), (this._stickY - this._stickEl.height/2));	
+        	this._move(this._stickEl.style, (this._stickX - this._stickEl.width /1.5), (this._stickY - this._stickEl.height/1.5));	
 	}	
 }
 
@@ -359,8 +360,8 @@ VirtualJoystick.prototype._buildJoystickBase	= function()
 VirtualJoystick.prototype._buildJoystickStick	= function()
 {
 	var canvas	= document.createElement( 'canvas' );
-	canvas.width	= 156;
-	canvas.height	= 156;
+	canvas.width	= 100;
+	canvas.height	= 100;
 	var ctx		= canvas.getContext('2d');
 	ctx.beginPath(); 
 	ctx.fillStyle = 'red';
