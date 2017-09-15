@@ -77,8 +77,11 @@
 </div>
 
 <div id="exporting">
-<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button></div>
+<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button>
+</div>
+<div id="importing">
 <button id="import" onclick="in_temp()"><img class="btn" src="./images/inbtn.png" /></button>
+</div>
 
 <div id="belt_div">
 	<img id="arm" src="./images/arm.png" />
@@ -109,8 +112,7 @@
 	
 	function out_temp() {
 		
-		document.getElementById("exporting").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
-		//document.getElementById("export").style.display = 'none';
+		document.getElementById("exporting").innerHTML = '<span id="importing" class="btn">出庫中...</span>';
 		
 		setTimeout(function(){
 			arm_down();
@@ -121,7 +123,6 @@
 	function arm_down() {
 	
 		is_export = true;
-		//document.getElementById("export").style.display = 'none';
 		
 		cpf_fun(itemName);
 		start(true);
@@ -190,7 +191,8 @@
 				document.getElementById("belt2").src="./images/belt.png";
 				setTimeout(function(){
 					//if(cpf.get("a0") == 0) {
-						document.getElementById("import").style.display = 'block';
+						document.getElementById("importing").innerHTML = '<button id="import" onclick="in_temp()"><img class="btn" src="./images/inbtn.png" /></button>';
+						document.getElementById("exporting").style.display = 'none';
 						cpf_clear();
 						aop_store();
 					//}
@@ -254,7 +256,8 @@
 	
 	
 	function in_temp() {
-		document.getElementById("import").style.display = 'none';
+	
+		document.getElementById("importing").innerHTML = '<span id="importing" class="btn">入庫中...</span>';
 		setTimeout(function(){
 			instorage();
 		},200);
@@ -262,8 +265,6 @@
 	
 	// 入庫
 	function instorage() {
-		
-		//document.getElementById("import").style.display = 'none';
 		
 		start(false);
 		
@@ -302,7 +303,8 @@
 		
 		function out_btn() {
 			if(cpf.get("a0") == 0) {
-				document.getElementById("export").style.display = 'block';
+				document.getElementById("exporting").innerHTML = '<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button>';
+				document.getElementById("importing").style.display = 'none';
 				is_export = false;
 				if(itemName == 'egg') {
 					target.src = './images/item/egg.png';
