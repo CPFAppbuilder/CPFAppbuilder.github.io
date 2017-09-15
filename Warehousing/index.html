@@ -76,8 +76,8 @@
 	</table>
 </div>
 
-<button id="export" onclick="in_temp()"><img class="btn" src="./images/outbtn.png" /></button>
-<button id="import" onclick="instorage()"><img class="btn" src="./images/inbtn.png" /></button>
+<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button>
+<button id="import" onclick="in_temp()"><img class="btn" src="./images/inbtn.png" /></button>
 
 <div id="belt_div">
 	<img id="arm" src="./images/arm.png" />
@@ -106,14 +106,14 @@
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
 	
-	function in_temp() {
+	function out_temp() {
 		
 		//document.getElementById("export").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
 		document.getElementById("export").style.display = 'none';
 		
 		setTimeout(function(){
 			arm_down();
-		},500);
+		},200);
 	}
 	
 	// 出庫
@@ -250,11 +250,19 @@
 		var str = JSON.stringify(data);
 		aop.setStore("store2", str);
 	}
-
+	
+	
+	function in_temp() {
+		document.getElementById("import").style.display = 'none';
+		setTimeout(function(){
+			instorage();
+		},200);
+	}
+	
 	// 入庫
 	function instorage() {
 		
-		document.getElementById("import").style.display = 'none';
+		//document.getElementById("import").style.display = 'none';
 		
 		start(false);
 		
