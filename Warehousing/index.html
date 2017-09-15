@@ -75,7 +75,7 @@
 	</table>
 </div>
 
-<button id="export" onclick="arm_down()"><img class="btn" src="./images/outbtn.png" /></button>
+<button id="export" onclick="in_temp()"><img class="btn" src="./images/outbtn.png" /></button>
 <button id="import" onclick="instorage()"><img class="btn" src="./images/inbtn.png" /></button>
 
 <div id="belt_div">
@@ -104,6 +104,15 @@
 	
 	document.getElementById("cpf").classList.add('itemclick');
 	document.getElementById("import").style.display = 'none';
+	
+	function in_temp() {
+		
+		document.getElementById("export").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
+		
+		setTimeout(function(){
+			arm_down();
+		},500);
+	}
 	
 	// 出庫
 	function arm_down() {
@@ -355,7 +364,6 @@
 		
 		switch(item) {
 			case 'cpf':
-				//cpf_clear();
 				// 12
 				command = '["digitalWrite", 3, 255],["digitalWrite", 6, 255]';
 				cpf.set("d3", 255);
@@ -366,7 +374,6 @@
 				break;
 			case 'nb':
 				x = Math.floor(Math.random() * 3);
-				//cpf_clear();
 				if(x == 0) {
 					// 6
 					command = '["digitalWrite", 3, 255],["digitalWrite", 4, 1]';
@@ -395,7 +402,6 @@
 				break;
 			case 'lcd':
 				x = Math.floor(Math.random() * 2);
-				//cpf_clear();
 				if(x == 0) {
 					// 1
 					command = '["digitalWrite", 2, 1]';
@@ -414,7 +420,6 @@
 				break;
 			case 'pc':
 				x = Math.floor(Math.random() * 2);
-				//cpf_clear();
 				if(x == 0) {
 					// 7
 					command = '["digitalWrite", 2, 1],["digitalWrite", 3, 255],["digitalWrite", 4, 1]';
@@ -436,7 +441,6 @@
 				break;
 			case 'pj':
 				x = Math.floor(Math.random() * 2);
-				//cpf_clear();
 				if(x == 0) {
 					// 3
 					command = '["digitalWrite", 2, 1],["digitalWrite", 3, 255]';
@@ -457,7 +461,6 @@
 				}
 				break;
 			case 'abs':
-				//cpf_clear();
 				// 10
 				command = '["digitalWrite", 6, 255]';
 				cpf.set("d6", 255);
@@ -467,7 +470,6 @@
 				break;
 			case 'egg':
 				x = Math.floor(Math.random() * 3);
-				//cpf_clear();
 				if(x == 0) {
 					// 22 (Geroge)
 					command = '["digitalWrite", 3, 255],["digitalWrite", 9, 255]';
@@ -534,11 +536,9 @@
 			cpf.set("d10", 0);
 		}
 		
-		//command += ',["digitalWrite", 11, 255]';
-		//cpf.request(command);
+		cpf.set("d11", 255);
 		
 		setTimeout(function(){
-			cpf.set("d11", 255);
 			cpf.set("d11", 0);
 		},1000);
 	}
