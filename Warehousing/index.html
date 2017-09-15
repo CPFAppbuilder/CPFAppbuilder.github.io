@@ -71,7 +71,8 @@
 		<tr><td class="log_num">21</td><td id="num21"></td></tr>
 		<tr><td class="log_num">22</td><td id="num22"></td></tr>
 		<tr><td class="log_num">24</td><td id="num24"></td></tr>
-		<tr><td class="log_num">Total</td><td id="total"></td></tr>
+		<tr><td class="log_num" onclick="showimport()">Total</td><td id="total"></td></tr>
+		<tr id="showimport" style="display: none;"><td><button onclick="start(false)" style="height: 40px; width: 100px; margin-top: 15px; margin-left: 5px;">強制入庫</button></td><td></td></tr>
 	</table>
 </div>
 
@@ -118,7 +119,7 @@
 	function arm_down() {
 	
 		is_export = true;
-		document.getElementById("export").style.display = 'none';
+		//document.getElementById("export").style.display = 'none';
 		
 		cpf_fun(itemName);
 		start(true);
@@ -366,8 +367,10 @@
 			case 'cpf':
 				// 12
 				command = '["digitalWrite", 3, 255],["digitalWrite", 6, 255]';
+				if(cpf){
 				cpf.set("d3", 255);
 				cpf.set("d6", 255);
+				}
 				item_speed = 0.04;
 				belt_speed = 0.08;
 				num = 12;
@@ -470,6 +473,7 @@
 				break;
 			case 'egg':
 				x = Math.floor(Math.random() * 3);
+				//cpf_clear();
 				if(x == 0) {
 					// 22 (Geroge)
 					command = '["digitalWrite", 3, 255],["digitalWrite", 9, 255]';
@@ -529,16 +533,15 @@
 	
 	function start(flag) {
 		if(flag) {
-			//command += ',["digitalWrite", 10, 255]';
 			cpf.set("d10", 255);
 		} else {
-			//command = '["digitalWrite", 10, 0]';
 			cpf.set("d10", 0);
 		}
 		
 		cpf.set("d11", 255);
 		
 		setTimeout(function(){
+			
 			cpf.set("d11", 0);
 		},1000);
 	}
@@ -610,6 +613,10 @@
 		document.getElementById("bg").style.display = 'none';
 		document.getElementById("log").style.display = 'none';
 	});
+	
+	function showimport() {
+		document.getElementById("showimport").style.display = "";
+	}
 	
 	// cpf setup
 	function setup(){
