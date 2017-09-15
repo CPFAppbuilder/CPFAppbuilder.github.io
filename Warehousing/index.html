@@ -108,7 +108,8 @@
 	
 	function in_temp() {
 		
-		document.getElementById("export").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
+		//document.getElementById("export").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
+		document.getElementById("export").style.display = 'none';
 		
 		setTimeout(function(){
 			arm_down();
