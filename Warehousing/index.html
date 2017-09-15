@@ -76,7 +76,8 @@
 	</table>
 </div>
 
-<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button>
+<div id="exporting">
+<button id="export" onclick="out_temp()"><img class="btn" src="./images/outbtn.png" /></button></div>
 <button id="import" onclick="in_temp()"><img class="btn" src="./images/inbtn.png" /></button>
 
 <div id="belt_div">
@@ -108,8 +109,8 @@
 	
 	function out_temp() {
 		
-		//document.getElementById("export").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
-		document.getElementById("export").style.display = 'none';
+		document.getElementById("exporting").innerHTML = '<span id="importing" class="btn">出庫中.</span>';
+		//document.getElementById("export").style.display = 'none';
 		
 		setTimeout(function(){
 			arm_down();
@@ -603,7 +604,7 @@
 	
 	// log show
 	function cloud_fun() {
-		/*var store = aop.getStore("store2");
+		var store = aop.getStore("store2");
 		var obj = JSON.parse(store);
 		
 		for(var key in obj) {
@@ -612,7 +613,7 @@
 			} else {
 				document.getElementById("num"+key).innerHTML = obj[key];
 			}
-		}*/
+		}
 		
 		document.getElementById("bg").style.display = 'inline';
 		document.getElementById("log").style.display = 'inline';
