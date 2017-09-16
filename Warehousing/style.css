@@ -238,6 +238,14 @@ body {
 	z-index: -5;
 }
 
+#exporting {
+	font-size: 25pt; 
+	color: white; 
+	font-weight: bolder;
+	text-shadow: 1px 1px 1px rgba(10, 10, 10, 0.6);
+	font-family: Microsoft JhengHei; 
+}
+
 #importing {
 	font-size: 25pt; 
 	color: white; 
