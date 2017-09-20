@@ -58,7 +58,6 @@
 				if (now_press < drink_press) {
 					total += drink_press - now_press;
 				}
-				drinktime = Date.now();
 				drink_press = now_press;
 			}
 		}
@@ -107,7 +106,15 @@
 		
 	}
 		
+	// 溫度轉攝氏
 	function toCelsius(value) {
+		var resistance = parseFloat((1023-value) * 10000 / value);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+			
+		return temperature.toFixed(0);
+	}
+		
+	/*function toCelsius(value) {
 		var steinhart = value / 10000.0;
 		steinhart = Math.log(steinhart);
 		steinhart = steinhart / 3950.0;
@@ -116,7 +123,7 @@
 		steinhart -= 273.15;
 			
 		return steinhart;
-	}
+	}*/
 	
 	// cpf setup
 	function setup(){
