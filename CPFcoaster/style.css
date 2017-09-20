@@ -22,8 +22,9 @@ body {
 }
 
 #value-field {
+	//background-color: red;
 	position: absolute;
-	height: 30%;
+	height: 35%;
 	width: 35%;
 	top: 28%;
 	right: 0%;
@@ -63,22 +64,21 @@ body {
 	//background-color: red;
 	position: absolute;
 	height: 25%;
-	width: 90%;
+	width: 70%;
 	left: 8%;
 	bottom: 2%;
 }
 
 .cup-icon {
 	display: inline-block;
-	width: 15%;
+	width: 20%;
 	margin-left: -20px;
 }
 
 .cup-value {
+	position: absolute;
 	font-size: 5.5vw;
-	float: right;
-	margin-right: 8%;
-	margin-top: 3.2%;
-}
+	right: 8%;
+	bottom: 8%;
 
 
