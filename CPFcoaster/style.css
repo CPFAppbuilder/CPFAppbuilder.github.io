@@ -27,34 +27,38 @@ body {
 	height: 35%;
 	width: 35%;
 	top: 28%;
-	right: 0%;
+	right: 2%;
 }
 
 .value-icon {
+	position: absolute;
 	float: left;
 	width: 35%;
 }
 
-.value-icon2 {
-	float: left;
-	width: 15%;
-	margin-left: -10%;
-}
-
 .value-number {
+	position: absolute;
 	display: inline-block;
 	font-size: 7vw;
 	color: #D14542;
-	//margin-top: 5%;
-	margin-left: -6%;
+	top: 15%;
+	left: 30%;
+}
+
+.value-icon2 {
+	position: absolute;
+	float: left;
+	width: 15%;
+	left: 10%;
+	bottom: 6%;
 }
 
 .value-number2 {
-	display: inline-block;
+	position: absolute;
 	font-size: 3vw;
 	color: white;
-	margin-top: -3%;
-	margin-left: 5%;
+	left: 30%;
+	bottom: 12%;
 }
 
 /************ cup ************/
@@ -77,7 +81,7 @@ body {
 .cup-value {
 	position: absolute;
 	font-size: 5vw;
-	right: 6%;
+	right: 8%;
 	bottom: 10%;
 
 
