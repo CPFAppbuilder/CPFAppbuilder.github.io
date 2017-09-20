@@ -100,7 +100,7 @@
 	function toCelsius(value) {
 		var steinhart = value / 10000.0;
 		steinhart = Math.log(steinhart);
-		steinhart /= 3950.0;
+		steinhart = steinhart / 3950.0;
 		steinhart += 1.0 / (25 + 273.15);
 		steinhart = 1.0 / steinhart;
 		steinhart -= 273.15;
