@@ -10,6 +10,7 @@
 <div class="container">
 	<div id="value-field">
 			<img class="value-icon" src="./images/thermometer.png" />
+			<span id="test"></span>
 			<span id="temp" class="value-number">750℃</span><br>
 			<img class="value-icon2" src="./images/Weighing.png" />
 			<span id="weight" class="value-number2">1234 c.c</span>
@@ -39,10 +40,11 @@
 	
 	function loop() {
 	
-		temp = toCelsius(cpf.get("socket a1"));
+		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
 		
-		document.getElementById("temp").innerHTML = temp + '℃';
+		document.getElementById("test").innerHTML = temp;
+		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = (now_press * 2) + '公克';
 		
 		if(now_press == 0) {
@@ -97,9 +99,9 @@
 		
 	// 溫度轉攝氏
 	function toCelsius(value) {
-		var steinhart = value / 10000;
+		var steinhart = value / 10000.0;
 		steinhart = Math.log(steinhart);
-		steinhart /= 3950;
+		steinhart /= 3950.0;
 		steinhart += 1.0 / (25 + 273.15);
 		steinhart = 1.0 / steinhart;
 		steinhart -= 273.15;
