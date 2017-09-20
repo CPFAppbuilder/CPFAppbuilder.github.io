@@ -22,7 +22,6 @@ body {
 }
 
 #value-field {
-	//background-color: red;
 	position: absolute;
 	height: 30%;
 	width: 35%;
@@ -38,7 +37,7 @@ body {
 .value-icon2 {
 	float: left;
 	width: 15%;
-	margin-top: -6%;
+	margin-top: -5%;
 	margin-left: 9.5%;
 }
 
@@ -46,7 +45,7 @@ body {
 	display: inline-block;
 	font-size: 7.5vw;
 	color: #D14542;
-	margin-top: 6%;
+	margin-top: 5%;
 	margin-left: -6%;
 }
 
@@ -54,7 +53,7 @@ body {
 	display: inline-block;
 	font-size: 3vw;
 	color: white;
-	margin-top: -6%;
+	margin-top: -3%;
 	margin-left: 5%;
 }
 
@@ -64,20 +63,21 @@ body {
 	//background-color: red;
 	position: absolute;
 	height: 25%;
-	width: 80%;
-	left: 10%;
+	width: 90%;
+	left: 8%;
 	bottom: 2%;
 }
 
 .cup-icon {
 	display: inline-block;
-	width: 16%;
-	margin-left: -15px;
+	width: 15%;
+	margin-left: -20px;
 }
 
 .cup-value {
 	font-size: 5.5vw;
 	float: right;
+	margin-right: 8%;
 	margin-top: 3.2%;
 }
 
