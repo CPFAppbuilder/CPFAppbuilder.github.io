@@ -1,33 +1,4 @@
-<!DOCTYPE html>
-<head>
-<title>CPF-Coaster</title>
 
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="./style.css">
-
-</head>
-<body>
-<div class="container">
-	<div id="value-field">
-			<img class="value-icon" src="./images/thermometer.png" />
-			<span id="test"></span>
-			<span id="temp" class="value-number">750℃</span><br>
-			<img class="value-icon2" src="./images/Weighing.png" />
-			<span id="weight" class="value-number2">1234 c.c</span>
-	</div>
-
-	<div id="cup-field">
-		<img id="cup1" class="cup-icon" src="./images/cup_empty.png" />
-		<img id="cup2" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup3" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup4" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup5" class="cup-icon" src="./images/cup_full.png" />
-	</div>
-	<span class="cup-value"><font color="#3CB9A6" id="cup_value">1600</font>&nbspml</span>
-
-</div>
-
-<script>
 	
 	setup();
 	
@@ -96,16 +67,16 @@
 		document.getElementById("cup_value").innerHTML = total;
 		
 	}
-
+		
 	function toCelsius(value) {
 		var steinhart = value / 10000.0;
 		steinhart = Math.log(steinhart);
-		steinhart = steinhart / 3950.0;
+		steinhart /= 3950.0;
 		steinhart += 1.0 / (25 + 273.15);
 		steinhart = 1.0 / steinhart;
 		steinhart -= 273.15;
 			
-		return steinhart;
+		return steinhart.toFixed(0);
 	}
 	
 	// cpf setup
@@ -115,7 +86,3 @@
 		
 	}
 
-</script>
-
-</body>
-</html>
