@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-<title>CPF-Coa</title>
+<title>CPF-Coaster</title>
 
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="./style.css">
@@ -23,7 +23,7 @@
 		<img id="cup4" class="cup-icon" src="./images/cup_full.png" />
 		<img id="cup5" class="cup-icon" src="./images/cup_full.png" />
 	</div>
-	<span class="cup-value"><font color="#3CB9A6" id="cup_value">1600</font> ml</span>
+	<span class="cup-value"><font color="#3CB9A6" id="cup_value">1600</font>&nbspml</span>
 
 </div>
 
@@ -34,7 +34,9 @@
 	var temp;
 	var now_press;
 	var prev_press;
+	var drink_press;
 	var total = 0;
+	var drinktime;
 	
 	setInterval(loop, 1000);
 	
@@ -42,23 +44,42 @@
 	
 		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
+		now_press = now_press * 2;
 		
 		document.getElementById("test").innerHTML = temp;
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
-		document.getElementById("weight").innerHTML = (now_press * 2) + '公克';
+		document.getElementById("weight").innerHTML = now_press + '公克';
 		
-		if(now_press == 0) {
-			if(now_press < prev_press) {
-				total += prev_press - now_press;
-			}
+		if (now_press == 0) {
+			drink_press = prev_press;
+			drinktime = Date.now();
 		} else {
-			prev_press = now_press;
+			if (Date.now() - drinktime >= 5000) {
+				if (now_press < drink_press) {
+					total += drink_press - now_press;
+				}
+			}
+			drink_press = now_press;
 		}
 		
-		if(total >= 400) {
+		prev_press = now_press;
+		
+		if(total >= 2000) {
 			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_full.png';
-			document.getElementById("cup3").src = './images/cup_full.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup4").src = './images/cup_empty.png';
+			document.getElementById("cup5").src = './images/cup_empty.png';
+		} else if(total >= 1600) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup4").src = './images/cup_empty.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		} else if(total >= 1200) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
 			document.getElementById("cup4").src = './images/cup_full.png';
 			document.getElementById("cup5").src = './images/cup_full.png';
 		} else if(total >= 800) {
@@ -67,24 +88,12 @@
 			document.getElementById("cup3").src = './images/cup_full.png';
 			document.getElementById("cup4").src = './images/cup_full.png';
 			document.getElementById("cup5").src = './images/cup_full.png';
-		} else if(total >= 1200) {
+		} else if(total >= 400) {
 			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_full.png';
+			document.getElementById("cup3").src = './images/cup_full.png';
 			document.getElementById("cup4").src = './images/cup_full.png';
 			document.getElementById("cup5").src = './images/cup_full.png';
-		} else if(total >= 1600) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
-			document.getElementById("cup4").src = './images/cup_empty.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
-		} else if(total >= 2000) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
-			document.getElementById("cup4").src = './images/cup_empty.png';
-			document.getElementById("cup5").src = './images/cup_empty.png';
 		} else {
 			document.getElementById("cup1").src = './images/cup_full.png';
 			document.getElementById("cup2").src = './images/cup_full.png';
