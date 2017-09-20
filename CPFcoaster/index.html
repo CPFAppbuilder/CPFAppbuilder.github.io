@@ -43,7 +43,7 @@
 		now_press = cpf.get("socket a0");
 		
 		document.getElementById("temp").innerHTML = temp + '℃';
-		document.getElementById("weight").innerHTML = now_press + '公克';
+		document.getElementById("weight").innerHTML = (now_press * 2) + '公克';
 		
 		if(now_press == 0) {
 			if(now_press < prev_press) {
@@ -98,9 +98,9 @@
 	// 溫度轉攝氏
 	function toCelsius(value) {
 		var resistance = parseFloat((1023-value) * 10000 / value);
-		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+		var temperature = 1 / (Math.log(resistance / 10000) / 3950 / 298.15) - 273.15;
 			
-		return temperature.toFixed(2);
+		return temperature.toFixed(0);
 	}
 	
 	// cpf setup
