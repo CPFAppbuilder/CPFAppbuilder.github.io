@@ -40,7 +40,7 @@
 	function loop() {
 	
 		temp = toCelsius(cpf.get("socket a1"));
-		now_press = cpf.get("socket a0") * 2;
+		now_press = cpf.get("socket a0");
 		
 		document.getElementById("temp").innerHTML = temp + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
