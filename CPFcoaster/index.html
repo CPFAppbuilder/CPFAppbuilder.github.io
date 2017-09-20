@@ -22,32 +22,87 @@
 		<img id="cup4" class="cup-icon" src="./images/cup_full.png" />
 		<img id="cup5" class="cup-icon" src="./images/cup_full.png" />
 	</div>
-	<span id="cup_value" class="cup-value"><font color="#3CB9A6">1600</font>&nbspml</span>
+	<span class="cup-value"><font color="#3CB9A6" id="cup_value">1600</font>&nbspml</span>
 
 </div>
 
 <script>
 	
-	//setup();
+	setup();
 	
 	var temp;
-	var press;
+	var now_press;
+	var prev_press;
+	var total = 0;
 	
-	//setInterval(loop, 1000);
+	setInterval(loop, 1000);
 	
 	function loop() {
 	
-		temp = cpf.get("socket a1");
-		press = cpf.get("socket a0");
+		temp = toCelsius(cpf.get("socket a1"));
+		now_press = cpf.get("socket a0") * 2;
 		
 		document.getElementById("temp").innerHTML = temp + '℃';
-		document.getElementById("weight").innerHTML = press + '公克';
+		document.getElementById("weight").innerHTML = now_press + '公克';
 		
+		if(now_press == 0) {
+			if(now_press < prev_press) {
+				total += prev_press - now_press;
+			}
+		} else {
+			prev_press = now_press;
+		}
 		
+		if(total >= 400) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_full.png';
+			document.getElementById("cup3").src = './images/cup_full.png';
+			document.getElementById("cup4").src = './images/cup_full.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		} else if(total >= 800) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_full.png';
+			document.getElementById("cup4").src = './images/cup_full.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		} else if(total >= 1200) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup4").src = './images/cup_full.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		} else if(total >= 1600) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup4").src = './images/cup_empty.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		} else if(total >= 2000) {
+			document.getElementById("cup1").src = './images/cup_empty.png';
+			document.getElementById("cup2").src = './images/cup_empty.png';
+			document.getElementById("cup3").src = './images/cup_empty.png';
+			document.getElementById("cup4").src = './images/cup_empty.png';
+			document.getElementById("cup5").src = './images/cup_empty.png';
+		} else {
+			document.getElementById("cup1").src = './images/cup_full.png';
+			document.getElementById("cup2").src = './images/cup_full.png';
+			document.getElementById("cup3").src = './images/cup_full.png';
+			document.getElementById("cup4").src = './images/cup_full.png';
+			document.getElementById("cup5").src = './images/cup_full.png';
+		}
 		
+		document.getElementById("cup_value").innerHTML = total;
 		
 	}
-
+		
+	// 溫度轉攝氏
+	function toCelsius(value) {
+		var resistance = parseFloat((1023-value) * 10000 / value);
+		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+			
+		return temperature.toFixed(2);
+	}
+	
 	// cpf setup
 	function setup(){
 		if(cpf)
