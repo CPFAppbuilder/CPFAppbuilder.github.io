@@ -54,10 +54,11 @@
 			drink_press = prev_press;
 			drinktime = Date.now();
 		} else {
-			if (Date.now() - drinktime >= 5000) {
+			if (Date.now() - drinktime >= 3000) {
 				if (now_press < drink_press) {
 					total += drink_press - now_press;
 				}
+				drinktime = Date.now();
 			}
 			drink_press = now_press;
 		}
