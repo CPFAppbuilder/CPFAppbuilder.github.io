@@ -38,13 +38,14 @@ body {
 .value-icon2 {
 	float: left;
 	width: 15%;
+	margin-left: -10%;
 }
 
 .value-number {
 	display: inline-block;
 	font-size: 7vw;
 	color: #D14542;
-	margin-top: 5%;
+	//margin-top: 5%;
 	margin-left: -6%;
 }
 
@@ -63,8 +64,8 @@ body {
 	position: absolute;
 	height: 25%;
 	width: 70%;
-	left: 8%;
-	bottom: 4%;
+	left: 10%;
+	bottom: 3.5%;
 }
 
 .cup-icon {
@@ -77,6 +78,6 @@ body {
 	position: absolute;
 	font-size: 5vw;
 	right: 6%;
-	bottom: 12%;
+	bottom: 10%;
 
 
