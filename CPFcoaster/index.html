@@ -11,24 +11,55 @@
 	<div id="value-field">
 		<div>
 			<img class="value-icon" src="./images/thermometer.png" />
-			<span class="value-number">70℃</span>
+			<span id="temp" class="value-number">70℃</span>
 		</div>
 		<div>
 			<img class="value-icon2" src="./images/Weighing.png" />
-			<span class="value-number2">1234 公克</span>
+			<span id="weight" class="value-number2">1234 c.c</span>
 		</div>
 	</div>
 
 	<div id="cup-field">
-		<img class="cup-icon" src="./images/cup_empty.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<span class="cup-value"><font color="#3CB9A6">1600</font>&nbsp&nbspml</span>
+		<img id="cup1" class="cup-icon" src="./images/cup_empty.png" />
+		<img id="cup2" class="cup-icon" src="./images/cup_full.png" />
+		<img id="cup3" class="cup-icon" src="./images/cup_full.png" />
+		<img id="cup4" class="cup-icon" src="./images/cup_full.png" />
+		<img id="cup5" class="cup-icon" src="./images/cup_full.png" />
+		<span id="cup_value" class="cup-value"><font color="#3CB9A6">1600</font>&nbspml</span>
 	</div>
 
 </div>
+
+<script>
+	
+	//setup();
+	
+	var temp;
+	var press;
+	
+	//setInterval(loop, 1000);
+	
+	function loop() {
+	
+		temp = cpf.get("socket a1");
+		press = cpf.get("socket a0");
+		
+		document.getElementById("temp").innerHTML = temp + '℃';
+		document.getElementById("weight").innerHTML = press + '公克';
+		
+		
+		
+		
+	}
+
+	// cpf setup
+	function setup(){
+		if(cpf)
+			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1, "INPUT"]');
+		
+	}
+
+</script>
 
 </body>
 </html>

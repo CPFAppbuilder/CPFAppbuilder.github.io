@@ -2,7 +2,12 @@ html {
 	background-image: url('./images/bg.png');
 	background-size: 100% 100vh;
 	background-repeat: no-repeat;
-	font-family: fantasy;
+	font-family: HelveticaNeue;
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url(./HelveticaNeueBd.ttf);
 }
 
 body {
@@ -46,7 +51,6 @@ body {
 }
 
 .value-number2 {
-	font-family: Microsoft JhengHei;
 	display: inline-block;
 	font-size: 3vw;
 	color: white;
