@@ -97,10 +97,14 @@
 		
 	// 溫度轉攝氏
 	function toCelsius(value) {
-		var resistance = parseFloat((1023-value) * 10000 / value);
-		var temperature = 1 / (Math.log(resistance / 10000) / 3950 / 298.15) - 273.15;
+		var steinhart = value / 10000;
+		steinhart = Math.log(steinhart);
+		steinhart /= 3950;
+		steinhart += 1.0 / (25 + 273.15);
+		steinhart = 1.0 / steinhart;
+		steinhart -= 273.15;
 			
-		return temperature.toFixed(0);
+		return steinhart.toFixed(0);
 	}
 	
 	// cpf setup
