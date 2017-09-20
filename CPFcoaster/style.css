@@ -2,4 +2,79 @@ html {
 	background-image: url('./images/bg.png');
 	background-size: 100% 100vh;
 	background-repeat: no-repeat;
+	font-family: fantasy;
 }
+
+body {
+	margin: 0px;
+}
+
+.container {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+#value-field {
+	//background-color: red;
+	position: absolute;
+	height: 30%;
+	width: 35%;
+	top: 28%;
+	right: 0%;
+}
+
+.value-icon {
+	float: left;
+	width: 35%;
+}
+
+.value-icon2 {
+	float: left;
+	width: 15%;
+	margin-top: -6%;
+	margin-left: 9.5%;
+}
+
+.value-number {
+	display: inline-block;
+	font-size: 7.5vw;
+	color: #D14542;
+	margin-top: 6%;
+	margin-left: -6%;
+}
+
+.value-number2 {
+	font-family: Microsoft JhengHei;
+	display: inline-block;
+	font-size: 3vw;
+	color: white;
+	margin-top: -6%;
+	margin-left: 5%;
+}
+
+/************ cup ************/
+
+#cup-field {
+	//background-color: red;
+	position: absolute;
+	height: 25%;
+	width: 80%;
+	left: 10%;
+	bottom: 2%;
+}
+
+.cup-icon {
+	display: inline-block;
+	width: 16%;
+	margin-left: -15px;
+}
+
+.cup-value {
+	font-size: 5.5vw;
+	float: right;
+	margin-top: 3.2%;
+}
+
+
