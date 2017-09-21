@@ -10,7 +10,6 @@
 <div class="container">
 	<div id="value-field">
 			<img class="value-icon" src="./images/thermometer.png" />
-			<span id="test"></span>
 			<span id="temp" class="value-number">750℃</span><br>
 			<img class="value-icon2" src="./images/Weighing.png" />
 			<span id="weight" class="value-number2">1234 c.c</span>
@@ -48,7 +47,6 @@
 		now_press = cpf.get("socket a0");
 		now_press = now_press * 2;
 		
-		document.getElementById("test").innerHTML = temp;
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
 		
