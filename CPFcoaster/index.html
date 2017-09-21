@@ -38,6 +38,8 @@
 	var total = 0;
 	var drinktime;
 	
+	var slug = false;
+	
 	setInterval(loop, 1000);
 	
 	function loop() {
@@ -53,12 +55,15 @@
 		if (now_press == 0) {
 			drink_press = prev_press;
 			drinktime = Date.now();
+			slug = true;
 		} else {
-			if (Date.now() - drinktime >= 3000) {
-				if (drink_press - now_press > 20) {
-					total += drink_press - now_press;
+			if(slug) {
+				if (Date.now() - drinktime >= 3000) {
+					if (drink_press - now_press > 20) {
+						total += drink_press - now_press;
+					}
+					slug = false;
 				}
-				drink_press = now_press;
 			}
 			prev_press = now_press;
 		}
