@@ -79,13 +79,16 @@
 	
 	var slug = false;
 	
-	setInterval(loop, 1000);
+	var item = 'cup';
+	changeItem(item, 5);
 	
-	function loop() {
+	var interval;
+	
+	function loop(name) {
 	
 		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
-		now_press = now_press * 2;
+		now_press = Math.round(now_press * 1.5);
 		
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
@@ -96,7 +99,7 @@
 			slug = true;
 		} else {
 			if(slug) {
-				if (Date.now() - drinktime >= 3000) {
+				if (Date.now() - drinktime >= 5000) {
 					if (drink_press - now_press > 20) {
 						total += drink_press - now_press;
 					}
@@ -106,43 +109,51 @@
 			prev_press = now_press;
 		}
 		
-		/*if(total >= 2000) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
-			document.getElementById("cup4").src = './images/cup_empty.png';
-			document.getElementById("cup5").src = './images/cup_empty.png';
+		var item_img = document.getElementById("cup-field").getElementsByTagName("img");
+		var image_empty = name + '_empty.png';
+		var image_full = name + '_full.png';
+		
+		if(total >= 2000) {
+			for(var i = 0; i < item_img.length; i++) {
+				item_img[i] = './images/' + image_empty;
+			}
 		} else if(total >= 1600) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
-			document.getElementById("cup4").src = './images/cup_empty.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
+			for(var i = 0; i < item_img.length; i++) {
+				if(i <= 3) {
+					item_img[i] = './images/' + image_empty;
+				} else {
+					item_img[i] = './images/' + image_full;
+				}
+			}
 		} else if(total >= 1200) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_empty.png';
-			document.getElementById("cup4").src = './images/cup_full.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
+			for(var i = 0; i < item_img.length; i++) {
+				if(i <= 2) {
+					item_img[i] = './images/' + image_empty;
+				} else {
+					item_img[i] = './images/' + image_full;
+				}
+			}
 		} else if(total >= 800) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_empty.png';
-			document.getElementById("cup3").src = './images/cup_full.png';
-			document.getElementById("cup4").src = './images/cup_full.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
+			for(var i = 0; i < item_img.length; i++) {
+				if(i <= 1) {
+					item_img[i] = './images/' + image_empty;
+				} else {
+					item_img[i] = './images/' + image_full;
+				}
+			}
 		} else if(total >= 400) {
-			document.getElementById("cup1").src = './images/cup_empty.png';
-			document.getElementById("cup2").src = './images/cup_full.png';
-			document.getElementById("cup3").src = './images/cup_full.png';
-			document.getElementById("cup4").src = './images/cup_full.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
+			for(var i = 0; i < item_img.length; i++) {
+				if(i == 0) {
+					item_img[i] = './images/' + image_empty;
+				} else {
+					item_img[i] = './images/' + image_full;
+				}
+			}
 		} else {
-			document.getElementById("cup1").src = './images/cup_full.png';
-			document.getElementById("cup2").src = './images/cup_full.png';
-			document.getElementById("cup3").src = './images/cup_full.png';
-			document.getElementById("cup4").src = './images/cup_full.png';
-			document.getElementById("cup5").src = './images/cup_full.png';
-		}*/
+			for(var i = 0; i < item_img.length; i++) {
+				item_img[i] = './images/' + image_full;
+			}
+		}
 		
 		document.getElementById("total").innerHTML = total;
 		
@@ -163,7 +174,9 @@
 	}
 	
 	function changeItem(name, count) {
+	
 		document.getElementById("item-img").src = './images/'+name+'.png';
+		document.getElementById("total").innerHTML = '0';
 		
 		document.getElementById("cup-field").innerHTML = '';
 		for(var i = 1; i <= count; i++) {
@@ -172,23 +185,26 @@
 		
 		if(name == 'cup') {
 			document.getElementById("cup_value").innerHTML ='<font color="#3CB9A6" id="total">0</font> ml';
-			document.getElementById("cup_value").style.right = '13%';
 			document.getElementById("title1").innerHTML = '平安喜樂';
 			document.getElementById("title2").innerHTML = '';
 		} else if(name == 'bowl') {
 			document.getElementById("cup_value").innerHTML ='<font color="#4FA136" id="total">0</font> kcal';
-			document.getElementById("cup_value").style.right = '13%';
 			document.getElementById("title1").innerHTML = '粒粒皆辛苦';
 			document.getElementById("title2").innerHTML = '';
 		} else if(name == 'milk') {
 			document.getElementById("cup_value").innerHTML ='';
-			document.getElementById("cup_value").style.right = '8%';
 			document.getElementById("title1").innerHTML = '一暝大一寸';
 			document.getElementById("title2").innerHTML = '';
 		}
 		
 		document.getElementById("item-edit").style.display = 'none';
 		document.getElementById("bg").style.display = 'none';
+		
+		clearInterval(interval);
+		interval = setInterval(function(){
+			loop(name);
+		}, 1000);
+		
 	}
 	
 	document.getElementById("flower").addEventListener("click", function() {
