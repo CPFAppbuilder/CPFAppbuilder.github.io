@@ -8,27 +8,67 @@
 </head>
 <body>
 <div class="container">
+		
+	<div id="bg"></div>
+	<!-- 標題 -->
+	<div id="title-edit">
+		<center>
+			<h3>標題設定</h3>
+			<span>第一行：<input type="text" id="title1-value"></input></span><br><br>
+			<span>第二行：<input type="text" id="title2-value"></input></span><br><br>
+			<button onclick="changeTitle()">確認</button>
+		</center>
+	</div>
+	
+	<div id="flower-field">
+		<img id="flower" src="./images/flower.png" />
+	</div>
+	
+	<div id="font-field">
+		<font id="title1">平安喜樂</font><br>
+		<font id="title2">平安喜樂</font>
+	</div>
+	<!---------->
+	
+	<!-- 物品 -->
+	<div id="item-edit">
+		<center>
+		<img onclick="changeItem('cup', 5)" src="./images/item1.png" />
+		<img onclick="changeItem('bowl', 5)" src="./images/item2.png" />
+		<img onclick="changeItem('milk', 6)" src="./images/item3.png" />
+		</center>
+	</div>
+	
+	<div id="item-field">
+		<img id="item-img" src="./images/cup.png" >
+	</div>
+	<!---------->
+	
+	<!-- 數值 -->
 	<div id="value-field">
-			<img class="value-icon" src="./images/thermometer.png" />
-			<span id="temp" class="value-number">750℃</span><br>
-			<img class="value-icon2" src="./images/Weighing.png" />
-			<span id="weight" class="value-number2">1234 c.c</span>
+			<img class="value-icon" src="./images/temperature.png" />
+			<span id="temp" class="value-number">70℃</span><br>
+			<img class="value-icon2" src="./images/weighing.png" />
+			<span id="weight" class="value-number2">1234 公克</span>
 	</div>
-
+	<!---------->
+	
+	<!-- 容量 -->
 	<div id="cup-field">
-		<img id="cup1" class="cup-icon" src="./images/cup_empty.png" />
-		<img id="cup2" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup3" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup4" class="cup-icon" src="./images/cup_full.png" />
-		<img id="cup5" class="cup-icon" src="./images/cup_full.png" />
+		<img class="cup-icon" src="./images/cup_full.png" />
+		<img class="cup-icon" src="./images/cup_full.png" />
+		<img class="cup-icon" src="./images/cup_full.png" />
+		<img class="cup-icon" src="./images/cup_full.png" />
+		<img class="cup-icon" src="./images/cup_full.png" />
 	</div>
-	<span class="cup-value"><font color="#3CB9A6" id="cup_value">1600</font> ml</span>
-
+	<span class="cup-value" id="cup_value"><font color="#3CB9A6" id="total">1600</font> ml</span>
+	<!---------->
+	
 </div>
 
 <script>
 	
-	setup();
+	//setup();
 	
 	var temp;
 	var now_press;
@@ -39,7 +79,7 @@
 	
 	var slug = false;
 	
-	setInterval(loop, 1000);
+	//setInterval(loop, 1000);
 	
 	function loop() {
 	
@@ -104,28 +144,84 @@
 			document.getElementById("cup5").src = './images/cup_full.png';
 		}
 		
-		document.getElementById("cup_value").innerHTML = total;
+		document.getElementById("total").innerHTML = total;
 		
 	}
+	
+	function changeTitle() {
+		var value1 = document.getElementById("title1-value").value;
+		var value2 = document.getElementById("title2-value").value;
 		
+		document.getElementById("title1").style.fontSize = value1.length + 'vw';
+		document.getElementById("title2").style.fontSize = value2.length + 'vw';
+		
+		document.getElementById("title1").innerHTML = value1;
+		document.getElementById("title2").innerHTML = value2;
+		
+		document.getElementById("title-edit").style.display = 'none';
+		document.getElementById("bg").style.display = 'none';
+	}
+	
+	function changeItem(name, count) {
+		document.getElementById("item-img").src = './images/'+name+'.png';
+		
+		document.getElementById("cup-field").innerHTML = '';
+		for(var i = 1; i <= count; i++) {
+			document.getElementById("cup-field").innerHTML += '<img class="cup-icon" src="./images/'+name+'_full.png" />';
+		}
+		
+		if(name == 'cup') {
+			document.getElementById("cup_value").innerHTML ='<font color="#3CB9A6" id="total">0</font> ml';
+			document.getElementById("cup_value").style.right = '13%';
+			document.getElementById("title1").innerHTML = '平安喜樂';
+			document.getElementById("title2").innerHTML = '';
+		} else if(name == 'bowl') {
+			document.getElementById("cup_value").innerHTML ='<font color="#4FA136" id="total">0</font> kcal';
+			document.getElementById("cup_value").style.right = '13%';
+			document.getElementById("title1").innerHTML = '粒粒皆辛苦';
+			document.getElementById("title2").innerHTML = '';
+		} else if(name == 'milk') {
+			document.getElementById("cup_value").innerHTML ='<font color="#5CB9CC" id="total">0</font> ml';
+			document.getElementById("cup_value").style.right = '8%';
+			document.getElementById("title1").innerHTML = '一暝大一寸';
+			document.getElementById("title2").innerHTML = '';
+		}
+		
+		document.getElementById("item-edit").style.display = 'none';
+		document.getElementById("bg").style.display = 'none';
+	}
+	
+	document.getElementById("flower").addEventListener("click", function() {
+		document.getElementById("title-edit").style.display = 'inline';
+		document.getElementById("bg").style.display = 'inline';
+	});
+	
+	document.getElementById("item-field").addEventListener("click", function() {
+		document.getElementById("item-edit").style.display = 'inline';
+		document.getElementById("bg").style.display = 'inline';
+	});
+	
+	document.getElementById("bg").addEventListener("click", function() {
+		document.getElementById("title-edit").style.display = 'none';
+		document.getElementById("item-edit").style.display = 'none';
+		document.getElementById("bg").style.display = 'none';
+	});
+	
 	// 溫度轉攝氏
 	function toCelsius(value) {
-		var resistance = parseFloat((1023-value) * 10000 / value);
-		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
-			
-		return temperature.toFixed(0) - 3;
-	}
-		
-	/*function toCelsius(value) {
-		var steinhart = value / 10000.0;
-		steinhart = Math.log(steinhart);
-		steinhart = steinhart / 3950.0;
+		var steinhart;
+
+		// convert the value to resistance
+		value = 1023 / value - 1;
+		value = 10000 / value;
+
+		steinhart=Math.log(value/10000);
+		steinhart /= 3950;
 		steinhart += 1.0 / (25 + 273.15);
 		steinhart = 1.0 / steinhart;
 		steinhart -= 273.15;
-			
 		return steinhart;
-	}*/
+	}
 	
 	// cpf setup
 	function setup(){
