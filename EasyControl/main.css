@@ -16,7 +16,8 @@ html {
 	padding: 40px;
 	height: 40em;
 	float: left;
-	margin:0 auto;
+	margin:0px auto;
+	text-align: center;
 }
 
 /******** Analog ********/
@@ -105,9 +106,7 @@ input[type=range]::-webkit-slider-runnable-track {
 	#analog {
 		padding: 0 ;
 	}
-	.analogclass {
-		min-width: 300px;
-	}
+	
 }
 @media screen and (max-width: 360px) {
 	
@@ -115,10 +114,8 @@ input[type=range]::-webkit-slider-runnable-track {
 		padding: 0px;
 	}
 	#analog {
-		padding: 20px ;
+		padding: 10px ;
 	}
-	.analogclass {
-		min-width: 280px;
-	}
+	
 
 }
