@@ -85,7 +85,7 @@
 	
 		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
-		now_press = now_press * 2;
+		now_press = now_press * 1.5;
 		
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
@@ -106,7 +106,7 @@
 			prev_press = now_press;
 		}
 		
-		if(total >= 2000) {
+		/*if(total >= 2000) {
 			document.getElementById("cup1").src = './images/cup_empty.png';
 			document.getElementById("cup2").src = './images/cup_empty.png';
 			document.getElementById("cup3").src = './images/cup_empty.png';
@@ -142,7 +142,7 @@
 			document.getElementById("cup3").src = './images/cup_full.png';
 			document.getElementById("cup4").src = './images/cup_full.png';
 			document.getElementById("cup5").src = './images/cup_full.png';
-		}
+		}*/
 		
 		document.getElementById("total").innerHTML = total;
 		
@@ -181,7 +181,7 @@
 			document.getElementById("title1").innerHTML = '粒粒皆辛苦';
 			document.getElementById("title2").innerHTML = '';
 		} else if(name == 'milk') {
-			document.getElementById("cup_value").innerHTML ='<font color="#5CB9CC" id="total">0</font> ml';
+			document.getElementById("cup_value").innerHTML ='';
 			document.getElementById("cup_value").style.right = '8%';
 			document.getElementById("title1").innerHTML = '一暝大一寸';
 			document.getElementById("title2").innerHTML = '';
@@ -220,7 +220,7 @@
 		steinhart += 1.0 / (25 + 273.15);
 		steinhart = 1.0 / steinhart;
 		steinhart -= 273.15;
-		return steinhart;
+		return Math.round(steinhart);
 	}
 	
 	// cpf setup
