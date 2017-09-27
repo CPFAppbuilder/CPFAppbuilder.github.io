@@ -12,19 +12,20 @@ html {
 }
 
 #content {
+	width: 100%;
+	padding: 40px;
 	height: 40em;
-	width: 500px;
 	float: left;
-	//background-color: gray;
+	margin:0 auto;
 }
 
 /******** Analog ********/
 
 #analog {
 	height: 300px;
-	width: 500px;
 	float: left;
 	//background-color: green;
+	padding: 0 4em;
 }
 
 .analogclass {
@@ -32,7 +33,6 @@ html {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	height: 120px;
-	width: 320px;
 	margin: 0 auto;
 }
 
@@ -54,7 +54,6 @@ html {
 
 #rgb {
 	height: 280px;
-	width: 500px;
 	float: left;
 	//background-color: red;
 }
@@ -101,14 +100,25 @@ input[type=range]::-webkit-slider-runnable-track {
 	margin-top: 30px;
 }
 
-@media screen and (min-width: 820px) {
+@media screen and (max-width: 430px) {
+	
+	#analog {
+		padding: 0 ;
+	}
+	.analogclass {
+		min-width: 300px;
+	}
+}
+@media screen and (max-width: 360px) {
 	
 	#content {
-		height: 20em;
-		width: 1000px;
+		padding: 0px;
 	}
-	
-	#rgb {
-		float: right;
+	#analog {
+		padding: 20px ;
 	}
+	.analogclass {
+		min-width: 280px;
+	}
+
 }
