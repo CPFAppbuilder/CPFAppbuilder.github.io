@@ -55,11 +55,7 @@
 	
 	<!-- 容量 -->
 	<div id="cup-field">
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
-		<img class="cup-icon" src="./images/cup_full.png" />
+	
 	</div>
 	<span class="cup-value" id="cup_value"><font color="#3CB9A6" id="total">1600</font> ml</span>
 	<!---------->
@@ -115,43 +111,43 @@
 		
 		if(total >= 2000) {
 			for(var i = 0; i < item_img.length; i++) {
-				item_img[i] = './images/' + image_empty;
+				item_img[i].src = './images/' + image_empty;
 			}
 		} else if(total >= 1600) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 3) {
-					item_img[i] = './images/' + image_empty;
+					item_img[i].src = './images/' + image_empty;
 				} else {
-					item_img[i] = './images/' + image_full;
+					item_img[i].src = './images/' + image_full;
 				}
 			}
 		} else if(total >= 1200) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 2) {
-					item_img[i] = './images/' + image_empty;
+					item_img[i].src = './images/' + image_empty;
 				} else {
-					item_img[i] = './images/' + image_full;
+					item_img[i].src = './images/' + image_full;
 				}
 			}
 		} else if(total >= 800) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 1) {
-					item_img[i] = './images/' + image_empty;
+					item_img[i].src = './images/' + image_empty;
 				} else {
-					item_img[i] = './images/' + image_full;
+					item_img[i].src = './images/' + image_full;
 				}
 			}
 		} else if(total >= 400) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i == 0) {
-					item_img[i] = './images/' + image_empty;
+					item_img[i].src = './images/' + image_empty;
 				} else {
-					item_img[i] = './images/' + image_full;
+					item_img[i].src = './images/' + image_full;
 				}
 			}
 		} else {
 			for(var i = 0; i < item_img.length; i++) {
-				item_img[i] = './images/' + image_full;
+				item_img[i].src = './images/' + image_full;
 			}
 		}
 		
