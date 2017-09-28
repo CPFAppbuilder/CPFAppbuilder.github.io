@@ -81,6 +81,7 @@
 	
 	var slug = false;
 	var milk_slug = false;
+	var milk_count = 0;
 	
 	var item = 'cup';
 	changeItem(item, 5);
@@ -175,15 +176,18 @@
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
 		
+		var item_img = document.getElementById("cup-field").getElementsByTagName("img");
+		
 		if(now_press == 0) {
 			if(milk_slug) {
 				var d = new Date();
+				item_img[milk_count].src = './images/milk_empty.png';
 				document.getElementById("cup-date").innerHTML += '<span>'+d.getHour()+':'+d.getMinutes()+'</span>';
 			}
 		} else if(now_press > 10) {
 			milk_slug = true;
 		}
-		
+		alert('111');
 	}
 	
 	// 改變標題
@@ -239,6 +243,7 @@
 		// 開啟迴圈
 		if(name == 'milk') {
 			milk_slug = false;
+			milk_count = 0;
 			interval = setInterval(function(){
 				milk_loop(name);
 			}, 1000);
