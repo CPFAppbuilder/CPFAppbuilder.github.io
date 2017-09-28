@@ -42,8 +42,8 @@ body {
 	position: absolute;
 	margin: auto;
 	top: 0; bottom: 0; left: 0; right: 0;
-	height: 220px;
-	width: 450px;
+	height: 230px;
+	width: 460px;
 	color: white;
 	background-color: rgba(20, 20, 20, 0.7);
 	font-weight: bold;
@@ -57,24 +57,27 @@ body {
 }
 
 #title-edit span {
-	font-size: 14pt;
+	font-size: 16pt;
+	margin-left: -30px;
 }
 
 #title-edit input {
-	font-size: 14pt;
-	height: 20px;
-	width: 160px;
+	font-size: 16pt;
+	height: 35px;
+	width: 190px;
 }
 
 #title-edit button {
+	position: absolute;
 	font-size: 14pt;
-	height: 30px;
+	height: 40px;
 	width: 80px;
+	right: 10px;
 }
 
 #flower-field {
 	position: absolute;
-	top: 7%;
+	top: 5%;
 	left: 35%;
 }
 
@@ -204,6 +207,6 @@ body {
 
 #cup-date span {
 	margin-left: 2%;
-	margin-right: 4%;
+	margin-right: 4.5%;
 }
 

@@ -13,9 +13,9 @@
 	<!-- 標題 -->
 	<div id="title-edit">
 		<center>
-			<h3>標題設定</h3>
-			<span>第一行：<input type="text" id="title1-value"></input></span><br><br>
-			<span>第二行：<input type="text" id="title2-value"></input></span><br><br>
+			<h2>標題設定</h2>
+			<span>第一行：<input type="text" id="title1-value" maxlength="9"></input></span><br><br><br>
+			<span>第二行：<input type="text" id="title2-value" maxlength="9"></input></span>
 			<button onclick="changeTitle()">確認</button>
 		</center>
 	</div>
@@ -35,7 +35,7 @@
 		<center>
 		<img onclick="changeItem('cup', 5)" src="./images/item1.png" />
 		<img onclick="changeItem('bowl', 5)" src="./images/item2.png" />
-		<img onclick="changeItem('milk', 6)" src="./images/item3.png" />
+		<img onclick="changeItem('milk', 8)" src="./images/item3.png" />
 		</center>
 	</div>
 	
@@ -59,6 +59,7 @@
 			document.getElementById("date").innerHTML = new Date().getMonth()+1 + '/' + new Date().getDate();
 		</script>
 	</div>
+	
 	<div id="cup-field">
 	</div>
 	<div id="cup-date">
@@ -70,7 +71,7 @@
 
 <script>
 	
-	setup();
+	//setup();
 	
 	var temp;
 	var now_press;
@@ -178,8 +179,8 @@
 		
 		var item_img = document.getElementById("cup-field").getElementsByTagName("img");
 		
-		if(now_press == 0) {
-			if(milk_slug) {
+		if(now_press == 0 && milk_slug == true) {
+			if(milk_count < 8) {
 				var d = new Date();
 				item_img[milk_count].src = './images/milk_empty.png';
 				document.getElementById("cup-date").innerHTML += '<span>'+d.getHours()+':'+d.getMinutes()+'</span>';
@@ -195,9 +196,27 @@
 	function changeTitle() {
 		var value1 = document.getElementById("title1-value").value;
 		var value2 = document.getElementById("title2-value").value;
+		var len1;
+		var len2;
 		
-		document.getElementById("title1").style.fontSize = value1.length + 'vw';
-		document.getElementById("title2").style.fontSize = value2.length + 'vw';
+		if(value1.length > 5) {
+			len1 = 5 - ((value1.length - 5) / 2);
+		} else if (value1.length < 5) {
+			len1 = 5 + (5 - value1.length);
+		} else {
+			len1 = value1.length;
+		}
+		
+		if(value2.length > 5) {
+			len2 = 5 - ((value2.length - 5) / 2);
+		} else if (value2.length < 5) {
+			len2 = 5 + (5 - value2.length);
+		} else {
+			len2 = value2.length;
+		}
+		
+		document.getElementById("title1").style.fontSize = len1 + 'vw';
+		document.getElementById("title2").style.fontSize = len2 + 'vw';
 		
 		document.getElementById("title1").innerHTML = value1;
 		document.getElementById("title2").innerHTML = value2;
@@ -224,14 +243,17 @@
 			document.getElementById("cup_value").innerHTML ='<font color="#3CB9A6" id="total">0</font> ml';
 			document.getElementById("title1").innerHTML = '平安喜樂';
 			document.getElementById("title2").innerHTML = '';
+			document.getElementById("title1").style.fontSize = '6vw';
 		} else if(name == 'bowl') {
 			document.getElementById("cup_value").innerHTML ='<font color="#4FA136" id="total">0</font> kcal';
 			document.getElementById("title1").innerHTML = '粒粒皆辛苦';
 			document.getElementById("title2").innerHTML = '';
+			document.getElementById("title1").style.fontSize = '5vw';
 		} else if(name == 'milk') {
 			document.getElementById("cup_value").innerHTML ='';
 			document.getElementById("title1").innerHTML = '一暝大一寸';
 			document.getElementById("title2").innerHTML = '';
+			document.getElementById("title1").style.fontSize = '5vw';
 		}
 		
 		// 隱藏跳出視窗
