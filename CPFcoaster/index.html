@@ -60,15 +60,8 @@
 		</script>
 	</div>
 	<div id="cup-field">
-	
 	</div>
 	<div id="cup-date">
-		<span>10:30</span>
-		<span>10:30</span>
-		<span>10:30</span>
-		<span>10:30</span>
-		<span>10:30</span>
-		<span>10:30</span>
 	</div>
 	<span class="cup-value" id="cup_value"><font color="#3CB9A6" id="total">1600</font> ml</span>
 	<!---------->
@@ -87,6 +80,7 @@
 	var drinktime;
 	
 	var slug = false;
+	var milk_slug = false;
 	
 	var item = 'cup';
 	changeItem(item, 5);
@@ -176,6 +170,20 @@
 	function milk_loop() {
 		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
+		now_press = Math.round(now_press * 1.5);
+		
+		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
+		document.getElementById("weight").innerHTML = now_press + '公克';
+		
+		if(now_press == 0) {
+			if(milk_slug) {
+				var d = new Date();
+				document.getElementById("cup-date").innerHTML += '<span>'+d.getHour()+':'+d.getMinutes()+'</span>';
+			}
+		} else if(now_press > 10) {
+			milk_slug = true;
+		}
+		
 	}
 	
 	// 改變標題
@@ -199,8 +207,9 @@
 		document.getElementById("item-img").src = './images/'+name+'.png';
 		total = 0;
 		
-		// 重置下排物品圖片
+		// 重置下排物品圖片&日期
 		document.getElementById("cup-field").innerHTML = '';
+		document.getElementById("cup-date").innerHTML = '';
 		for(var i = 1; i <= count; i++) {
 			document.getElementById("cup-field").innerHTML += '<img class="cup-icon" src="./images/'+name+'_full.png" />';
 		}
@@ -229,6 +238,7 @@
 		
 		// 開啟迴圈
 		if(name == 'milk') {
+			milk_slug = false;
 			interval = setInterval(function(){
 				milk_loop(name);
 			}, 1000);
