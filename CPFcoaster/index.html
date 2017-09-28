@@ -238,14 +238,16 @@
 			document.getElementById("cup-field").innerHTML += '<img class="cup-icon" src="./images/'+name+'_full.png" />';
 		}
 		
-		// 設定每項物品的標題
+		// 設定每項物品的介面
 		if(name == 'cup') {
 			document.getElementById("cup_value").innerHTML ='<font color="#3CB9A6" id="total">0</font> ml';
+			document.getElementById("cup_value").style.right ='11%';
 			document.getElementById("title1").innerHTML = '平安喜樂';
 			document.getElementById("title2").innerHTML = '';
 			document.getElementById("title1").style.fontSize = '6vw';
 		} else if(name == 'bowl') {
 			document.getElementById("cup_value").innerHTML ='<font color="#4FA136" id="total">0</font> kcal';
+			document.getElementById("cup_value").style.right ='6%';
 			document.getElementById("title1").innerHTML = '粒粒皆辛苦';
 			document.getElementById("title2").innerHTML = '';
 			document.getElementById("title1").style.fontSize = '5vw';
