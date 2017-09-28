@@ -184,6 +184,7 @@
 				item_img[milk_count].src = './images/milk_empty.png';
 				document.getElementById("cup-date").innerHTML += '<span>'+d.getHours()+':'+d.getMinutes()+'</span>';
 				milk_slug = false;
+				milk_count += 1;
 			}
 		} else if(now_press > 10) {
 			milk_slug = true;
