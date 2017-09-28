@@ -54,8 +54,21 @@
 	<!---------->
 	
 	<!-- 容量 -->
+	<div id="date">
+		<script>
+			document.getElementById("date").innerHTML = new Date().getMonth()+1 + '/' + new Date().getDate();
+		</script>
+	</div>
 	<div id="cup-field">
 	
+	</div>
+	<div id="cup-date">
+		<span>10:30</span>
+		<span>10:30</span>
+		<span>10:30</span>
+		<span>10:30</span>
+		<span>10:30</span>
+		<span>10:30</span>
 	</div>
 	<span class="cup-value" id="cup_value"><font color="#3CB9A6" id="total">1600</font> ml</span>
 	<!---------->
@@ -84,7 +97,12 @@
 	
 		temp = cpf.get("socket a1");
 		now_press = cpf.get("socket a0");
-		now_press = Math.round(now_press * 1.5);
+		
+		if(name == 'cup') {
+			now_press = Math.round(now_press * 1.5);
+		} else if (name == 'bowl') {
+			now_press = Math.round((now_press * 1.5) * 4);
+		}
 		
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
 		document.getElementById("weight").innerHTML = now_press + '公克';
@@ -155,6 +173,12 @@
 		
 	}
 	
+	function milk_loop() {
+		temp = cpf.get("socket a1");
+		now_press = cpf.get("socket a0");
+	}
+	
+	// 改變標題
 	function changeTitle() {
 		var value1 = document.getElementById("title1-value").value;
 		var value2 = document.getElementById("title2-value").value;
@@ -169,16 +193,19 @@
 		document.getElementById("bg").style.display = 'none';
 	}
 	
+	// 改變物品事件
 	function changeItem(name, count) {
 	
 		document.getElementById("item-img").src = './images/'+name+'.png';
-		document.getElementById("total").innerHTML = '0';
+		total = 0;
 		
+		// 重置下排物品圖片
 		document.getElementById("cup-field").innerHTML = '';
 		for(var i = 1; i <= count; i++) {
 			document.getElementById("cup-field").innerHTML += '<img class="cup-icon" src="./images/'+name+'_full.png" />';
 		}
 		
+		// 設定每項物品的標題
 		if(name == 'cup') {
 			document.getElementById("cup_value").innerHTML ='<font color="#3CB9A6" id="total">0</font> ml';
 			document.getElementById("title1").innerHTML = '平安喜樂';
@@ -193,14 +220,23 @@
 			document.getElementById("title2").innerHTML = '';
 		}
 		
+		// 隱藏跳出視窗
 		document.getElementById("item-edit").style.display = 'none';
 		document.getElementById("bg").style.display = 'none';
 		
+		// 清除迴圈
 		clearInterval(interval);
-		interval = setInterval(function(){
-			loop(name);
-		}, 1000);
 		
+		// 開啟迴圈
+		if(name == 'milk') {
+			interval = setInterval(function(){
+				milk_loop(name);
+			}, 1000);
+		} else {
+			interval = setInterval(function(){
+				loop(name);
+			}, 1000);
+		}
 	}
 	
 	document.getElementById("flower").addEventListener("click", function() {

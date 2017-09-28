@@ -182,7 +182,28 @@ body {
 .cup-value {
 	position: absolute;
 	font-size: 5vw;
-	right: 13%;
+	right: 11%;
 	bottom: 11%;
+}
 
+#date {
+	position: absolute;
+	top: 63%;
+	left: 5%;
+	font-size: 3vw;
+}
+	
+#cup-date {
+	position: absolute;
+	bottom: 2%;
+	height: 5%;
+	width: 70%;
+	left: 10%;
+	font-size: 2.2vw;
+}
+
+#cup-date span {
+	margin-left: 2%;
+	margin-right: 4%;
+}
 
