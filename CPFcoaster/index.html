@@ -182,12 +182,11 @@
 			if(milk_slug) {
 				var d = new Date();
 				item_img[milk_count].src = './images/milk_empty.png';
-				document.getElementById("cup-date").innerHTML += '<span>'+d.getHour()+':'+d.getMinutes()+'</span>';
+				document.getElementById("cup-date").innerHTML += '<span>'+d.getHours()+':'+d.getMinutes()+'</span>';
 			}
 		} else if(now_press > 10) {
 			milk_slug = true;
 		}
-		alert('111');
 	}
 	
 	// 改變標題
