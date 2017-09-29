@@ -130,38 +130,38 @@
 		} else if(total >= 1600) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 3) {
-					item_img[i].src = './images/' + image_empty;
-				} else {
 					item_img[i].src = './images/' + image_full;
+				} else {
+					item_img[i].src = './images/' + image_empty;
 				}
 			}
 		} else if(total >= 1200) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 2) {
-					item_img[i].src = './images/' + image_empty;
-				} else {
 					item_img[i].src = './images/' + image_full;
+				} else {
+					item_img[i].src = './images/' + image_empty;
 				}
 			}
 		} else if(total >= 800) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i <= 1) {
-					item_img[i].src = './images/' + image_empty;
-				} else {
 					item_img[i].src = './images/' + image_full;
+				} else {
+					item_img[i].src = './images/' + image_empty;
 				}
 			}
 		} else if(total >= 400) {
 			for(var i = 0; i < item_img.length; i++) {
 				if(i == 0) {
-					item_img[i].src = './images/' + image_empty;
-				} else {
 					item_img[i].src = './images/' + image_full;
+				} else {
+					item_img[i].src = './images/' + image_empty;
 				}
 			}
 		} else {
 			for(var i = 0; i < item_img.length; i++) {
-				item_img[i].src = './images/' + image_full;
+				item_img[i].src = './images/' + image_empty;
 			}
 		}
 		
@@ -182,7 +182,7 @@
 		if(now_press == 0 && milk_slug == true) {
 			if(milk_count < 8) {
 				var d = new Date();
-				item_img[milk_count].src = './images/milk_empty.png';
+				item_img[milk_count].src = './images/milk_full.png';
 				document.getElementById("cup-date").innerHTML += '<span>'+d.getHours()+':'+d.getMinutes()+'</span>';
 				milk_slug = false;
 				milk_count += 1;
