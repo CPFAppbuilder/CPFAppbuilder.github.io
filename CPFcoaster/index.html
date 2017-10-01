@@ -95,13 +95,15 @@
 		now_press = cpf.get("socket a0");
 		
 		if(name == 'cup') {
+			var unit = '公克';
 			now_press = Math.round(now_press * 1.5);
 		} else if (name == 'bowl') {
+			var unit = '卡';
 			now_press = Math.round((now_press * 1.5) * 4);
 		}
 		
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
-		document.getElementById("weight").innerHTML = now_press + '公克';
+		document.getElementById("weight").innerHTML = now_press + unit;
 		
 		if (now_press == 0) {
 			drink_press = prev_press;
