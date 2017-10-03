@@ -68,8 +68,8 @@
 	  // 圖表的選項(外觀)設定
       var options = {
 		fontSize: 20,	// 字型大小
-        width: 100%,		 //圖表寬度
-        height: 500,	// 圖表長度
+        //width: 100%,		 圖表寬度
+        //height: 500,	 圖表長度
 		legend: {position: 'top', textStyle: {color: '1FB3DF', fontSize: 24}},
         vAxes: {
           // Adds titles to each axis.
@@ -93,6 +93,9 @@
       chart.draw(data, options);
 	  
     }
+    $(window).resize(function() {
+	    drawChart();
+	});
 	
 	// 攝氏轉換
 	function toCelsius(value) {
@@ -107,9 +110,7 @@
 		if(cpf)
 			var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 1,"INPUT"]'); 
 	}
-	$(window).resize(function() {
-	    drawChart();
-	});
+	
   </script>
   <style>
 	body{
