@@ -93,9 +93,16 @@
       chart.draw(data, options);
 	  
     }
-    $(window).resize(function() {
-	    drawChart();
-	});
+    function resize () {
+	    // change dimensions if necessary
+	    chart.draw(data, options);
+	}
+	if (window.addEventListener) {
+	    window.addEventListener('resize', resize);
+	}
+	else {
+	    window.attachEvent('onresize', resize);
+	}
 	
 	// 攝氏轉換
 	function toCelsius(value) {
