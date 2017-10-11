@@ -76,8 +76,8 @@ function Circle(x, y, dx, dy, radius, id){
 
 					//ser LED color
 					if(cpf){
-						cpf.setChainableLed("0," + this.color + ";");
-						//var ret = cpf.request('["grove_setColorRGB", 7,' + this.color + ']');
+						//cpf.setChainableLed("0," + this.color + ";");
+						var ret = cpf.request('["grove_setColorRGB", 7,' + this.color + ']');
 					}
 
 					console.log(colorGet);
