@@ -72,7 +72,7 @@ function Circle(x, y, dx, dy, radius, id){
 		this.x += this.dx;
 		this.y += this.dy;
 
-		//判斷哪顆球友碰到
+		//判斷哪顆球有碰到
 		if(mouse.x-this.x<this.range && mouse.x-this.x>-this.range && mouse.y-this.y<this.range && mouse.y-this.y>-this.range){
 			if(this.radius<maxRadius){
 				this.radius += 8;
