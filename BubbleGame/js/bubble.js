@@ -11,28 +11,23 @@ var mouse = {
 }
 
 var maxRadius = 40;
-
 var colorGet = [];
 
 //取得觸碰到的x,y軸座標
-window.addEventListener('touchstart', function(event){
-	var touchobj = event.targetTouches[0];
+window.addEventListener('touchstart', function(e){
+	var touchobj = e.targetTouches[0];
 	mouse.x = parseInt(touchobj.clientX);
 	mouse.y = parseInt(touchobj.clientY);
 }, false);
 
-//未觸碰螢幕時將之前觸碰到的值歸零
-window.addEventListener('touchend', function(event){
-	mouse.x = undefined;
-	mouse.y = undefined;
+window.addEventListener('touchend', function(e){
 	colorCheckFun(colorGet);
 }, false);
 
-//螢幕轉向時球要配合螢幕寬跟高填滿
+//螢幕轉向時球移動的範圍要配合螢幕寬跟高
 window.addEventListener('resize', function(){
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-
 	init();
 });
 
@@ -45,11 +40,11 @@ function Circle(x, y, dx, dy, radius, id){
 	this.dy = dy;
 	this.radius = radius;
 	this.minRadius = radius;
-	this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
+	this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
 	this.range = 15;
 	this.id = id;
 
-	//填滿顏色
+	//將球填滿顏色
 	this.draw = function(){
 		c.beginPath();
 		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -58,30 +53,33 @@ function Circle(x, y, dx, dy, radius, id){
 	}
 
 	this.update = function(){
-		//移動到x軸底時改變位移量
+		//球移動到x軸最邊邊時改變位移量
 		if(this.x+this.radius>innerWidth || this.x-this.radius<0){
 			this.dx = -this.dx;
 		}
 
-		//移動到y軸底時改變位移量
+		//球移動到y軸最邊邊時改變位移量
 		if(this.y+this.radius>innerHeight || this.y-this.radius<0){
 			this.dy = -this.dy;
 		}
 
-		//下一次要移動到的位置
+		//球下一次要移動到的位置
 		this.x += this.dx;
 		this.y += this.dy;
 
-		//判斷哪顆球有碰到
+		//判斷是哪顆球被碰到
 		if(mouse.x-this.x<this.range && mouse.x-this.x>-this.range && mouse.y-this.y<this.range && mouse.y-this.y>-this.range){
 			if(this.radius<maxRadius){
-				this.radius += 8;
+				this.radius += 10;
 
-				if(colorGet.indexOf(this.id)==-1){
-					colorGet.push(this.id);
+				//被碰到的球的顏色
+				colorGet.push(this.id);
+				mouse.x = undefined;
+				mouse.y = undefined;
 
-					//LED燈顏色設定
-					if(cpf) cpf.setChainableLed("0," + this.color + ";");
+				//LED燈顏色設定
+				if(cpf){
+					cpf.setChainableLed("0," + this.color + ";");
 				}
 
 			}				
@@ -92,12 +90,9 @@ function Circle(x, y, dx, dy, radius, id){
 		this.draw();
 	}
 
-	this.check = function(){
-		colorCheckFun(colorGet);
-	}
 }
 
-//比對是否相同顏色
+//比對是否碰到相同顏色的球
 function colorCheckFun(getArray) {
 
 	var colorCheck = [0,0,0,0,0,0];
@@ -113,21 +108,19 @@ function colorCheckFun(getArray) {
 			}else if(circleArray[getArray[i]].color==colorArray[j]){
 				colorCheck[j]++;
 			}
-
 		}
+	}
 
-		var count = 0;
-		for(var j=0; j<colorCheck.length; j++){
-			if(colorCheck[j]==1) count++;
-		}
+	var count = 0;
+	for(var j=0; j<colorCheck.length; j++){
+		if(colorCheck[j]==1) count++;
+	}
 
-		if(count==colorCheck.length){
-			setTimeout(function(){
-				alert("You Win. \nTry Level 2.");
-				window.location = 'level2.html';
-			}, 500);
-		}
-
+	if(count==colorCheck.length){
+		setTimeout(function(){
+			alert(msg);
+			window.location = site;
+		}, 500);
 	}
 
 }
@@ -165,5 +158,4 @@ animate();
 //cpf設定
 function setup(){
 	if(cpf) var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
-	//document.getElementById("demo").innerHTML += ret + "<br>";
 }
