@@ -40,7 +40,7 @@ function Circle(x, y, dx, dy, radius, id){
 	this.dy = dy;
 	this.radius = radius;
 	this.minRadius = radius;
-	this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
+	this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
 	this.range = 15;
 	this.id = id;
 
