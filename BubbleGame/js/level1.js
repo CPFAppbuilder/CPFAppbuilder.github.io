@@ -10,15 +10,6 @@ var mouse = {
 
 var maxRadius = 40;
 
-var colorArray = [
-'#FF3105',
-'#FFB142',
-'#009AFF',
-'#31B400',
-'#E625E8',
-'#29CDFF'
-];
-
 var colorGet = [];
 
 window.addEventListener('touchstart', function(event){
@@ -40,6 +31,8 @@ window.addEventListener('resize', function(){
 	init();
 });
 
+setup();
+
 function Circle(x, y, dx, dy, radius, id){
 	this.x = x;
 	this.y = y;
@@ -54,7 +47,8 @@ function Circle(x, y, dx, dy, radius, id){
 	this.draw = function(){
 		c.beginPath();
 		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-		c.fillStyle = this.color;
+		//c.fillStyle = this.color;
+		c.fillStyle = "rgb(" + this.color + ")";
 		c.fill();
 	}
 
@@ -76,8 +70,15 @@ function Circle(x, y, dx, dy, radius, id){
 				this.radius += 8;
 
 				if(colorGet.indexOf(this.id)==-1){
-					document.getElementById("s_bubble").play();
+					//document.getElementById("s_bubble").play(); //add sound
 					colorGet.push(this.id);
+
+					//ser LED color
+					if(cpf){
+						cpf.setChainableLed("0," + this.color + ";");
+						//var ret = cpf.request('["grove_setColorRGB", 7,' + this.color + ']');
+					}
+
 					console.log(colorGet);
 				}
 
@@ -95,7 +96,7 @@ function Circle(x, y, dx, dy, radius, id){
 	}
 }
 
-
+//if touched rhe same color or not
 function colorCheckFun(getArray) {
 
 	var colorCheck = [0,0,0,0,0,0];
@@ -164,30 +165,8 @@ function animate(){
 init();
 animate();
 
-	
-	setup();
-	
-	// RGB
-	function changeColor() {
-		var Rled = document.getElementById("rled").value;
-		var Gled = document.getElementById("gled").value;
-		var Bled = document.getElementById("bled").value;
-		
-		document.getElementById("redvalue").innerHTML = Rled;
-		document.getElementById("greenvalue").innerHTML = Gled;
-		document.getElementById("bluevalue").innerHTML = Bled;
-		
-		document.getElementById("showcolor").style.backgroundColor = 'rgb(' + Rled + ',' + Gled + ',' + Bled + ')';
-		
-		if(cpf){
-			cpf.setChainableLed("0," + Rled + "," + Gled + "," + Bled + ";");
-		}
-		
-	}
-	
-	// cpf setup
-	function setup(){
-		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
-			//document.getElementById("demo").innerHTML += ret + "<br>";
-	}
+// cpf setup
+function setup(){
+	if(cpf) var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
+	//document.getElementById("demo").innerHTML += ret + "<br>";
+}
