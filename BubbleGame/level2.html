@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<mata charset="UTF-8">
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<audio id="s_bubble" src="sound/by_chance.mp3" preload="auto"></audio>
-<audio id="s_win" src="sound/win.wav" preload="auto"></audio>
-<audio id="s_lose" src="sound/surprise.mp3" preload="auto"></audio>
-<title>Level 2</title>
-<style>
-  body {
-    margin: 0;
-  }
-  canvas{
-    display: block;
-  }
-</style>
+	<mata charset="UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="SHORTCUT ICON" href="img/title.png">
+		<audio id="s_bubble" src="sound/by_chance.mp3" preload="auto"></audio>
+		<audio id="s_win" src="sound/win.wav" preload="auto"></audio>
+		<audio id="s_lose" src="sound/surprise.mp3" preload="auto"></audio>
+		<title>Level 2</title>
+		<style>
+		body {
+			margin: 0;
+		}
+		canvas{
+			display: block;
+		}
+	</style>
 </head>
 <body>
-<canvas></canvas>
-<script src="js/level2.js"></script>
+	<canvas></canvas>
+	<script>
+		var colorArray = [
+		'0,90,181',
+		'149,144,208',
+		'40,148,255',
+		'102,179,255',
+		'0,61,121',
+		'151,203,255'
+		];
+	</script>
+	<script src="js/level1.js"></script>
 </body>
 </html>
