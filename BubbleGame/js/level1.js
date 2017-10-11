@@ -1,3 +1,5 @@
+setup();
+
 var canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -31,7 +33,6 @@ window.addEventListener('resize', function(){
 	init();
 });
 
-setup();
 
 function Circle(x, y, dx, dy, radius, id){
 	this.x = x;
