@@ -32,7 +32,7 @@ window.addEventListener('resize', function(){
 });
 
 //球的基本設定
-function Circle(x, y, dx, dy, radius, id){
+function Circle(x, y, dx, dy, radius, color){
 	//設定
 	this.x = x;
 	this.y = y;
@@ -40,9 +40,8 @@ function Circle(x, y, dx, dy, radius, id){
 	this.dy = dy;
 	this.radius = radius;
 	this.minRadius = radius;
-	this.color = colorArray[Math.floor(Math.random() * colorArray.length)]
+	this.color = color;
 	this.range = 15;
-	this.id = id;
 
 	//將球填滿顏色
 	this.draw = function(){
@@ -139,7 +138,10 @@ function init() {
 		var y = Math.random() * (window.innerHeight -  radius*2) + radius;
 		var dx = (Math.random() - 0.5) * 3;
 		var dy = (Math.random() - 0.5) * 3;
-		circleArray.push(new Circle(x, y, dx, dy, radius, i));
+
+		var color = (i<6) ? (colorArray[i]) : (colorArray[Math.floor(Math.random() * colorArray.length)]);
+
+		circleArray.push(new Circle(x, y, dx, dy, radius, color));
 	}
 
 }
