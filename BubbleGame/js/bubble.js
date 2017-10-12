@@ -73,13 +73,14 @@ function Circle(x, y, dx, dy, radius, id){
 				this.radius += 10;
 
 				//被碰到的球的顏色
-				colorGet.push(this.id);
+				colorGet.push(this.color);
 				mouse.x = undefined;
 				mouse.y = undefined;
 
 				//LED燈顏色設定
 				if(cpf){
 					cpf.setChainableLed("0," + this.color + ";");
+					//cps.request('["grove_setColorRGB", 0, ' + this.color + ']');
 				}
 
 			}				
@@ -100,14 +101,15 @@ function colorCheckFun(getArray) {
 	for(var i=0; i<getArray.length; i++){
 		for(var j=0; j<colorArray.length; j++){
 
-			if((circleArray[getArray[i]].color==colorArray[j])&&(colorCheck[j]!=0)){
+			if((getArray[i]==colorArray[j])&&(colorCheck[j]!=0)){
 				setTimeout(function(){
 					alert('game over');
 					location.reload();
 				}, 500);
-			}else if(circleArray[getArray[i]].color==colorArray[j]){
+			}else if(getArray[i]==colorArray[j]){
 				colorCheck[j]++;
 			}
+
 		}
 	}
 
