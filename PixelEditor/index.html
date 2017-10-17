@@ -508,7 +508,7 @@ function runset(){
 
 function setup(){
     if(cpf)
-      var ret = cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 2,"OUTPUT"],["setPinMode", "digital", 3,"PWM"],["grove_newChainableLED", 7, 8, 50]'); 
+    	cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 2,"OUTPUT"],["setPinMode", "digital", 3,"PWM"],["grove_newChainableLED", 7, 8, 50]'); 
     document.getElementById("demo").innerHTML += ret + "<br>";
 }
 </script>
