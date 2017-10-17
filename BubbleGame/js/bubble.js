@@ -161,5 +161,5 @@ animate();
 
 //cpf設定
 function setup(){
-	if(cpf) var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 8, 1]'); 
+	if(cpf) var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
 }
