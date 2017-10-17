@@ -78,7 +78,8 @@ function Circle(x, y, dx, dy, radius, color){
 
 				//LED燈顏色設定
 				if(cpf){
-					cpf.setChainableLed("0," + this.color + ";");
+					//cpf.setChainableLed("0," + this.color + ";");
+					cpf.set("rgb led", this.color); 
 					//cps.request('["grove_setColorRGB",0,'+ this.color + ']');
 				}
 
@@ -161,5 +162,6 @@ animate();
 
 //cpf設定
 function setup(){
-	if(cpf) var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
+	if(cpf) 
+		var ret = cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
 }
