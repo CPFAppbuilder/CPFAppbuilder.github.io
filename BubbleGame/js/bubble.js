@@ -78,8 +78,8 @@ function Circle(x, y, dx, dy, radius, color){
 
 				//LED燈顏色設定
 				if(cpf){
-					cpf.setChainableLed("0," + this.color + ";");
-					//cps.request('["grove_setColorRGB", 0, ' + this.color + ']');
+					//cpf.setChainableLed("0," + this.color + ";");
+					cps.request('["grove_setColorRGB", 0, 0,255,255]');
 				}
 
 			}				
