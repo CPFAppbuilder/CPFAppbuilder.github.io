@@ -78,7 +78,7 @@ function Circle(x, y, dx, dy, radius, color){
 
 				//LED燈顏色設定
 				if(cpf){	
-					cpf.set("rgb led", this.color); 				 
+					cpf.request('["grove_setColorRGB", 0, 0, 255, 255]');				 
 				}
 
 			}				
