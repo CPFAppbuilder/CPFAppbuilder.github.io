@@ -203,7 +203,6 @@
 	
 	// 風扇
 	function fan(value) {
-		//cpf.set("socket d3", Number(value));
 		cpf.request('["analogWrite", 3, ' + Number(value) + ']');
 	}
 	
@@ -211,14 +210,12 @@
 	lighton.addEventListener('touchstart', function(event) {
 		lighton.src= './images/light_on.png';
 		lightoff.src= './images/lightoff.png';
-		//cpf.set("socket d2", 1);
 		cpf.request('["digitalWrite", 2 , 1]');
 	});
 	// LED關燈
 	lightoff.addEventListener('touchstart', function(event) {
 		lightoff.src= './images/light_off.png';
 		lighton.src= './images/lighton.png';
-		//cpf.set("socket d2", 0);
 		cpf.request('["digitalWrite", 2 , 0]');
 	});
 	
