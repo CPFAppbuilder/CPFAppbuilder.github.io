@@ -5,11 +5,11 @@ onmessage = function(e) {
 	switch(e.data.request) {
 		case "read":
 			if(cpf){
-				res.tempValue = toCelsius(cpf.get("socket a1"));
-				res.lightValue = cpf.get("socket a0");
-				res.elecValue = cpf.get("socket a2");
-				res.thief = cpf.get("socket d7");
-				res.COValue = cpf.get("socket a3");
+				res.tempValue = toCelsius(cpf.get("a1"));
+				res.lightValue = cpf.get("a0");
+				res.elecValue = cpf.get("a2");
+				res.thief = cpf.get("d7");
+				res.COValue = cpf.get("a3");
 			}
 			
 			postMessage(res);
