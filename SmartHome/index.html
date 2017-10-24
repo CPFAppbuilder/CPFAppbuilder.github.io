@@ -204,7 +204,7 @@
 	// 風扇
 	function fan(value) {
 		//cpf.set("socket d3", Number(value));
-		cpf.request('["analogWrite", 3, ' + Number(value) + ']');
+		cpf.request('["analogWrite", 3, 'Number(value)']');
 	}
 	
 	// LED開燈
