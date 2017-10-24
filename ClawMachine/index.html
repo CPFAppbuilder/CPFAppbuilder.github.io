@@ -155,15 +155,15 @@
 	// cpf setup
 	function setup(){
 		if(cpf)
-			var ret = cpf.setPinMode('["resetPin"],' +
-                '["setPinMode", "digital", 3, "SERVO"],' +
-                '["setPinMode", "digital", 5, "SERVO"],' +
-                '["setPinMode", "digital", 6, "SERVO"],' +
-                '["setPinMode", "digital", 9, "SERVO"],' +
-                '["setPinMode", "digital", 10, "SERVO"],' +
-                '["setPinMode", "digital", 11, "SERVO"],' +
-                '["digitalWrite", 12, 1],' + //add in 2.00.2000, it's for Arduino Braccio V4 board
-                '["braccio_initArm"]');
+			cpf.setPinMode('["resetPin"],' +
+					'["setPinMode", "digital", 3, "SERVO"],' +
+					'["setPinMode", "digital", 5, "SERVO"],' +
+					'["setPinMode", "digital", 6, "SERVO"],' +
+					'["setPinMode", "digital", 9, "SERVO"],' +
+					'["setPinMode", "digital", 10, "SERVO"],' +
+					'["setPinMode", "digital", 11, "SERVO"],' +
+					'["digitalWrite", 12, 1],' + //add in 2.00.2000, it's for Arduino Braccio V4 board
+					'["braccio_initArm"]');
 		
 	}
 
