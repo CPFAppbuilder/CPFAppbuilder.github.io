@@ -77,8 +77,7 @@ function Circle(x, y, dx, dy, radius, color){
 				mouse.y = undefined;
 
 				//LED燈顏色設定
-				if(cpf){
-					//cpf.set("rgb led", this.color); 
+				if(cpf){ 
 					cpf.request('["grove_setColorRGB", 0, ' + this.color + ']');
 				}
 
