@@ -138,7 +138,7 @@
 			}*/
 			
 			// 溫度感測
-			tempValue = toCelsius(cpf.get("socket a1"));
+			tempValue = toCelsius(cpf.get("a1"));
 			document.getElementById("tempValue").innerHTML = tempValue;
 			
 			// 切換溫度狀態
@@ -151,7 +151,7 @@
 			}
 			
 			// 光敏感測
-			lightValue = cpf.get("socket a0");
+			lightValue = cpf.get("a0");
 			document.getElementById("lightValue").innerHTML = lightValue;
 			
 			// 切換光敏狀態
@@ -162,7 +162,7 @@
 			}
 			
 			// 電流感測
-			elecValue = cpf.get("socket a2");
+			elecValue = cpf.get("a2");
 			document.getElementById("elecValue").innerHTML = elecValue;
 			
 			// 切換電流狀態
@@ -175,7 +175,7 @@
 			}
 			
 			// 人體感測
-			thief = cpf.get("socket d7");
+			thief = cpf.get("d7");
 			if(thief == 1) {
 				document.getElementById("thief").src = './images/thief_on.png';
 			}else {
@@ -183,7 +183,7 @@
 			}
 			
 			// 一氧化碳
-			COValue = cpf.get("socket a3");
+			COValue = cpf.get("a3");
 			document.getElementById("COValue").innerHTML = COValue;
 			
 			// 切換一氧化碳狀態
@@ -203,20 +203,23 @@
 	
 	// 風扇
 	function fan(value) {
-		cpf.set("socket d3", Number(value));
+		//cpf.set("socket d3", Number(value));
+		cpf.request('["analogWrite", 3, ' + Number(value) + ']');
 	}
 	
 	// LED開燈
 	lighton.addEventListener('touchstart', function(event) {
 		lighton.src= './images/light_on.png';
 		lightoff.src= './images/lightoff.png';
-		cpf.set("socket d2", 1);
+		//cpf.set("socket d2", 1);
+		cpf.request('["digitalWrite", 2 , 1]');
 	});
 	// LED關燈
 	lightoff.addEventListener('touchstart', function(event) {
 		lightoff.src= './images/light_off.png';
 		lighton.src= './images/lighton.png';
-		cpf.set("socket d2", 0);
+		//cpf.set("socket d2", 0);
+		cpf.request('["digitalWrite", 2 , 0]');
 	});
 	
 	// 溫度轉攝氏
