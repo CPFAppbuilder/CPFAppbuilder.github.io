@@ -172,8 +172,8 @@
 	}
 	
 	function milk_loop() {
-		temp = cpf.get("socket a1");
-		now_press = cpf.get("socket a0");
+		temp = cpf.get("a1");
+		now_press = cpf.get("a0");
 		now_press = Math.round(now_press * 1.5);
 		
 		document.getElementById("temp").innerHTML = toCelsius(temp) + '℃';
