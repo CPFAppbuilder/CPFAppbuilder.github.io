@@ -16,6 +16,12 @@
 			overflow-x: hidden;
 			overflow-y: hidden;
 		}
+		#top{
+			padding: 40px;
+		}
+		#bottom{
+			padding:20px 60px;
+		}
 		.form-group select{
 			width: 90%;
 			font-size: 16px;
@@ -31,34 +37,45 @@
 			padding: 12px 18px;
 			font-size: 16px;
 		}
+		@media (max-width: 500px) {
+			#top{
+				padding: 20px 0 0 0;
+			}
+			#bottom{
+				padding:20px;
+			}
+			#top h1{
+				font-size: 32px;
+			}
+		}
 	</style>
 </head>
 <body>
-	<div class="row" align="center" style="padding: 40px;">
+	<div class="row" align="center" id="top">
 		<div align="center" class="col-xs-12">
 			<h1>PM 2.5 空氣品質指標</h1>
 		</div>
   		<div align="center" class="col-xs-12 col-md-8 col-md-offset-2" style="margin-top: 2em;">
-  			<div class="col-xs-5">
+  			<div class="col-xs-4">
 	    		<div class="form-group">
 	      			<select id="city" class="form-control">
 	      				<option value="choose">請選擇</option>
 	      			</select>
 	    		</div>
 	    	</div>
-	    	<div class="col-xs-5">
+	    	<div class="col-xs-4">
 	    		<div class="form-group">
 	      			<select id="area" class="form-control">
 	      				<option value="choose">請選擇</option>
 	      			</select>
 	    		</div>
 	    	</div>
-	    	<div class="col-xs-2">
+	    	<div class="col-xs-4">
 	    		<button id="button" type="button" class="btn btn-info">查詢</button>
 	    	</div>
   		</div>
 	</div>
-	<div class="row" style="padding:20px 60px;">
+	<div class="row" id="bottom">
 		<div class="col-xs-12 col-md-8 col-md-offset-2">
 			<table class="table table-striped">
 			    <thead>
