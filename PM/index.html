@@ -141,6 +141,7 @@
 						$content.append('<tr><td>'+a+'</td>'+
 										'<td><i class="fa fa-circle" style="color:rgb('+color+');"></i>　'+e['PM2.5']+'</td>'+
 										'<td>'+category+'</td></tr>');
+						changeColor();
 					}
 				});
 			});
@@ -148,8 +149,10 @@
 	}
 
 	//LED燈顏色設定
-	if(cpf){ 
-		cpf.request('["grove_setColorRGB", 0, ' + color + ']');
+	function changeColor(){
+		if(cpf){ 
+			cpf.request('["grove_setColorRGB", 0, ' + color + ']');
+		}
 	}
 	//cpf設定
 	function setup(){
