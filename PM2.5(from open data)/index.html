@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>JS Bin</title>
+	<link rel="stylesheet" href="font-awesome-4.7.0\css\font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>JS Bin</title>
+	<style>
+		body{
+			font-family: "Lucida Console","微軟正黑體","Arial",sans-serif;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		.form-group select{
+			width: 90%;
+			font-size: 16px;
+		}
+		table{
+			font-size: 16px;
+		}
+		.form-control{
+			height: 50px;
+			padding: 10px 15px;
+		}
+		.btn{
+			padding: 12px 18px;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div class="row" align="center" style="padding: 40px;">
+		<div align="center" class="col-xs-12">
+			<h1>PM 2.5 空氣品質指標</h1>
+		</div>
+  		<div align="center" class="col-xs-12 col-md-8 col-md-offset-2" style="margin-top: 2em;">
+  			<div class="col-xs-5">
+	    		<div class="form-group">
+	      			<select id="city" class="form-control">
+	      				<option value="choose">請選擇</option>
+	      			</select>
+	    		</div>
+	    	</div>
+	    	<div class="col-xs-5">
+	    		<div class="form-group">
+	      			<select id="area" class="form-control">
+	      				<option value="choose">請選擇</option>
+	      			</select>
+	    		</div>
+	    	</div>
+	    	<div class="col-xs-2">
+	    		<button id="button" type="button" class="btn btn-info">查詢</button>
+	    	</div>
+  		</div>
+	</div>
+	<div class="row" style="padding:20px 60px;">
+		<div class="col-xs-12 col-md-8 col-md-offset-2">
+			<table class="table table-striped">
+			    <thead>
+			      	<tr>
+			      		<th>區域</th>
+			      		<th>PM 2.5 濃度</th>
+				        <th>指標</th>
+			      	</tr>
+			    </thead>
+			    <tbody id="content">
+			    </tbody>
+			</table>
+		</div>
+	</div>
+</body>
+<script>
+	setup();
+	window.onload = function(){
+		var $city = $('#city');
+		var $area = $('#area');
+		var $button = $('#button');
+		var $content = $('#content');
+		var county = [];
+		var result;
+		$.get('http://opendata2.epa.gov.tw/AQX.json',function(data){
+			data.forEach(function(e,i){
+				county[i] = e.County;
+			});
+			result=county.filter(function(element, index, arr){
+				return arr.indexOf(element)=== index;
+			});
+			//篩選縣市名並秀出來
+			result.forEach(function(e){
+				$city.append('<option value="'+e+'">'+e+'</option>');
+			});
+			//找出這個縣市裡的地區並秀出來
+			var cc = $city.val();
+			$( "#city" ).change(function () {
+				cc = $city.val();
+				$area.html('');
+				data.forEach(function(e,i){
+					if(e.County == cc){
+						$area.append('<option value="'+e.SiteName+'">'+e.SiteName+'</option>');
+					}
+				});
+			});
+			
+
+			var category;
+			var color;
+			$button.on('click',function(){
+				var aa = $area.val();
+				$content.html('');
+				data.forEach(function(e,i){
+					if(e.SiteName == aa){
+						if(e['PM2.5']<=15){
+							category = "良好";
+							color="0,232,0";
+						}else if(e['PM2.5']>=16 && e['PM2.5']<=35){
+							category = "普通";
+							color="255,255,0";
+						}else if(e['PM2.5']>=36 && e['PM2.5']<=54){
+							category = "對敏感族群不健康";
+							color="255,126,0";
+						}else if(e['PM2.5']>=55 && e['PM2.5']<=150){
+							category = "對所有族群不健康";
+							colo25r="255,0,0";
+						}else if(e['PM2.5']>=151 && e['PM2.5']<=250){
+							category = "非常不健康";
+							color="143,63,151";
+						}else if(e['PM2.5']>=251 && e['PM2.5']<=350){
+							category = "危害";
+							color="126,0,35";
+						}else if(e['PM2.5']>=351 && e['PM2.5']<=500){
+							category = "危害";
+							color="126,0,35";
+						}
+						$content.append('<tr><td>'+aa+'</td>'+
+										'<td><i class="fa fa-circle" style="color:rgb('+color+');"></i>　'+e['PM2.5']+'</td>'+
+										'<td>'+category+'</td></tr>');
+						changeColor(color);
+					}
+				});
+			});
+		});
+	}
+
+	//LED燈顏色設定
+	function changeColor(color){
+		if(cpf){ 
+			cpf.request('["grove_setColorRGB", 0, ' + color + ']');
+		}
+	}
+	//cpf設定
+	function setup(){
+		if(cpf) 
+			cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
+	}
+</script>
+</html>
