@@ -1,0 +1,106 @@
+body{
+	font-family: sans-serif;
+}
+.panel-block {
+	position: absolute;
+	height: 320px;
+	width: 400px;
+	background-color: white;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+	padding-top: 10px;
+	z-index: 12;
+	box-shadow: 0px 2px 7px rgba(20, 20, 20, 0.5);
+	font-size: 14pt;
+	color: #00BBFF;
+}
+.panel-block input[type="radio"] {
+	display: none;
+}
+.panel-block label {
+	margin-left: 10px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.block-img {
+	width: 20%;
+}
+.block-error {
+	color: red; 
+	font-size: 12pt;
+}
+/*************** Button *****************/
+.page {
+	background-color: #19AFE5;
+	border: none;
+	color: white;
+	padding: 10px 90px;
+	text-align: center;
+	text-decoration: none;
+	font-weight:bold;
+	display: inline-block;
+	font-size: 16px;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.page-2 {
+	padding: 10px 45px;
+}
+.page:focus, .page:hover {
+	background-color: #18a3d5;
+}
+/************* User Panel **************/
+.logout-block {
+	height: 270px;
+}
+.user-form input[type="radio"]:checked + label {
+	padding-top: 67px;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-shadow: 0px 0px 10px 2px #1d1d1e;
+	border-radius: 50%;
+}
+.user-form p {
+	font-size: 0.8em;
+	cursor: pointer;
+	text-decoration: underline;
+}
+.user-form p:focus, .user-form p:hover {
+	color: #528fa5;
+}
+.user-form i{
+	font-size: 1.7em;
+}
+.email{
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin-bottom: 10px;
+	width: 60%;
+	box-sizing: border-box;
+	color: #2C3E50;
+	font-size: 16px;
+	margin-top: 5px;
+}
+.email::-webkit-input-placeholder {
+  font-family: '微軟正黑體', Arial, sans-serif;
+}
+.email:-ms-input-placeholder {
+  font-family: '微軟正黑體', Arial, sans-serif;
+}
+.email:-moz-placeholder {
+  font-family: '微軟正黑體', Arial, sans-serif;
+}
+.email::-moz-placeholder {
+  font-family: '微軟正黑體', Arial, sans-serif;
+}
+canvas{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+#cloud_chart{
+    background-color: white;
+    height: 280px;
+    padding:10px;
+}

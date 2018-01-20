@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="google" value="notranslate">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+	<title>chart</title>
+
+	<link rel="stylesheet" href="bootstrap.min.css" >
+	<script src="bootstrap.min.js"></script>
+
+
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.min-3.2.1.js"></script>
+	<script src="utils.js"></script>
+	<script src="Chart.bundle.js"></script>
+	<script src="user.js"></script>	
+</head>
+<body>
+	<!-- User Panel-->
+	<div id="cpfpanel_user" class="panel-block"  style="margin-bottom: 10px">
+		<center>
+			<form id="loginForm" class="user-form">
+				<section id="login_page3">      
+					<h2>Login</h2> 
+					<input type="text" class="email" tabindex="1" placeholder="account" /><br/>
+					<input type="password" class="email" tabindex="2" placeholder="password" /><br/>
+					<span id="acError" class="block-error"></span>
+					<i class="fa fa-spinner fa-pulse"></i><br/>
+					<span id="login_btn_ac" class="page page-2" tabindex="3" onclick="aop.login(this.parentNode)">Login</span>
+				</section>
+			</form>
+		</center>
+	</div>
+	<!-- User Panel End-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" style="float:right;">
+					<div id="cloud_chart" style="display: none; margin-top: 10px" align="center">
+						<div style="width:85%;"><canvas id="canvas"></canvas></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<br/><br/><br/><br/><br/><br/><br/>
+	<section style="margin-bottom: 50px">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12" style="float:right;">
+					<div id="light_chart" style="display: none; " align="center">
+						<div style="width:85%;"><canvas id="canvas2"></canvas></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
