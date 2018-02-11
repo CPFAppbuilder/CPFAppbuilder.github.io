@@ -74,9 +74,15 @@
 		var Gled = document.getElementById("gled").value;
 		var Bled = document.getElementById("bled").value;
 		
-		document.getElementById("redvalue").innerHTML = Rled;
-		document.getElementById("greenvalue").innerHTML = Gled;
-		document.getElementById("bluevalue").innerHTML = Bled;
+// 		document.getElementById("redvalue").innerHTML = Rled;
+// 		document.getElementById("greenvalue").innerHTML = Gled;
+// 		document.getElementById("bluevalue").innerHTML = Bled;
+		document.getElementById("redvalue").style.
+		backgroundColor = 'rgb(' + Rled + ',0,0)';
+		document.getElementById("greenvalue").style.
+		backgroundColor = 'rgb(0,' + Gled + ',0)';
+		document.getElementById("bluevalue").style.
+		backgroundColor = 'rgb(0,0,' + Bled + ')';
 		
 		document.getElementById("showcolor").style.backgroundColor = 'rgb(' + Rled + ',' + Gled + ',' + Bled + ')';
 		
