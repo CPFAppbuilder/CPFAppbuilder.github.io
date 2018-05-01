@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="a0"></h1>
+    <script>
+        var light;
+        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"]');
+        light = cpf.get("a0");
+        document.getElementById("a0").innerHTML = light;
+    </script>
+</body>
+</html>
