@@ -50,8 +50,8 @@
 			document.getElementById("temperaturevalue").innerHTML = celsius;
 			cpf.request('["servo_pos", 8, 90>]');
 			servodata = 0;
-			if(celsius >= -20 && celsius <= 50){ //一般溫度計
-				degree = (70/180)*celsius;
+			if(celsius >= -30 && celsius <= 50){ //一般溫度計
+				degree = (180/80)*celsius;
 				cpf.request('["analogWrite", 4,'+degree+']');
 			}
 			else if(celsius <= -20){
