@@ -49,25 +49,24 @@
 			document.getElementById("temperaturevalue").innerHTML = celsius;
 			cpf.request('["servo_pos", 8, 90>]');
 			servodata = 0;
-	
-			if(celsius <= 25){
-				servodata =0;
-                
-            }
-            else if(celsius <= 30 && celsius > 25){
-				servodata = 90;
-                
-            }
-            else if(celsius>30){
-                servodata = 180;
-				
-            }
-			else{
-				servodata = 0;
+			if(celsius >= -20 && celsius <= 50){ //一般溫度計
+				degree = (70/180)*celsius;
+				cpf.request('["analogWrite", 4,'+degree+']');
 			}
-			cpf.request('["analogWrite", 4,'+servodata+']');
+			else if(celsius <= -20){
+				cpf.request('["analogWrite", 4, 0]');
+			}
+			else{
+				cpf.request('["analogWrite", 4, 180]');
+			}
+
 			
-			document.getElementById("servovalue").innerHTML = servodata;
+
+
+	
+			
+			
+			document.getElementById("servovalue").innerHTML = degree;
 		}
 		setTimeout(loop, 1000);
 	}
