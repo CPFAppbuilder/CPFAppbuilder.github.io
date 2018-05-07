@@ -37,6 +37,7 @@
 	var tempdata;
 	var celsius = 20;
 	var servodata = 10;
+	var degree = 0;
 	setup();
 	// Analog
 	function loop() {
@@ -46,7 +47,7 @@
 			tempdata = cpf.get("temperature sensor");
 			celsius = toCelsius(tempdata);	
 			document.getElementById("lightvalue").innerHTML = lightdata;
-			document.getElementById("temperaturevalue").innerHTML = degree;
+			document.getElementById("temperaturevalue").innerHTML = celsius;
 			cpf.request('["servo_pos", 8, 90>]');
 			servodata = 0;
 			if(celsius >= -20 && celsius <= 50){ //一般溫度計
