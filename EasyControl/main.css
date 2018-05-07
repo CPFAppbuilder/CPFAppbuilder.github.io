@@ -23,9 +23,9 @@ html {
 /******** Analog ********/
 
 #analog {
-	height: 300px;
+	height: 100%;
 	float: left;
-	//background-color: green;
+	/* background-color: green; */
 	padding: 0 4em;
 }
 
