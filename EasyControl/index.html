@@ -46,7 +46,7 @@
 			tempdata = cpf.get("temperature sensor");
 			celsius = toCelsius(tempdata);	
 			document.getElementById("lightvalue").innerHTML = lightdata;
-			document.getElementById("temperaturevalue").innerHTML = celsius;
+			document.getElementById("temperaturevalue").innerHTML = degree;
 			cpf.request('["servo_pos", 8, 90>]');
 			servodata = 0;
 			if(celsius >= -20 && celsius <= 50){ //一般溫度計
@@ -61,12 +61,7 @@
 			}
 
 			
-
-
-	
-			
-			
-			document.getElementById("servovalue").innerHTML = degree;
+			document.getElementById("servovalue").innerHTML = celsius+"度C/"+degree+"角度";
 		}
 		setTimeout(loop, 1000);
 	}
