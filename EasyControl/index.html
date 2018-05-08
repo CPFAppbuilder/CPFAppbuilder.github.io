@@ -5,10 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<title>Document</title>
 </head>
-<body style="background-color: #9CCDFB">
+<body>
 	<h1>Thermometer</h1>
 	<div class="container">
 		<div class="col-xs-12">
@@ -24,30 +24,26 @@
 	</div>
 	
 	<script>
-		var lightdata;
 		var tempdata;
-		var celsius = 20;
+		var celsius = 0;
 		var degree = 0;
 		setup();
-		// Analog
+
 		function loop() {
 			if(cpf){
 				tempdata = cpf.get("temperature sensor");
 				celsius = toCelsius(tempdata);
 				document.getElementById("temp").innerHTML = celsius;
 
-				if(celsius >= -30 && celsius <= 50){ //一般溫度計
+				if(celsius >= -30 && celsius <= 50){ //一般溫度計溫度範圍
 					degree = Math.floor((180/80)*celsius+67.5);
 					document.getElementById("pointer").style.transform = "rotate("+degree+"deg)";
 					document.getElementById("degree").innerHTML = degree;
-					// console.log("degree: "+degree);
+
 					cpf.request('["analogWrite", 4,'+Math.abs(degree-180)+']');
 					
 				}
 				
-	
-				
-				// document.getElementById("servovalue").innerHTML = celsius+"度C/"+degree+"角度";
 			}
 			setTimeout(loop, 1000);
 		}
@@ -63,11 +59,11 @@
 		// cpf setup
 		function setup(){
 			if(cpf){
-				cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
+				cpf.setPinMode('["resetPin"] ,["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
 			}
 		}
 		
 	</script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 	</body>
 </html>
