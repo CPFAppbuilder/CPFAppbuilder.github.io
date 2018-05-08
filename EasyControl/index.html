@@ -3,10 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	
 	<title>Document</title>
 </head>
 <body style="background-color: #9CCDFB">
@@ -26,7 +25,6 @@
 	</div>
 	
 	<script>
-		
 		var lightdata;
 		var tempdata;
 		var celsius = 20;
@@ -59,13 +57,11 @@
 			setTimeout(loop, 1000);
 		}
 		loop();
-		
 	
 		// Temperature
 		function toCelsius(value) {
 			var resistance = parseFloat((1023-value) * 10000 / value);
 			var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
-			
 			return temperature.toFixed(2);
 		}
 		
@@ -74,12 +70,9 @@
 			if(cpf){
 				cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
 			}
-					
-				//document.getElementById("demo").innerHTML += ret + "<br>";
-				//cpf.setPinMode('["resetPin"],["servo_init", 8, 90, 500 , 2400]');
-				//cpf.setPinMode('["setPinMode", "digital", 8, "SERVO"]');
 		}
 		
 	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	</body>
 </html>
