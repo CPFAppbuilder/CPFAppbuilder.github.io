@@ -11,7 +11,6 @@
 <body style="background-color: #9CCDFB">
 	<h1>Thermometer</h1>
 	<div class="container">
-
 		<div class="col-xs-12">
 			<div class="images">
 				<img id="thermometer" src="img/thermometer.png" alt="">
@@ -28,7 +27,6 @@
 		var lightdata;
 		var tempdata;
 		var celsius = 20;
-		var servodata = 10;
 		var degree = 0;
 		setup();
 		// Analog
@@ -39,7 +37,7 @@
 				document.getElementById("temp").innerHTML = celsius;
 
 				if(celsius >= -30 && celsius <= 50){ //一般溫度計
-					degree = Math.floor((180/80)*celsius);
+					degree = Math.floor((180/80)*celsius+67.5);
 					document.getElementById("pointer").style.transform = "rotate("+degree+"deg)";
 					document.getElementById("degree").innerHTML = degree;
 					cpf.request('["analogWrite", 4,'+degree+']');
