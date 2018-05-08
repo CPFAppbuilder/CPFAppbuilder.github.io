@@ -42,7 +42,7 @@
 
 				if(celsius >= -30 && celsius <= 50){ //一般溫度計
 					degree = Math.floor((180/80)*celsius);
-					document.getElementById("pointer").css("transform", "rotate("+degree+" deg)");
+					document.getElementById("pointer").style.transform = "rotate("+degree+" deg)";
 					document.getElementById("degree").innerHTML = degree;
 					cpf.request('["analogWrite", 4,'+degree+']');
 				}
