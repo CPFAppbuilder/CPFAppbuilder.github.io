@@ -45,7 +45,7 @@
 				else if(celsius <= -20){
 					cpf.request('["analogWrite", 4, 0]');
 				}
-				else{
+				else if(celsius >= 50){
 					cpf.request('["analogWrite", 4, 180]');
 				}
 	
