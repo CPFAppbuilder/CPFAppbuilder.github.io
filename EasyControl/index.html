@@ -42,12 +42,7 @@
 					document.getElementById("degree").innerHTML = degree;
 					cpf.request('["analogWrite", 4,'+degree+']');
 				}
-				else if(celsius <= -20){
-					cpf.request('["analogWrite", 4, 0]');
-				}
-				else if(celsius >= 50){
-					cpf.request('["analogWrite", 4, 180]');
-				}
+				
 	
 				
 				// document.getElementById("servovalue").innerHTML = celsius+"度C/"+degree+"角度";
