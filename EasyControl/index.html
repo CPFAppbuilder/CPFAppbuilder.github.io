@@ -1,93 +1,85 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Easy Control</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="main.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<title>Document</title>
 </head>
-<body>
-<font id="title">Easy Control</font><p><br>
+<body style="background-color: #9CCDFB">
+	<h1>Thermometer</h1>
+	<div class="container">
 
-<div id="content" class="row">
-	<div class="col-sm-12  col-xs-12">
-		<div id="analog" class="col-sm-6 col-xs-12">
-			<div class="analogclass">
-				<img class="analogsensor" src="img/light.png" />
-				<span class="analogvalue" id="lightvalue">none</span><br>
+		<div class="col-xs-12">
+			<div class="images">
+				<img id="thermometer" src="img/thermometer.png" alt="">
+				<img id="pointer" src="img/pointer.png" alt="">
 			</div>
-			<p>
-			<div class="analogclass">
-				<img class="analogsensor" src="img/temp.png" />
-				<span class="analogvalue" id="temperaturevalue">none</span>
-			</div>
-			<div class="analogclass">
-				<img class="analogsensor" src="img/rgb.png" />
-				<span class="analogvalue" id="servovalue">none</span>
-			</div>
+			<br>
+			<h3>Degree: <span id="degree">none</span>°</h3>
+			<h3>Temperature: <span id="temp">none</span>°C</h3>
 		</div>
-		
+
 	</div>
-</div>
-
-<script>
 	
-	var lightdata;
-	var tempdata;
-	var celsius = 20;
-	var servodata = 10;
-	var degree = 0;
-	setup();
-	// Analog
-	function loop() {
-		if(cpf){
-	
-			lightdata = cpf.get("light sensor");
-			tempdata = cpf.get("temperature sensor");
-			celsius = toCelsius(tempdata);	
-			document.getElementById("lightvalue").innerHTML = lightdata;
-			document.getElementById("temperaturevalue").innerHTML = celsius;
-			cpf.request('["servo_pos", 8, 90>]');
-			servodata = 0;
-			if(celsius >= -30 && celsius <= 50){ //一般溫度計
-				degree = Math.floor((180/80)*celsius);
-				cpf.request('["analogWrite", 4,'+degree+']');
-			}
-			else if(celsius <= -20){
-				cpf.request('["analogWrite", 4, 0]');
-			}
-			else{
-				cpf.request('["analogWrite", 4, 180]');
-			}
-
-			
-			document.getElementById("servovalue").innerHTML = celsius+"度C/"+degree+"角度";
-		}
-		setTimeout(loop, 1000);
-	}
-	loop();
-	
-
-	// Temperature
-	function toCelsius(value) {
-		var resistance = parseFloat((1023-value) * 10000 / value);
-		var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+	<script>
 		
-		return temperature.toFixed(2);
-	}
+		var lightdata;
+		var tempdata;
+		var celsius = 20;
+		var servodata = 10;
+		var degree = 0;
+		setup();
+		// Analog
+		function loop() {
+			if(cpf){
+				tempdata = cpf.get("temperature sensor");
+				celsius = toCelsius(tempdata);
+				document.getElementById("temp").innerHTML = celsius;
+
+				if(celsius >= -30 && celsius <= 50){ //一般溫度計
+					degree = Math.floor((180/80)*celsius);
+					document.getElementById("pointer").css("transform", "rotate("+degree+"deg)");
+					document.getElementById("degree").innerHTML = degree;
+					cpf.request('["analogWrite", 4,'+degree+']');
+				}
+				else if(celsius <= -20){
+					cpf.request('["analogWrite", 4, 0]');
+				}
+				else{
+					cpf.request('["analogWrite", 4, 180]');
+				}
 	
-	// cpf setup
-	function setup(){
-		if(cpf){
-			cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
+				
+				// document.getElementById("servovalue").innerHTML = celsius+"度C/"+degree+"角度";
+			}
+			setTimeout(loop, 1000);
 		}
-			 
-			//document.getElementById("demo").innerHTML += ret + "<br>";
-			//cpf.setPinMode('["resetPin"],["servo_init", 8, 90, 500 , 2400]');
-			//cpf.setPinMode('["setPinMode", "digital", 8, "SERVO"]');
-	}
+		loop();
+		
 	
-</script>
-</body>
+		// Temperature
+		function toCelsius(value) {
+			var resistance = parseFloat((1023-value) * 10000 / value);
+			var temperature = 1 / (Math.log(resistance / 10000) / 3975+1 / 298.15) - 273.15;
+			
+			return temperature.toFixed(2);
+		}
+		
+		// cpf setup
+		function setup(){
+			if(cpf){
+				cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"], ["setPinMode", "digital", 4, "SERVO"]');
+			}
+					
+				//document.getElementById("demo").innerHTML += ret + "<br>";
+				//cpf.setPinMode('["resetPin"],["servo_init", 8, 90, 500 , 2400]');
+				//cpf.setPinMode('["setPinMode", "digital", 8, "SERVO"]');
+		}
+		
+	</script>
+	</body>
 </html>
