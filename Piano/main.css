@@ -1,0 +1,18 @@
+*{
+    font-family: 'Microsoft JhengHei';
+    border: solid 2px;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.key{
+    display: inline-block;
+    width: 50px;
+    height: 200px;
+    
+}
+

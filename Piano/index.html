@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="key" id="C">C</div>
+                <div class="key" id="D">D</div>
+                <div class="key" id="E">E</div>
+                <div class="key" id="F">F</div>
+                <div class="key" id="G">G</div>
+                <div class="key" id="A">A</div>
+                <div class="key" id="B">B</div>
+                <div class="key" id="C">C</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    setup();
+    function loop(){
+        if(cpf){
+            cpf.request('["tone_play", 6, 261, 300],["sleep", 300],["tone_play", 6, 293, 300],["sleep", 300],["tone_play", 6, 329, 300],["sleep", 300],["tone_play", 6, 349, 300],["sleep", 300],["tone_play", 6, 392, 300],["sleep", 300],["tone_play", 6, 440, 300],["sleep", 300],["tone_play", 6, 493, 300],["sleep", 300],["tone_play", 6, 349, 523]');
+        }
+        setTimeout(loop, 1000);
+    }
+    loop();
+    
+    // cpf setup
+    function setup(){
+        if(cpf){
+            cpf.setPinMode('["resetPin"],["setPinMode", "digital", 6, "TONE"]');
+        }
+    }
+</script>
+</html>
