@@ -13,14 +13,14 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <div class="key" id="C">C</div>
-                <div class="key" id="D">D</div>
-                <div class="key" id="E">E</div>
-                <div class="key" id="F">F</div>
-                <div class="key" id="G">G</div>
-                <div class="key" id="A">A</div>
-                <div class="key" id="B">B</div>
-                <div class="key" id="C">C</div>
+                <div class="key" id="C" onclick="tone(261);">Do</div>
+                <div class="key" id="D" onclick="tone(293);">Re</div>
+                <div class="key" id="E" onclick="tone(329);">Mi</div>
+                <div class="key" id="F" onclick="tone(349);">Fa</div>
+                <div class="key" id="G" onclick="tone(392);">So</div>
+                <div class="key" id="A" onclick="tone(440);">La</div>
+                <div class="key" id="B" onclick="tone(493);">Si</div>
+                <div class="key" id="C" onclick="tone(523);">Do</div>
             </div>
         </div>
     </div>
@@ -28,13 +28,12 @@
 </body>
 <script>
     setup();
-    function loop(){
-        if(cpf){
-            cpf.request('["tone_play", 6, 261, 300],["sleep", 300],["tone_play", 6, 293, 300],["sleep", 300],["tone_play", 6, 329, 300],["sleep", 300],["tone_play", 6, 349, 300],["sleep", 300],["tone_play", 6, 392, 300],["sleep", 300],["tone_play", 6, 440, 300],["sleep", 300],["tone_play", 6, 493, 300],["sleep", 300],["tone_play", 6, 349, 523]');
-        }
-        setTimeout(loop, 1000);
+
+    function tone(pitch){
+        console.log("pitch:"+pitch);
+        cpf.request('["tone_play", 6, '+pitch+', 300],["sleep", 100]');
     }
-    loop();
+   
     
     // cpf setup
     function setup(){
