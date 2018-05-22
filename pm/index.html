@@ -110,7 +110,7 @@
                     color="126,0,35";
                 }
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的空氣品質"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 0.5);
-                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td><span style="background-color:rgb('+color+');"></span> '+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
+                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td style="background-color:rgb('+color+');">'+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
                 
                 // voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
                 break;
