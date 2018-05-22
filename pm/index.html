@@ -43,7 +43,7 @@
         for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
             if(Result.includes("台")){
-                Result.replace("台", "臺");
+                Result = Result.replace("台", "臺");
             }
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的P M 二點五數值為"+item['PM2.5'], 1, 0.5);
