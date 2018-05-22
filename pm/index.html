@@ -19,7 +19,7 @@
     var pm_data;
     var qq = "Hello";
     var clickbtn = $('#clickbtn');
-    // var voicet_text = $('#voicet_text');
+    var voicet_text = $('#voicet_text');
 
     window.onload = function(){
         //get pm2.5 data
@@ -55,7 +55,7 @@
         for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
-                voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
+                voicet_text.innerHtml(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5'], 1, 0.5);
             }
             else{
