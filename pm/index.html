@@ -43,7 +43,7 @@
 </body>
 
 <script>
-    setup();
+    // setup();
     var pm_data;
     var qq = "Hello";
     var clickbtn = $('#clickbtn');
@@ -74,7 +74,6 @@
                 console.log(item['County']+item['SiteName']+"的 P M 二點五數值為"+item['PM2.5']);
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5'], 1, 0.5);
                 voicet_text.html(item['County']+item['SiteName']+"的 PM2.5數值為"+item['PM2.5']);
-
             }
             else{
                 console.log('辨識失敗，請重新輸入一次！');
