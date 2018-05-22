@@ -67,7 +67,7 @@
 
     function GetRecognizeResult(Result,Type){
         console.log(pm_data);
-        console.log("pm_data.length："+pm_data.length);
+        // console.log("pm_data.length："+pm_data.length);
         for(var i=1;i<=76;i++){
             var item = pm_data[i];
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
