@@ -14,6 +14,11 @@
     body{
         padding: 30px;
     }
+    span{
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
 </style>
 <body>
     <div class="container">
@@ -104,8 +109,8 @@
                     category = "危害";
                     color="126,0,35";
                 }
-                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的P M 二點五數值為"+item['PM2.5'], 1, 0.5);
-                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td><i class="fa fa-circle" style="color:rgb('+color+');"></i>'+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
+                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的空氣品質"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 0.5);
+                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td><span style="background-color:rgb('+color+');"></span> '+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
                 
                 // voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
                 break;
