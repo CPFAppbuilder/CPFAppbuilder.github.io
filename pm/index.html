@@ -46,15 +46,10 @@
                 <tbody id="content"></tbody>
             </table>
         </div>
-
     </div>
-    
-    
-    
 </body>
-
 <script>
-    // setup();
+    setup();
     var pm_data;
     var qq = "Hello";
     var clickbtn = $('#clickbtn');
@@ -78,7 +73,6 @@
             
         });
     }
-
     function GetRecognizeResult(Result,Type){
         var category = "";
         var color = "";
@@ -124,18 +118,13 @@
                 cpf.request('["grove_setColorRGB", 0, ' + color + ']');
                 break;
             }
-
         }
     }
-    
-
-
     //cpf設定
     function setup(){
         if(cpf){
             cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
         }
     }
-	
 </script>
 </html>
