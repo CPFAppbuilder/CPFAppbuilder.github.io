@@ -9,17 +9,48 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>PM2.5</title>
 </head>
+<style>
+    body{
+        padding: 30px;
+    }
+</style>
 <body>
-    <h3 id="voicet_text">!!voicet_text</h3>
-    <button class="btn-info" id="clickbtn" style="padding: 10px 30px">VOICE</button>
+    <div class="container">
+        <div class="col-xs-12">
+            <h3>PM2.5語音查詢</h3>
+            <hr>
+        </div>
+
+        <div class="col-xs-12">
+            <button class="btn-info" id="clickbtn" style="padding: 10px 30px;border-radius: 10px">VOICE</button>
+        </div>
+
+        <div class="col-xs-12">
+            <table class="table table-striped" style="margin-top: 30px">
+                <thead style="background-color: #83C6D9;color: white;">
+                        <tr>
+                            <th>區域</th>
+                            <th>PM 2.5 濃度</th>
+                            <th>指標</th>
+                        </tr>
+                </thead>
+                <tbody id="content"></tbody>
+            </table>
+        </div>
+
+    </div>
+    
+    
+    
 </body>
 
 <script>
-    setup();
+    // setup();
     var pm_data;
     var qq = "Hello";
     var clickbtn = $('#clickbtn');
     var voicet_text = $('#voicet_text');
+    var content = $('#content');
 
     window.onload = function(){
         //get pm2.5 data
@@ -40,15 +71,42 @@
     }
 
     function GetRecognizeResult(Result,Type){
+        var category = "";
+        var color = "";
         for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
+            
+            content.html("");
             if(Result.includes("台")){
                 Result = Result.replace("台", "臺");
             }
-            if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
+            if(Result.includes("空氣") && Result.includes(item['County']) && Result.includes(item['SiteName'])){
+                if(item['PM2.5']<=15){
+                    category = "良好";
+                    color="0,232,0";
+                }else if(item['PM2.5']>=16 && item['PM2.5']<=35){
+                    category = "普通";
+                    color="255,255,0";
+                }else if(item['PM2.5']>=36 && item['PM2.5']<=54){
+                    category = "對敏感族群不健康";
+                    color="255,126,0";
+                }else if(item['PM2.5']>=55 && item['PM2.5']<=150){
+                    category = "對所有族群不健康";
+                    colo25r="255,0,0";
+                }else if(item['PM2.5']>=151 && item['PM2.5']<=250){
+                    category = "非常不健康";
+                    color="143,63,151";
+                }else if(item['PM2.5']>=251 && item['PM2.5']<=350){
+                    category = "危害";
+                    color="126,0,35";
+                }else if(item['PM2.5']>=351 && item['PM2.5']<=500){
+                    category = "危害";
+                    color="126,0,35";
+                }
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的P M 二點五數值為"+item['PM2.5'], 1, 0.5);
+                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td><i class="fa fa-circle" style="color:rgb('+color+');"></i>'+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
                 
-                voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
+                // voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
                 break;
             }
             else{
