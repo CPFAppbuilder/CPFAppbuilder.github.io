@@ -110,9 +110,11 @@
                 }
 
                 // 語音朗讀
-                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的空氣指標顯示為"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 1);
+                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+
+                "的空氣指標顯示為"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 1);
                 
-                content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td style="background-color:rgb('+color+');">'+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
+                content.append('<tr><td>'+item['County']+item['SiteName']+
+                '</td><td style="background-color:rgb('+color+');">'+item['PM2.5']+'</td><td>'+category+'</td></tr>');
                 
                 // RGB LED顏色控制
                 cpf.request('["grove_setColorRGB", 0, ' + color + ']');
