@@ -59,7 +59,7 @@
     var content = $('#content');
 
     window.onload = function(){
-        //get pm2.5 data
+        // 取得今日PM2.5資料
         var data_url="http://opendata2.epa.gov.tw/AQX.json";
 
         $.ajax({
@@ -79,14 +79,16 @@
     function GetRecognizeResult(Result,Type){
         var category = "";
         var color = "";
+
         for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
-            
             content.html("");
+
             if(Result.includes("台")){
                 Result = Result.replace("台", "臺");
             }
             if(Result.includes("空氣") && Result.includes(item['County']) && Result.includes(item['SiteName'])){
+                // 判斷PM2.5指標
                 if(item['PM2.5']<=15){
                     category = "良好";
                     color="0,232,0";
@@ -109,15 +111,18 @@
                     category = "危害";
                     color="126,0,35";
                 }
-                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的空氣品質"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 0.5);
+
+                // 語音朗讀
+                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的空氣指標顯示為"+category+"，P M 二點五濃度為"+item['PM2.5'], 1, 0.5);
+                
                 content.append('<tr><td>'+item['County']+item['SiteName']+'</td><td style="background-color:rgb('+color+');">'+item['PM2.5']+'</td><td>'+category+'</td></tr>') 
                 
-                // voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
+                // RGB LED顏色控制
+                cpf.request('["grove_setColorRGB", '+color+']');
                 break;
             }
             else{
-                voicet_text.html('辨識失敗，請重新輸入一次！');
-                // voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
+                console.log('辨識失敗，請重新輸入一次！');
             }
 
         }
@@ -131,12 +136,6 @@
             cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
         }
     }
-    //LED燈顏色設定
-	function changeColor(color){
-		if(cpf){ 
-			cpf.request('["grove_setColorRGB", 0, ' + color + ']');
-		}
-	}
 	
 </script>
 </html>
