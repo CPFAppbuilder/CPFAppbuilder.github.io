@@ -10,7 +10,7 @@
     <title>PM2.5</title>
 </head>
 <body>
-    <h3 id="voicet_text">請輸入[縣市名稱]以及[地區]（ex. 新北市）</h3>
+    <!-- <h3 id="voicet_text">voicet_text</h3> -->
     <button class="btn-info" id="clickbtn" style="padding: 10px 30px">VOICE</button>
 </body>
 
@@ -19,54 +19,62 @@
     var pm_data;
     var qq = "Hello";
     var clickbtn = $('#clickbtn');
-    var voicet_text = $('#voicet_text');
+    // var voicet_text = $('#voicet_text');
 
     window.onload = function(){
         //get pm2.5 data
-        var data_url="https://opendata2.epa.gov.tw/AQX.json";
+        var data_url="http://opendata2.epa.gov.tw/AQX.json";
 
         $.ajax({
             url: data_url,
             success: function(res){
                 pm_data = res;
+
+                // for(var i=1;i<=pm_data.length;i++){
+                //     var item = pm_data[i];
+
+                    
+                //     var now_class = (item.done==true)?"done":"";
+                //     var now_item = item_templete.replace("{{name}}", item.name)
+                //                                 .replace("{{num}}", i)
+                //                                 .replace("{{date}}", item.date)
+                //                                 .replace("{{class}}", now_class);
+                //     $("#listitem").append(now_item);
+                // }
             }
         });
 
         clickbtn.on('click', function(){
             console.log("Button pressed!");
             cpf.initSpeechRecognition("cmn-Hant-TW");
+            
         });
     }
 
     function GetRecognizeResult(Result,Type){
-        console.log("pmdata:"+pm_data[1]['SiteName']);
         for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
-                console.log(item['County']+item['SiteName']+"的 P M 二點五數值為"+item['PM2.5']);
+                voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5'], 1, 0.5);
-                voicet_text.html(item['County']+item['SiteName']+"的 PM2.5數值為"+item['PM2.5']);
-
             }
             else{
-                console.log('辨識失敗，請重新輸入一次！');
                 voicet_text.html('辨識失敗，請重新輸入一次！');
             }
 
         }
-        
-        
-        
-        // console.log('Result = ' + Result);
-        // if(Result.includes("空氣")) {
-        //     cpf.request('["grove_setColorRGB", 0, 0, 0, 255]');
-        //     cpf.SetSpeech("Off", "cmn-Hant-TW", "藍色", 1, 0.5);
-        // }
-        // else{
-        //     cpf.request('["grove_setColorRGB", 0, 255, 0, 0]');
-        //     cpf.SetSpeech("Off", "cmn-Hant-TW", "紅色", 1, 0.5);
-        // }
     }
+        
+    //     console.log('Result = ' + Result);
+    //     if(Result.includes("空氣")) {
+    //         cpf.request('["grove_setColorRGB", 0, 0, 0, 255]');
+    //         cpf.SetSpeech("Off", "cmn-Hant-TW", "藍色", 1, 0.5);
+    //     }
+    //     else{
+    //         cpf.request('["grove_setColorRGB", 0, 255, 0, 0]');
+    //         cpf.SetSpeech("Off", "cmn-Hant-TW", "紅色", 1, 0.5);
+    //     }
+    // }
     
 
 
