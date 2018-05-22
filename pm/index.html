@@ -9,33 +9,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>PM2.5</title>
 </head>
-<style>
-    h4, h5{
-        line-height: 30px;
-        color: #555
-    }
-    button{
-        margin-top: 20px;
-        padding: 10px 30px;
-        border-radius: 10px;
-    }
-    body{
-        padding: 30px;
-    }
-</style>
-
 <body>
     <div class="container">
         <div class="col-xs-12">
-            <h1>PM2.5 語音查詢</h1>
-            <hr>
-            <h4>請輸入[縣市名稱]以及[地區]（ex. 新北市汐止的空氣如何？）</h3>
-        </div>
-        <div class="col-xs-12 text-center">
-            <button class="btn-info" id="clickbtn">VOICE</button>
+            <h3 id="voicet_text">請輸入[縣市名稱]以及[地區]（ex. 新北市汐止的空氣如何？）</h3>
         </div>
         <div class="col-xs-12">
-            <h5 id="voicet_text">result</h3>
+            <button class="btn-info" id="clickbtn" style="padding: 10px 30px">VOICE</button>
         </div>
     </div>
     
@@ -57,23 +37,35 @@
             url: data_url,
             success: function(res){
                 pm_data = res;
+
+                // for(var i=1;i<=pm_data.length;i++){
+                //     var item = pm_data[i];
+
+                    
+                //     var now_class = (item.done==true)?"done":"";
+                //     var now_item = item_templete.replace("{{name}}", item.name)
+                //                                 .replace("{{num}}", i)
+                //                                 .replace("{{date}}", item.date)
+                //                                 .replace("{{class}}", now_class);
+                //     $("#listitem").append(now_item);
+                // }
             }
         });
 
         clickbtn.on('click', function(){
+            console.log("Button pressed!");
             cpf.initSpeechRecognition("cmn-Hant-TW");
         });
     }
 
     function GetRecognizeResult(Result,Type){
-        console.log(pm_data);
-        // console.log("pm_data.length："+pm_data.length);
-        for(var i=1;i<=76;i++){
+        for(var i=1;i<=pm_data.length;i++){
             var item = pm_data[i];
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
                 console.log(item['County']+item['SiteName']+"的 P M 二點五數值為"+item['PM2.5']);
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5'], 1, 0.5);
                 voicet_text.html(item['County']+item['SiteName']+"的 PM2.5數值為"+item['PM2.5']);
+
             }
             else{
                 console.log('辨識失敗，請重新輸入一次！');
