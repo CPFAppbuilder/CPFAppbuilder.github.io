@@ -30,7 +30,7 @@
     setup();
 
     function tone(pitch){
-        console.log("pitch:"+pitch);
+        console.log('["tone_play", 6, '+pitch+', 300],["sleep", 100]');
         cpf.request('["tone_play", 6, '+pitch+', 300],["sleep", 100]');
     }
    

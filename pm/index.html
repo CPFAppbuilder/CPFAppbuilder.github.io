@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>PM2.5</title>
+</head>
+<body>
+    <h3 id="voicet_text">voicet_text</h3>
+    <button class="btn-info" id="clickbtn" style="padding: 10px 30px">VOICE</button>
+</body>
+
+<script>
+    setup();
+
+    window.onload = function(){
+        var clickbtn = $('#clickbtn');
+        clickbtn.on('click', function(){
+            console.log("Button pressed!");
+            cpf.initSpeechRecognition("cmn-Hant-TW");
+        });
+    }
+
+    function GetRecognizeResult(Result,Type){
+        console.log('Result = ' + Result);
+        if(Result.includes("空氣")) {
+            cpf.request('["grove_setColorRGB", 0, 0, 0, 255]');
+            cpf.SetSpeech("Off", "cmn-Hant-TW", "藍色", 0.1, 0.1);
+        }
+        else{
+            cpf.request('["grove_setColorRGB", 0, 255, 0, 0]');
+            cpf.SetSpeech("Off", "cmn-Hant-TW", "紅色", 0.1, 0.1);
+        }
+    }
+    
+
+
+    //cpf設定
+    function setup(){
+        if(cpf){
+            cpf.setPinMode('["resetPin"],["grove_newChainableLED", 7, 8, 1]'); 
+        }
+    }
+    //LED燈顏色設定
+	function changeColor(color){
+		if(cpf){ 
+			cpf.request('["grove_setColorRGB", 0, ' + color + ']');
+		}
+	}
+	
+</script>
+</html>
