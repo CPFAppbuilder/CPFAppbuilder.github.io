@@ -51,9 +51,7 @@
 <script>
     setup();
     var pm_data;
-    var qq = "Hello";
     var clickbtn = $('#clickbtn');
-    var voicet_text = $('#voicet_text');
     var content = $('#content');
 
     window.onload = function(){
@@ -68,13 +66,15 @@
         });
 
         clickbtn.on('click', function(){
-            console.log("Button pressed!");
             cpf.initSpeechRecognition("cmn-Hant-TW");
             
         });
     }
     function GetRecognizeResult(Result,Type){
+        // 空氣指標
         var category = "";
+
+        // 燈號顏色
         var color = "";
 
         for(var i=1;i<=pm_data.length;i++){
