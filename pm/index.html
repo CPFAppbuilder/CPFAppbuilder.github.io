@@ -9,9 +9,37 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>PM2.5</title>
 </head>
+<style>
+    h4, h5{
+        line-height: 30px;
+        color: #555
+    }
+    button{
+        margin-top: 20px;
+        padding: 10px 30px;
+        border-radius: 10px;
+    }
+    body{
+        padding: 30px;
+    }
+</style>
+
 <body>
-    <h3 id="voicet_text">voicet_text!!</h3>
-    <button class="btn-info" id="clickbtn" style="padding: 10px 30px">VOICE</button>
+    <div class="container">
+        <div class="col-xs-12">
+            <h1>PM2.5 語音查詢</h1>
+            <hr>
+            <h4>請輸入[縣市名稱]以及[地區]（ex. 新北市汐止的空氣如何？）</h3>
+        </div>
+        <div class="col-xs-12 text-center">
+            <button class="btn-info" id="clickbtn">VOICE</button>
+        </div>
+        <div class="col-xs-12">
+            <h5 id="voicet_text">result</h3>
+        </div>
+    </div>
+    
+    
 </body>
 
 <script>
@@ -56,6 +84,8 @@
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
                 console.log(item['County']+item['SiteName']+"的 P M 二點五數值為"+item['PM2.5']);
                 cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5'], 1, 0.5);
+                voicet_text.html(item['County']+item['SiteName']+"的 PM2.5數值為"+item['PM2.5']);
+
             }
             else{
                 console.log('辨識失敗，請重新輸入一次！');
