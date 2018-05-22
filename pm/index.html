@@ -46,7 +46,7 @@
                 Result = Result.replace("台", "臺");
             }
             if(Result.includes("空氣") && Result.includes(item.County) && Result.includes(item.SiteName)){
-                cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的P M 二點五數值為"+item['PM2.5'], 1, 0.5);
+                // cpf.SetSpeech("Off", "cmn-Hant-TW", item['County']+item['SiteName']+"的P M 二點五數值為"+item['PM2.5'], 1, 0.5);
                 
                 voicet_text.html(item['County']+item['SiteName']+"的PM2.5數值為"+item['PM2.5']);
             }
