@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="test.css">
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Codystar" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <p>DON'T CLICK</p>
+  <button id="btn"></button>
+  <div id="soft" class="divstyle" onclick="show_soft()">>>Lucky</div>
+  <div id="rock" class="divstyle" onclick="show_rock()">>>Green Light</div>
+
+  <script type="text/javascript">
+
+      var x=document.getElementById("soft");
+      var y=document.getElementById("rock");
+      var clickbtn=document.getElementById("btn");
+
+      setup();
+
+          clickbtn.addEventListener('click',function(event)
+          {
+            cpf.SetSpeech("On","cmn-Hant-TW","請選擇歌曲",0.5,2);  
+               cpf.initSpeechRecognition("cmn-Hant-TW");          
+                           
+          }); 
+          
+          function GetRecognizeResult(Result,Type){
+
+              if(Result.includes("小幸運"))
+              {
+                cpf.SetSpeech("On","cmn-Hant-TW","播放小幸運",0.1,2);
+                cpf.request('["grove_rgblcd_clear"]');  //清空文字     
+                cpf.request('["grove_rgblcd_set_rgb", 255, 255, 255]');                  
+                cpf.request('["grove_rgblcd_print", 0, 1, "Lucky"]'); //設定文字
+
+                //divshow
+                if(x.style.display=="none")
+                {
+                  x.style.display="block";
+                  if(y.style.display=="block")
+                  y.style.display="none";                
+                }     
+
+                //song
+                cpf.request('["tone_play", 6, 392, 500],["sleep", 500], ["tone_play", 6,660, 500] ,["sleep", 450], ["tone_play", 6, 588, 500] ,["sleep", 300], ["tone_play", 6, 524, 800] ,["sleep", 550] , ["tone_play", 6,588, 500] ,["sleep", 550], ["tone_play", 6, 660, 500] ,["sleep", 450],["tone_play", 6, 392, 500] ,["sleep", 500], ["tone_play", 6,588, 500] ,["sleep", 450], ["tone_play", 6, 660, 800] ,["sleep", 550], ["tone_play", 6,392, 500] ,["sleep", 500], ["tone_play", 6, 588, 500] ,["sleep", 450], ["tone_play", 6, 660, 800] ,["sleep", 550], ["tone_play", 6,588, 500] ,["sleep", 500], ["tone_play", 6,588, 500] ,["sleep", 450], ["tone_play", 6,660, 500] ,["sleep", 300], ["tone_play", 6, 698, 800] ,["sleep", 550], ["tone_play", 6,660, 500] ,["sleep", 500], ["tone_play", 6,588, 500] ,["sleep", 450], ["tone_play", 6, 493, 500] ,["sleep", 550], ["tone_play", 6,524, 500] ,["sleep", 450], ["tone_play", 6,329, 500] ,["sleep", 500], ["tone_play", 6, 440, 500] ,["sleep", 450], ["tone_play", 6,524, 800] ,["sleep", 550], ["tone_play", 6,329, 500] ,["sleep", 500], ["tone_play", 6, 440, 500] ,["sleep", 450], ["tone_play", 6, 493, 800] ,["sleep", 500], ["tone_play", 6, 493, 500] ,["sleep", 500], ["tone_play", 6, 493, 500] ,["sleep", 450], ["tone_play", 6,660, 500] ,["sleep", 300], ["tone_play", 6, 784, 800] ,["sleep",550], ["tone_play", 6,660, 500] ,["sleep", 500], ["tone_play", 6,524, 500] ,["sleep", 450], ["tone_play", 6, 493, 500] ,["sleep", 550], ["tone_play", 6, 440, 500] ,["sleep", 450], ["tone_play", 6, 698, 500] ,["sleep", 300], ["tone_play", 6, 698, 800] ,["sleep", 600], ["tone_play", 6, 784, 500] ,["sleep", 500], ["tone_play", 6, 698, 500] ,["sleep", 450], ["tone_play", 6,660, 500] ,["sleep", 550], ["tone_play", 6, 392, 500] ,["sleep", 450], ["tone_play", 6,660, 500] ,["sleep", 300], ["tone_play", 6,660, 800] ,["sleep", 550], ["tone_play", 6, 698, 500] ,["sleep", 500], ["tone_play", 6,660, 500] ,["sleep", 450], ["tone_play", 6,524, 500] ,["sleep", 550], ["tone_play", 6,349, 500] ,["sleep", 450], ["tone_play", 6,588, 500] ,["sleep", 300], ["tone_play", 6,588, 800] ,["sleep", 550], ["tone_play", 6,588, 500] ,["sleep", 500], ["tone_play", 6,524, 500] ,["sleep", 450], ["tone_play", 6,660, 800] ,["sleep", 500], ["tone_play", 6,588, 500] ,["sleep", 500], ["tone_play", 6,524, 500] ,["sleep", 450], ["tone_play", 6,660, 800] ,["sleep", 500], ["tone_play", 6,588, 500] ,["sleep", 500], ["tone_play", 6,524, 500] ,["sleep", 500]');                               
+              }
+              else if(Result.includes("綠光")) 
+              {
+                  cpf.SetSpeech("On","cmn-Hant-TW","播放綠光",0.5,2);
+                  cpf.request('["grove_rgblcd_clear"]');  //清空文字  
+                  cpf.request('["grove_rgblcd_set_rgb", 0, 255, 0]');
+                  cpf.request('["grove_rgblcd_print", 0, 1, "Green light"]'); //設定文字
+
+
+                  //divshow
+                  if(y.style.display=="none")
+                  {
+                    y.style.display="block"; 
+                    if(x.style.display="block")
+                    x.style.display="none";                       
+                  }
+
+                  //song
+                  cpf.request('["tone_play", 6,329, 300] ,["sleep", 350], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6, 392, 300] ,["sleep", 400], ["tone_play", 6, 392, 300] ,["sleep", 250], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6,329, 300] ,["sleep", 350], ["tone_play", 6,329, 300] ,["sleep", 400], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6, 349, 300] ,["sleep", 250], ["tone_play", 6, 293, 300] ,["sleep", 300], ["tone_play", 6, 261, 300] ,["sleep", 350], ["tone_play", 6, 261, 300] ,["sleep", 400], ["tone_play", 6, 293, 700] ,["sleep", 350], ["tone_play", 6, 261, 300] ,["sleep", 250], ["tone_play", 6, 293, 300] ,["sleep", 250], ["tone_play", 6, 261, 300] ,["sleep", 350], ["tone_play", 6, 293, 300] ,["sleep", 400], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6, 293, 300] ,["sleep", 300], ["tone_play", 6,329, 300] ,["sleep", 350], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6, 392, 300] ,["sleep", 400], ["tone_play", 6, 392, 300] ,["sleep", 250], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6,329, 300] ,["sleep", 350], ["tone_play", 6,329, 300] ,["sleep", 400], ["tone_play", 6,329, 300] ,["sleep", 300], ["tone_play", 6, 349, 300] ,["sleep", 250], ["tone_play", 6, 293, 300] ,["sleep", 300], ["tone_play", 6, 261, 30] ,["sleep", 350], ["tone_play", 6, 261, 300] ,["sleep", 400], ["tone_play", 6, 293, 300] ,["sleep", 350], ["tone_play", 6,329, 300] ,["sleep", 350], ["tone_play", 6, 293, 300] ,["sleep", 300], ["tone_play", 6, 261, 300] ,["sleep", 250], ["tone_play", 6, 261, 300] ,["sleep", 250]') ;       
+                  }
+              else{
+                cpf.SetSpeech("On","cmn-Hant-TW","查無此歌曲",0.5,2);
+                cpf.request('["grove_rgblcd_clear"]');  //清空文字 
+                cpf.request('["grove_rgblcd_set_rgb", 0, 0, 0]');                
+                x.style.display="none";
+                y.style.display="none";
+              }
+            } 
+        
+      function setup(){
+          if(cpf){
+              cpf.setPinMode('["resetPin"],["grove_rgblcd_begin", 16, 2],["setPinMode", "digital", 6, "TONE"]');
+          }
+      }
+
+
+  </script>
+
+</body>
+</html>

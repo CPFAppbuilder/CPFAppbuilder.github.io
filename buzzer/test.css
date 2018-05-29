@@ -1,0 +1,47 @@
+html{
+  font-size: 20px;
+  text-align: center;
+  background: #000;  
+}
+
+#soft , #rock{
+  display: none;
+}
+
+p{
+  color: white;
+  font-size: 3em;
+  display: block;
+}
+
+.divstyle{
+  margin: 20px;
+  font-family: 'Codystar', cursive;
+  display: inline-block;
+  background-color: #000;
+  color: #FFF;
+  font-size: 1.5em;
+}
+
+button{
+  /*rest*/
+  border:none;
+  padding: 45px;
+  text-decoration: none;
+  outline: none;    /*去籃框*/
+  /*style*/
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  line-height: 10px;
+  font-size: 1em;
+  font-family: 'Abril Fatface', cursive;
+  background-color: #E71D30;
+  color: #fff;
+  box-shadow: 9px 5px 0 darkred;
+}
+
+ button:hover{
+  background-color: #228B22;
+  box-shadow: 9px 5px 0 #006400;
+ }
