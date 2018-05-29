@@ -1,7 +1,7 @@
 html{
     font-size: 20px;
     text-align: center;
-    background: #000;  
+    /* background: #000;   */
   }
   
   #soft , #rock{
@@ -9,7 +9,7 @@ html{
   }
   
   p{
-    color: white;
+    color: black;
     font-size: 3em;
     display: block;
   }
