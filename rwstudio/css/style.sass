@@ -1,0 +1,167 @@
+$size_section_title: 40px
+$size_section_para: 14px
+$padding_section: 100px
+
+$color_white: #ececec
+$color_black: #444444
+
+@mixin size($w, $h)
+    width: $w
+    height: $h
+
+*
+    font-family: 'Abel', 'Damion', '微軟正黑體'
+    // border: solid 1px
+
+body
+    padding: 0
+    margin: 0
+    // background-image: url("https://static.wixstatic.com/media/9ae4fe_f66dd93d6b0e41b1b08b4b80de338742~mv2.jpg/v1/fill/w_666,h_500,al_c,q_80,usm_0.66_1.00_0.01/9ae4fe_f66dd93d6b0e41b1b08b4b80de338742~mv2.jpg")
+
+nav.navbar
+    padding-top: 10px
+    padding-bottom: 10px
+    transition: 0.5s
+    border-bottom: none
+    .container-fluid
+        padding-left: 10%
+        padding-right: 10%
+    li.dropdown
+        &:hover
+            .dropdown-menu
+                display: block
+
+    .dropdown-menu
+        text-align: center
+    a
+        font-family: 'Abel'
+        color: #000 !important;
+        transition: 0.5s
+        font-size: 16px
+        letter-spacing: 1px
+        font-weight: 300
+        &:hover
+            color: black
+        
+        
+
+
+      
+
+a.navbar-brand
+    font-size: 35px !important
+    letter-spacing: 3px
+    font-weight: 500 !important
+    font-family: 'Damion' !important
+    color: black !important
+
+nav.navbar
+    background-color: transparent
+// nav.navbar.at_top
+//   background-color: transparent
+//   a.navbar-brand
+//     color: black !important
+//   .dropdown-menu
+//     a
+//         color: black !important
+//   a
+//     color: rgba(84,84,84,.7) !important
+
+
+  
+header
+    // padding-top: 70px
+    
+    #myCarousel
+        // max-width: 1024px
+        height: 100%
+        max-height: 650px
+        .carousel-inner
+            height: 500px
+            .item
+                img
+                    width: 100%
+        
+        // overflow: hidden
+        .carousel-control
+            background-image: none
+        .right.carousel-control
+            transform: translateX(100%)
+            .rightbtn
+                color: black
+                transparent: none
+                position: absolute
+                top: 50%
+                left: 30px
+                transform: translateY(-50%)
+
+        .left.carousel-control
+            transform: translateX(-100%)
+            .leftbtn
+                color: black
+                transparent: none
+                position: absolute
+                top: 50%
+                right: 30px
+                transform: translateY(-50%)
+
+
+            
+
+footer
+    bottom: 0px
+    padding: 50px
+    // height: 100px
+    background-color: #000
+    p
+        text-align: center
+        color: white
+
+section
+    padding: $padding_section
+    padding-left: auto
+    padding-right: auto
+    height: 100%
+    .col-sm-12
+        text-align: center
+        h3
+            font-size: $size_section_title
+            font-family: 'Oswald'
+            font-weight: 900
+        p
+            font-size: $size_section_para
+.title_banner
+    overflow: hidden
+    height: 400px
+    img
+        position: relative
+        width: 100%
+        top: 50%
+        transform: translateY(-50%)
+        
+
+
+// index.html
+section.story
+
+section.owner
+
+// gallery.html
+
+.pic_wall
+    .pic
+        margin: 15px 15px
+        display: inline-block
+        overflow: hidden
+        width: 140px
+        height: 170px
+
+        img
+            width: 140px
+
+
+        
+
+    
+
+
