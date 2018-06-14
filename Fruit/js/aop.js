@@ -11,8 +11,6 @@ var AOP = function () {
 
 		ajaxUser("PUT", url, header, data).then(
 			function success(resf) {
-				// alert('OK');
-				window.location.href="https://cpfappbuilder.github.io/Fruit/index-get.html";
 			}, function error(resf) {
 				console.log('uploadFile Error: '+resf);
 			});
