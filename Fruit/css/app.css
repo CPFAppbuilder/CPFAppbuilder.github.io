@@ -33,7 +33,7 @@ body {
   margin-left: 5%;
 }
 .fruit-right {
-  margin-left: 30%;
+  margin-left: 50%;
   padding-right: 10px;
   text-align: right;
   font-size: 1.2em;
@@ -42,7 +42,7 @@ body {
   float: right;
 }
 .fruit-right td{
-  padding-left: 12px;
+  padding-left: 20px;
   padding-top: 8px;
 }
 .clear {
@@ -84,4 +84,11 @@ div.gallery img {
 div.desc {
   padding: 15px;
   text-align: center;
+}
+
+
+@media (max-width: 520px) {
+.fruit-right {
+    font-size: 1em;
+  }
 }
