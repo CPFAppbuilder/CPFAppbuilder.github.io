@@ -29,14 +29,14 @@ body {
   float: left;
 }
 .fruit-left img{
-  width: 150px;
+  width: 100px;
   margin-left: 5%;
 }
 .fruit-right{
   margin-left: 50%;
-  padding-right: 50px; 
+  padding-right: 15px;
   text-align: right;
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 .fruit-right table{
   float: right;
@@ -66,22 +66,22 @@ body {
 }
 /****************************************/
 div.gallery {
-    margin: 10px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 130px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 130px;
 }
 
 div.gallery:hover {
-    border: 1px solid #777;
+  border: 1px solid #777;
 }
 
 div.gallery img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 div.desc {
-    padding: 15px;
-    text-align: center;
+  padding: 15px;
+  text-align: center;
 }
