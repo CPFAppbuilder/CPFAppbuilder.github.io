@@ -23,7 +23,7 @@
 
     <div class="clear"></div>
     <div class="fruit-send">
-      <button id="btn" class="fruit-button" @click="send(fruit, weight)">CHECK OUT</button>
+      <button id="btn" class="fruit-button">CHECK OUT</button>
     </div>
   </div>
 </body>
@@ -63,11 +63,19 @@
 <script src="js/app.js"></script>
 
 <script type="text/javascript">
-  $(document).ready(function () { 
-    $("#btn").on("touchmove",function(){
-      alert('ggg');
-    });
-  }, true);
+  var bindClick = function(id, func) {
+    if (typeof id == 'string') {
+      id = document.getElementById(id);
+    }
+    id.addEventListener('click', func, true);
+    id.addEventListener('touchmove', func, true);
+  };
+
+  bindClick('#btn', function () { 
+    alert('aaa')
+    stock['Lemon'] = stock['Lemon']-weight;
+    aop.aopUpload();
+  });
 </script>
 
 </html>
