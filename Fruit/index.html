@@ -22,7 +22,7 @@
 
     <div class="clear"></div>
     <div class="fruit-send">
-      <button class="fruit-button" @click="send(fruit, weight)" v-on="touchstart: send(fruit, weight)">CHECK OUT</button>
+      <button class="fruit-button" @click="send(fruit, weight)" v-touch:touchstart="send(fruit, weight)">CHECK OUT</button>
     </div>
   </div>
 </body>
