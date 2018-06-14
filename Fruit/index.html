@@ -71,9 +71,9 @@
     id.addEventListener('touchmove', func, true);
   };
 
-  bindClick('#btn', function () { 
+  bindClick('btn', function () { 
     alert('aaa')
-    stock['Lemon'] = stock['Lemon']-weight;
+    stock['Lemon'] = stock['Lemon']-1;
     aop.aopUpload();
   });
 </script>
