@@ -1,96 +1,86 @@
-<!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acer</title>
-  <link rel="stylesheet" type="text/css" href="css/app.css">
-  <script src="assets/vue.js"></script>
-  <script src="assets/vue-plugin-touch.js"></script>
-  <script src="assets/jquery-3.2.1.min.js"></script>
-  <script src="js/user.js"></script>
-  <script src="js/aop.js"></script>
+var userdata = JSON.parse(localStorage.userData);
+var hostname = userdata.protocolAndHostname;
+var url = hostname + "/cloud/v1/files/"+userdata.datasetId+"/arduinoblockly/my-idea/cloudfile0.html";
 
-  <script type="text/javascript">
-    aop.aopDownload();
-  </script>
-</head>
+var stock;
 
-<body>
-  <div id="app" class="wrapper">
-    <fruit :fruit="fruit" :price="price"></fruit>
-    <fruit-img :fruit="fruit"></fruit-img>
-    <fruit-total :price="price" :num="num" :weight="weight"></fruit-total>
+var aaa = ['Apple','Lemon','Orange','Lychee','Grapes'];
 
-    <div class="clear"></div>
-    <div class="fruit-send">
-      <button id="btn" class="fruit-button">CHECK OUT</button>
-    </div>
-  </div>
 
-  <div id="app_get" class="wrapper">
-    <div class="row">
-      <div class="col-md-3" v-for="(index, item) in items">
-        <gallery :item="item" :index="index"></gallery>
-      </div>
-    </div>
-  </div>
-</body>
+var AOP = function () {	
+	this.aopUpload = function(id=0) {
+		let data = JSON.stringify(stock);
+		let header = {"X-aop-credential": userdata.aopCredentialHeader};
 
-<script type="text/x-template" id="gallery">
-  <div class="gallery">
-    <img :src="'img/'+ item +'.png'" width="300" height="200" />
-    <div class="desc">{{index}} KG</div>
-  </div>
-</script>
+		let res = ajaxSynchronous("PUT", url, header, data);
 
-<script type="text/x-template" id="fruit">
-  <div class="fruit-title">
-    <h2>{{fruit}}</h2>
-    <p>Price/KG: ${{price}}</p>
-  </div>
-</script>
+		// ajaxUser("PUT", url, header, data).then(
+		// 	function success(resf) {
+		// 		// alert('OK');
+		// 	}, function error(resf) {
+		// 		console.log('uploadFile Error: '+resf);
+		// 	});
 
-<script type="text/x-template" id="img">
-  <div class="fruit-left">
-    <img :src="'img/' + fruit + '.png'">
-  </div>
-</script>
+		if(res.status==200){
+			// console.log(JSON.parse(res.responseText));
+			stock = JSON.parse(res.responseText);
 
-<script type="text/x-template" id="total">
-  <div class="fruit-right">
-    <table>
-      <tr>
-        <td>Unit: </td>
-        <td>{{num}}</td>
-      </tr>
-      <tr>
-        <td>Weight: </td>
-        <td>{{weight}} KG</td>
-      </tr>
-      <tr>
-        <td>Total: </td>
-        <td>$ {{weight*price}}</td>
-      </tr>
-    </table>
-  </div>
-</script>
+		}else{
+			console.log('AOP download error.');
+		}
+		
+	}
+	
+	this.aopDownload = function(id=0) {
+		let header = { "X-aop-credential": userdata.aopCredentialHeader };
+		
+		let res = ajaxSynchronous("GET", url, header);
 
-<script src="js/app.js"></script>
+		if(res.status==200){
+			// console.log(JSON.parse(res.responseText));
+			stock = JSON.parse(res.responseText);
 
-<script type="text/javascript">
-  var bindClick = function(id, func) {
-    if (typeof id == 'string') {
-      id = document.getElementById(id);
-    }
-    id.addEventListener('click', func, true);
-    id.addEventListener('touchmove', func, true);
-  };
+		}else{
+			console.log('AOP download error.');
+		}		
+	}
 
-  bindClick('btn', function () { 
-    stock['Lemon'] = stock['Lemon']-1;
-    aop.aopUpload();
-    location.reload();
-  });
-</script>
 
-</html>
+	function ajaxSynchronous(method, url, header, data) {
+		let xhr = new XMLHttpRequest();
+		xhr.open(method, url, false);
+		for(let key in header) {
+			xhr.setRequestHeader(key, header[key]);
+		}
+		xhr.send(data);
+
+		return xhr;
+	}
+
+	function ajaxUser(method, url, header, data) {
+		var promiseObj = new Promise((resolve, reject) => {
+
+			var xhr = new XMLHttpRequest();
+			xhr.open(method, url, true);
+			for(let key in header) {
+				xhr.setRequestHeader(key, header[key]);
+			}
+			xhr.send(data);
+
+			xhr.onreadystatechange = function() {
+				if(this.readyState === 4){
+					// login & register response status: 201
+					if((this.status === 200) || (this.status === 201)) {
+						resolve(this.responseText);
+					}else {
+						reject(this.responseText);
+					}
+				}
+			}
+		});
+		return promiseObj;
+	}
+
+}
+
+var aop = new AOP();
