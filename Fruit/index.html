@@ -99,6 +99,7 @@
 
     bindClick('btn', function () { 
       stock['Lemon'] = stock['Lemon']-1;
+      cpf.getAiValue("cam.json");
       aop.aopUpload();
       location.reload();
     });
