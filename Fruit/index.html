@@ -63,12 +63,11 @@
 <script src="js/app.js"></script>
 
 <script type="text/javascript">
-
-    $(document).ready(function () {  //這行必寫 所有jQuery動作加在裡面
-      $("#btn").on("touchstart",function(){
-        alert('ggg');
-      });
+  $(document).ready(function () { 
+    $("#btn").on("touchmove",function(){
+      alert('ggg');
     });
-  </script>
+  }, true);
+</script>
 
-  </html>
+</html>
