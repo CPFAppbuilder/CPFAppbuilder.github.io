@@ -12,22 +12,22 @@ var AOP = function () {
 		let data = JSON.stringify(stock);
 		let header = {"X-aop-credential": userdata.aopCredentialHeader};
 
-		let res = ajaxSynchronous("PUT", url, header, data);
+		// let res = ajaxSynchronous("PUT", url, header, data);
 
-		// ajaxUser("PUT", url, header, data).then(
-		// 	function success(resf) {
-		// 		// alert('OK');
-		// 	}, function error(resf) {
-		// 		console.log('uploadFile Error: '+resf);
-		// 	});
+		ajaxUser("PUT", url, header, data).then(
+			function success(resf) {
+				// alert('OK');
+			}, function error(resf) {
+				console.log('uploadFile Error: '+resf);
+			});
 
-		if(res.status==200){
-			// console.log(JSON.parse(res.responseText));
-			stock = JSON.parse(res.responseText);
+		// if(res.status==200){
+		// 	// console.log(JSON.parse(res.responseText));
+		// 	stock = JSON.parse(res.responseText);
 
-		}else{
-			console.log('AOP download error.');
-		}
+		// }else{
+		// 	console.log('AOP download error.');
+		// }
 		
 	}
 	
