@@ -1,86 +1,110 @@
-var userdata = JSON.parse(localStorage.userData);
-var hostname = userdata.protocolAndHostname;
-var url = hostname + "/cloud/v1/files/"+userdata.datasetId+"/arduinoblockly/my-idea/cloudfile0.html";
-
-var stock;
-
-var aaa = ['Apple','Lemon','Orange','Lychee','Grapes'];
-
-
-var AOP = function () {	
-	this.aopUpload = function(id=0) {
-		let data = JSON.stringify(stock);
-		let header = {"X-aop-credential": userdata.aopCredentialHeader};
-
-		let res = ajaxSynchronous("PUT", url, header, data);
-
-		// ajaxUser("PUT", url, header, data).then(
-		// 	function success(resf) {
-		// 		// alert('OK');
-		// 	}, function error(resf) {
-		// 		console.log('uploadFile Error: '+resf);
-		// 	});
-
-		if(res.status==200){
-			// console.log(JSON.parse(res.responseText));
-			stock = JSON.parse(res.responseText);
-
-		}else{
-			console.log('AOP download error.');
-		}
-		
-	}
-	
-	this.aopDownload = function(id=0) {
-		let header = { "X-aop-credential": userdata.aopCredentialHeader };
-		
-		let res = ajaxSynchronous("GET", url, header);
-
-		if(res.status==200){
-			// console.log(JSON.parse(res.responseText));
-			stock = JSON.parse(res.responseText);
-
-		}else{
-			console.log('AOP download error.');
-		}		
-	}
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acer</title>
+  <script src="assets/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <script src="js/user.js"></script>
+  <script src="js/aop.js"></script>
 
 
-	function ajaxSynchronous(method, url, header, data) {
-		let xhr = new XMLHttpRequest();
-		xhr.open(method, url, false);
-		for(let key in header) {
-			xhr.setRequestHeader(key, header[key]);
-		}
-		xhr.send(data);
+</head>
 
-		return xhr;
-	}
+<body>
+  <div id="app" class="wrapper">
+    <div class="fruit-title">
+      <h2>Apple</h2>
+      <p>Price/KG: 100</p>
+    </div>
+    <div class="fruit-left">
+      <img src="img/Apple.png">
+    </div>
+    <div class="fruit-right">
+      <table>
+        <tr>
+          <td>Unit: </td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Weight: </td>
+          <td>1 KG</td>
+        </tr>
+        <tr>
+          <td>Total: </td>
+          <td>$ 100</td>
+        </tr>
+      </table>
+    </div>
 
-	function ajaxUser(method, url, header, data) {
-		var promiseObj = new Promise((resolve, reject) => {
+    <div class="clear"></div>
+    <div class="fruit-send">
+      <button id="btn" class="fruit-button">CHECK OUT</button>
+    </div>
+  </div>
 
-			var xhr = new XMLHttpRequest();
-			xhr.open(method, url, true);
-			for(let key in header) {
-				xhr.setRequestHeader(key, header[key]);
-			}
-			xhr.send(data);
+  <div id="app_get" class="wrapper">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="gallery">
+          <img src="img/Apple.png" width="300" height="200" />
+          <div class="desc" id="Apple"> KG</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery">
+          <img src="img/Lemon.png" width="300" height="200" />
+          <div class="desc" id="Lemon"> KG</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery">
+          <img src="img/Orange.png" width="300" height="200" />
+          <div class="desc" id="Orange"> KG</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery">
+          <img src="img/Lychee.png" width="300" height="200" />
+          <div class="desc" id="Lychee"> KG</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery">
+          <img src="img/Grapes.png" width="300" height="200" />
+          <div class="desc" id="Grapes"> KG</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-			xhr.onreadystatechange = function() {
-				if(this.readyState === 4){
-					// login & register response status: 201
-					if((this.status === 200) || (this.status === 201)) {
-						resolve(this.responseText);
-					}else {
-						reject(this.responseText);
-					}
-				}
-			}
-		});
-		return promiseObj;
-	}
+  <script type="text/javascript">
+    aop.aopDownload();
+    console.log(stock);
 
-}
+    for(var i=0;i<5;i++){
+      document.getElementById(aaa[i]).innerHTML = stock[aaa[i]] + ' KG';
+    }
 
-var aop = new AOP();
+
+
+    var bindClick = function(id, func) {
+      if (typeof id == 'string') {
+        id = document.getElementById(id);
+      }
+      id.addEventListener('click', func, true);
+      id.addEventListener('touchmove', func, true);
+    };
+
+    bindClick('btn', function () { 
+      stock['Lemon'] = stock['Lemon']-1;
+      aop.aopUpload();
+      location.reload();
+    });
+  </script>
+</body>
+
+
+
+</html>
