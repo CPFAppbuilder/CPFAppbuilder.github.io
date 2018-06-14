@@ -26,7 +26,22 @@
       <button id="btn" class="fruit-button">CHECK OUT</button>
     </div>
   </div>
+
+  <div id="app_get" class="wrapper">
+    <div class="row">
+      <div class="col-md-3" v-for="(index, item) in items">
+        <gallery :item="item" :index="index"></gallery>
+      </div>
+    </div>
+  </div>
 </body>
+
+<script type="text/x-template" id="gallery">
+  <div class="gallery">
+    <img :src="'img/'+ item +'.png'" width="300" height="200" />
+    <div class="desc">{{index}} KG</div>
+  </div>
+</script>
 
 <script type="text/x-template" id="fruit">
   <div class="fruit-title">
@@ -74,6 +89,7 @@
   bindClick('btn', function () { 
     stock['Lemon'] = stock['Lemon']-1;
     aop.aopUpload();
+    location.reload();
   });
 </script>
 
