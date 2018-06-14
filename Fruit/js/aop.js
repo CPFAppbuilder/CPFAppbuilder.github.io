@@ -4,16 +4,30 @@ var url = hostname + "/cloud/v1/files/"+userdata.datasetId+"/arduinoblockly/my-i
 
 var stock;
 
+var aaa = ['Apple','Lemon','Orange','Lychee','Grapes'];
+
+
 var AOP = function () {	
 	this.aopUpload = function(id=0) {
 		let data = JSON.stringify(stock);
 		let header = {"X-aop-credential": userdata.aopCredentialHeader};
 
-		ajaxUser("PUT", url, header, data).then(
-			function success(resf) {
-			}, function error(resf) {
-				console.log('uploadFile Error: '+resf);
-			});
+		let res = ajaxSynchronous("PUT", url, header, data);
+
+		// ajaxUser("PUT", url, header, data).then(
+		// 	function success(resf) {
+		// 		// alert('OK');
+		// 	}, function error(resf) {
+		// 		console.log('uploadFile Error: '+resf);
+		// 	});
+
+		if(res.status==200){
+			// console.log(JSON.parse(res.responseText));
+			stock = JSON.parse(res.responseText);
+
+		}else{
+			console.log('AOP download error.');
+		}
 		
 	}
 	
@@ -23,11 +37,14 @@ var AOP = function () {
 		let res = ajaxSynchronous("GET", url, header);
 
 		if(res.status==200){
+			// console.log(JSON.parse(res.responseText));
 			stock = JSON.parse(res.responseText);
+
 		}else{
 			console.log('AOP download error.');
 		}		
 	}
+
 
 	function ajaxSynchronous(method, url, header, data) {
 		let xhr = new XMLHttpRequest();
@@ -66,4 +83,4 @@ var AOP = function () {
 
 }
 
- var aop = new AOP();
+var aop = new AOP();
