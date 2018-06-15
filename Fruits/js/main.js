@@ -85,7 +85,7 @@ function loop() {
     var count = JSON.parse(temp).items.length;
     var kg = JSON.parse(weight).weight;
      
-    if(fruit != 'Apple' || fruit != 'Lemon' || fruit != 'Orange' || fruit != 'Lychee' || fruit != 'Grapes')
+    if(fruit !== 'Apple' || fruit !== 'Lemon' || fruit !== 'Orange' || fruit !== 'Lychee' || fruit !== 'Grapes')
       fruit = 'Scale';
     
     vm.fruit = fruit;
