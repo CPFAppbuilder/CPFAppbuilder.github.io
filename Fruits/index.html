@@ -13,7 +13,7 @@
       <div class="wrapper" v-if="check === false">
         <div class="fruit-title">
           <h2>{{fruit}}</h2>
-          <p>Price/KG: {{prise[fruit]}}</p>
+          <p>Price/Gram: {{prise[fruit]}}</p>
         </div>
         <div class="fruit-left"><img v-bind:src="'img/'+fruit+'.png'"></div>
         <div class="fruit-right">
@@ -24,7 +24,7 @@
             </tr>
             <tr>
               <td>Weight: </td>
-              <td>{{weight}} KG</td>
+              <td>{{weight}} g</td>
             </tr>
             <tr>
               <td>Total: </td>
@@ -44,27 +44,27 @@
         <div class="row">
           <div class="col-md-3">
             <div class="gallery"><img src="img/Apple.png" width="400" height="300">
-              <div class="desc" id="Apple">{{stock['Apple']}} KG</div>
+              <div class="desc" id="Apple">{{stock['Apple']}} G</div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery"><img src="img/Lemon.png" width="400" height="300">
-              <div class="desc" id="Lemon">{{stock['Lemon']}} KG</div>
+              <div class="desc" id="Lemon">{{stock['Lemon']}} G</div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery"><img src="img/Orange.png" width="400" height="300">
-              <div class="desc" id="Orange">{{stock['Orange']}} KG</div>
+              <div class="desc" id="Orange">{{stock['Orange']}} G</div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery"><img src="img/Lychee.png" width="400" height="300">
-              <div class="desc" id="Lychee">{{stock['Lychee']}} KG</div>
+              <div class="desc" id="Lychee">{{stock['Lychee']}} G</div>
             </div>
           </div>
           <div class="col-md-3">
             <div class="gallery"><img src="img/Grapes.png" width="400" height="300">
-              <div class="desc" id="Grapes">{{stock['Grapes']}} KG</div>
+              <div class="desc" id="Grapes">{{stock['Grapes']}} G</div>
             </div>
           </div>
         </div>
