@@ -55,7 +55,7 @@ var vm = new Vue({
 
 function loop() {
   
-  // 1.判斷aop上是否有庫存，若沒有的話先給aop上的每種水果庫存初始數值，
+  // KKK 1.判斷aop上是否有庫存，若沒有的話先給aop上的每種水果庫存初始數值，
   // 若有就下載當前庫存量並存至vm.data.stock
   // if(aop.getStore("Apple")){
   //   // 2. 讓loop每次從aop下載最新庫存
@@ -76,7 +76,7 @@ function loop() {
   var mfruit = cpf.getAiValue("cam.json");
   var weight = cpf.get("weight");
 
-  //這邊把每一秒cpf.get到的string傳到vue的data裡面
+  //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
   vm.mfruit = mfruit;
   vm.mweight = weight;
 
