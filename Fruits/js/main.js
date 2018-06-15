@@ -1,24 +1,32 @@
-
-
 var vm = new Vue({
   el : "#app",
   data : {
       fruits: ['Apple','Lemon','Orange','Lychee','Grapes'],
       mfruit: '{"items": [{"pos": [2, 78, 634, 477], "conf": 0.9493815302848816, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"}]}',
       mweight: '{"weight": 20}',
-      prise: {
+      kgPrise: {
         Apple: 5,
         Lemon: 6,
         Orange: 7,
         Lychee: 8,
-        Grapes: 9
+        Grapes: 9,
+        NoFruit: 0
+      },
+      unitPrise: {
+        Apple: 9,
+        Lemon: 8,
+        Orange: 7,
+        Lychee: 6,
+        Grapes: 5,
+        NoFruit: 0
       },
       stock: {
         Apple: 1000,
         Lemon: 1000,
         Orange: 1000,
         Lychee: 1000,
-        Grapes: 1000
+        Grapes: 1000,
+        NoFruit: 0
       },
       fruit: 'Apple',
       count: '2',
@@ -38,11 +46,22 @@ var vm = new Vue({
   },
   computed: {
     totals: function(){
-      var fruit = this.fruit;
-      var kg = this.weight;
-      var kgPrice = this.prise[fruit];
-      var total = kgPrice*kg;
       
+      var fruit = this.fruit;
+
+      var count = this.count;
+      var kg = this.weight;
+
+      var kgPrice = this.kgPrise[fruit];
+      var unitPrise = this.unitPrise[fruit];
+
+      var total = {
+        kgTotal : kgPrice*kg,
+        unitTotal : unitPrise*count
+      };
+
+      
+
       return total;
       
     }
@@ -72,8 +91,8 @@ function loop() {
   
 
   //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
-  vm.mfruit = cpf.getAiCamValue();
-  vm.mweight = cpf.getAiWeightValue();
+  // vm.mfruit = cpf.getAiCamValue();
+  // vm.mweight = cpf.getAiWeightValue();
 
   //find out how many pieces apple in the scale
   var temp = vm.mfruit;
@@ -91,11 +110,21 @@ function loop() {
     vm.fruit = fruit;
     vm.count = count;
     vm.weight = kg;
-  } 
+  }
+  else{
+    console.log("none");
+    vm.fruit = "Scale";
+    vm.count = 0;
+    vm.weight = 0;
+    
+
+
+  }
    
   
   setTimeout(loop, 1000);
   // console.log(".");
+  
 }
 
 loop();
