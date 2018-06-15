@@ -91,6 +91,10 @@ function loop() {
     vm.fruit = fruit;
     vm.count = count;
     vm.weight = kg;
+  } else {
+    vm.fruit = 'Scale';
+    vm.count = ' ';
+    vm.weight = ' ' kg;
   }
    
   
