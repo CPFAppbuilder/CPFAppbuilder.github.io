@@ -12,7 +12,7 @@ body {
   transform: translate(-50%, -50%);
   width: 80%;
   margin: 10px auto;
-  font-size: 24px;
+  font-size: 20px;
   background-color: #fff;
   border: 1px solid #f1f1f1;
   padding: 50px;
@@ -68,7 +68,7 @@ body {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 24px;
+  font-size: 20px;
   margin: 4px 2px;
   cursor: pointer;
   margin-top: 35px;
