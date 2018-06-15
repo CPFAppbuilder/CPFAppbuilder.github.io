@@ -73,12 +73,14 @@ function loop() {
   
 
   //kanzo+
-  //var mfruit = cpf.get("items");
-  //var weight = cpf.get("weight");
+  if(cpf){
+    var mfruit = cpf.get("items");
+    var weight = cpf.get("weight");
+  }
 
   //Julia 這邊把每一秒cpf.get到的string傳到vue的data裡面
-  // vm.mfruit = mfruit;
-  // vm.mweight = weight;
+  vm.mfruit = mfruit;
+  vm.mweight = weight;
 
   //find out how many pieces apple in the scale
   var temp = vm.mfruit;
