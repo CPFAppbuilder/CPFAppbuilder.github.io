@@ -7,11 +7,11 @@ var vm = new Vue({
       mfruit: '{"items": [{"pos": [2, 78, 634, 477], "conf": 0.9493815302848816, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"}]}',
       mweight: '{"weight": 20}',
       prise: {
-        Apple: 100,
-        Lemon: 150,
-        Orange: 80,
-        Lychee: 200,
-        Grapes: 180
+        Apple: 5,
+        Lemon: 6,
+        Orange: 7,
+        Lychee: 8,
+        Grapes: 9
       },
       stock: {
         Apple: 1000,
