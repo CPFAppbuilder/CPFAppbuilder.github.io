@@ -42,7 +42,7 @@ body {
 }
 .fruit-right {
   /*margin-left: 50%;*/
-  padding-right: 30px;
+  padding-right: 20px;
   text-align: right;
   font-size: 1.2em;
 }
@@ -51,7 +51,7 @@ body {
 }
 .fruit-right td{
   padding-left: 20px;
-  padding-top: 8px;
+  padding-top: 22px;
 }
 .clear {
   clear: both;
