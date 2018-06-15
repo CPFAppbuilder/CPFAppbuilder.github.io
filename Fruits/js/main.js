@@ -84,6 +84,10 @@ function loop() {
     fruit = fruit.charAt(0).toUpperCase() + fruit.slice(1);
     var count = JSON.parse(temp).items.length;
     var kg = JSON.parse(weight).weight;
+     
+    if(fruit != Apple || fruit != Lemon || fruit != Orange || fruit != Lychee || fruit != Grapes)
+      fruit = 'Scale';
+    
     vm.fruit = fruit;
     vm.count = count;
     vm.weight = kg;
