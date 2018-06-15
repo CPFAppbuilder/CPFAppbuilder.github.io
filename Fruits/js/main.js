@@ -70,15 +70,10 @@ function loop() {
   //   break;
   // }
   
-  
-
-  
-  var mfruit = cpf.getAiValue("cam.json");
-  var weight = cpf.getAiValue("scale.json");
 
   //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
-  vm.mfruit = mfruit;
-  vm.mweight = weight;
+  vm.mfruit = cpf.getAiCamValue();
+  vm.mweight = cpf.getAiWeightValue();
 
   //find out how many pieces apple in the scale
   var temp = vm.mfruit;
