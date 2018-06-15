@@ -12,10 +12,13 @@
     <div id="app">
       <div class="wrapper" v-if="check === false">
         <div class="fruit-title">
-          <h2>{{fruit}}</h2>
-          <p>Price/Gram: {{prise[fruit]}}</p>
+          <h2>{{fruit ? fruit : NONE}}</h2>
+          <p v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon'">Price/Piece: {{unitPrise[fruit]}}</p>
+          <p v-if="fruit === 'Lychee' || fruit === 'Grapes'">Price/Gram: {{kgPrise[fruit]}}</p>
         </div>
-        <div class="fruit-left"><img v-bind:src="'img/'+fruit+'.png'"></div>
+        <div class="fruit-left">
+          <transition name="fade"><img id="fruit_img" v-bind:src="'img/'+fruit+'.png'"></transition>
+        </div>
         <div class="fruit-right">
           <table>
             <tr>
@@ -28,14 +31,18 @@
             </tr>
             <tr>
               <td>Total: </td>
-              <td>$ {{totals}}</td>
+              <td v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon'">$ {{totals.unitTotal}}</td>
+              <td v-if="fruit === 'Lychee' || fruit === 'Grapes'">$ {{totals.kgTotal}}</td>
+              <td v-if="fruit === 'Scale'">$ {{totals.kgTotal}}</td>
             </tr>
           </table>
         </div>
         <div class="clear"></div>
-        <!--<div class="fruit-send">
-          <button class="fruit-button" id="btn" v-on:click="checkOut(fruit, weight)">CHECK OUT</button>
-        </div>-->
+        <!--
+        <div class="fruit-send">
+        <button class="fruit-button" id="btn" v-on:click="checkOut(fruit, weight)">CHECK OUT</button>
+        </div>
+        -->
       </div>
       <div class="wrapper" v-if="check">
         <div class="fruit-title">
