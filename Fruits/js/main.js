@@ -74,7 +74,7 @@ function loop() {
 
   
   var mfruit = cpf.getAiValue("cam.json");
-  var weight = cpf.get("weight");
+  var weight = cpf.getAiValue("scale.json");
 
   //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
   vm.mfruit = mfruit;
