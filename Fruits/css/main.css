@@ -4,6 +4,8 @@ body {
   font-family: sans-serif;
   background-color: #fbfbfb!important;
 }
+
+
 .wrapper {
   position: absolute;
   left: 50%;
@@ -12,7 +14,7 @@ body {
   transform: translate(-50%, -50%);
   width: 80%;
   margin: 10px auto;
-  font-size: 26px;
+  font-size: 20px;
   background-color: #fff;
   border: 1px solid #f1f1f1;
   padding: 50px;
@@ -42,7 +44,7 @@ body {
 }
 .fruit-right {
   /*margin-left: 50%;*/
-  padding-right: 26px;
+  padding-right: 20px;
   text-align: right;
   font-size: 1.2em;
 }
@@ -68,7 +70,7 @@ body {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 26px;
+  font-size: 20px;
   margin: 4px 2px;
   cursor: pointer;
   margin-top: 35px;
@@ -104,4 +106,25 @@ div.desc {
 .fruit-right {
     font-size: 1em;
   }
+}
+
+
+/*animation*/
+
+.fade-enter-active {
+  animation: go 1s;
+}
+
+/*.fade-leave-active {
+  animation: back .5s;
+}*/
+
+@keyframes go {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes back {
+  from { opacity: 1 }
+  to { opacity: 0 }
 }
