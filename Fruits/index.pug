@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Acer
+    
+    link(rel="stylesheet" href="assets/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="css/main.css")
+    link(rel="stylesheet", href="assets/bootstrap.min.css")
+    
+    
+  body
+    #app
+      .wrapper(v-if="check === false")
+        .fruit-title
+          h2 {{fruit}}
+          p Price/KG: {{prise[fruit]}}
+        .fruit-left
+          img(v-bind:src="'img/'+fruit+'.png'")
+        .fruit-right
+          table
+            tr
+              td Unit: 
+              td {{count}}
+            tr
+              td Weight: 
+              td {{weight}} KG
+            tr
+              td Total: 
+              td $ {{totals}}
+        .clear
+        .fruit-send
+          button#btn.fruit-button(v-on:click="checkOut(fruit, weight)") CHECK OUT
+      .wrapper(v-if="check")
+        .fruit-title
+          h2 Stock
+        .row
+          .col-md-3
+            .gallery
+              img(src="img/Apple.png" width="300" height="200")
+              #Apple.desc {{stock['Apple']}} KG
+          .col-md-3
+            .gallery
+              img(src="img/Lemon.png" width="300" height="200")
+              #Lemon.desc {{stock['Lemon']}} KG
+          .col-md-3
+            .gallery
+              img(src="img/Orange.png" width="300" height="200")
+              #Orange.desc {{stock['Orange']}} KG
+          .col-md-3
+            .gallery
+              img(src="img/Lychee.png" width="300" height="200")
+              #Lychee.desc {{stock['Lychee']}} KG
+          .col-md-3
+            .gallery
+              img(src="img/Grapes.png" width="300" height="200")
+              #Grapes.desc {{stock['Grapes']}} KG
+        .fruit-send
+            button#btn.fruit-button(v-on:click="backToTop()") BACK
+    script(type="text/javascript" src="assets/jquery-3.2.1.min.js")
+    script(type="text/javascript" src="assets/vue.min.js")
+    script(type="text/javascript" src="js/main.js")

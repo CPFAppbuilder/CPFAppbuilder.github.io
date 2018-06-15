@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acer</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="wrapper" v-if="check === false">
+        <div class="fruit-title">
+          <h2>{{fruit}}</h2>
+          <p>Price/KG: {{prise[fruit]}}</p>
+        </div>
+        <div class="fruit-left"><img v-bind:src="'img/'+fruit+'.png'"></div>
+        <div class="fruit-right">
+          <table>
+            <tr>
+              <td>Unit: </td>
+              <td>{{count}}</td>
+            </tr>
+            <tr>
+              <td>Weight: </td>
+              <td>{{weight}} KG</td>
+            </tr>
+            <tr>
+              <td>Total: </td>
+              <td>$ {{totals}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="clear"></div>
+        <div class="fruit-send">
+          <button class="fruit-button" id="btn" v-on:click="checkOut(fruit, weight)">CHECK OUT</button>
+        </div>
+      </div>
+      <div class="wrapper" v-if="check">
+        <div class="fruit-title">
+          <h2>Stock</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="gallery"><img src="img/Apple.png" width="300" height="200">
+              <div class="desc" id="Apple">{{stock['Apple']}} KG</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery"><img src="img/Lemon.png" width="300" height="200">
+              <div class="desc" id="Lemon">{{stock['Lemon']}} KG</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery"><img src="img/Orange.png" width="300" height="200">
+              <div class="desc" id="Orange">{{stock['Orange']}} KG</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery"><img src="img/Lychee.png" width="300" height="200">
+              <div class="desc" id="Lychee">{{stock['Lychee']}} KG</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="gallery"><img src="img/Grapes.png" width="300" height="200">
+              <div class="desc" id="Grapes">{{stock['Grapes']}} KG</div>
+            </div>
+          </div>
+        </div>
+        <div class="fruit-send">
+          <button class="fruit-button" id="btn" v-on:click="backToTop()">BACK</button>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="assets/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="assets/vue.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>

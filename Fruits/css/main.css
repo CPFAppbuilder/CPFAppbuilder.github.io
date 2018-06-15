@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #fbfbfb!important;
+}
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height:600px;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  margin: 10px auto;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  padding: 50px;
+}
+.fruit-title{
+  text-align: center;
+  margin-bottom: 50px;
+}
+.fruit-title h2{
+  font-size: 2.3em;
+  margin: 5px;
+}
+.fruit-title p{
+  font-size: 1.2em;
+  margin: 10px;
+}
+.fruit-left{
+  width: 50%;
+  text-align: center;
+  float: left;
+  padding-left: 50;
+}
+.fruit-left img{
+  width: 100px;
+  /*margin-left: 5%;*/
+}
+.fruit-right {
+  /*margin-left: 50%;*/
+  padding-right: 50px;
+  text-align: right;
+  font-size: 1.2em;
+}
+.fruit-right table{
+  float: right;
+}
+.fruit-right td{
+  padding-left: 20px;
+  padding-top: 8px;
+}
+.clear {
+  clear: both;
+}
+.fruit-send{
+  text-align: center;
+  margin-top: 30px;
+}
+.fruit-button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-top: 35px;
+}
+button:active {
+  background-color: #fff;
+}
+  
+/****************************************/
+div.gallery {
+  margin: 10px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 130px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+
+@media (max-width: 520px) {
+.fruit-right {
+    font-size: 1em;
+  }
+}
