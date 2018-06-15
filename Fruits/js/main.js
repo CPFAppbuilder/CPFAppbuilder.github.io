@@ -91,8 +91,8 @@ function loop() {
   
 
   //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
-  // vm.mfruit = cpf.getAiCamValue();
-  // vm.mweight = cpf.getAiWeightValue();
+   vm.mfruit = cpf.getAiCamValue();
+   vm.mweight = cpf.getAiWeightValue();
 
   //find out how many pieces apple in the scale
   var temp = vm.mfruit;
