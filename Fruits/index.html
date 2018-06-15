@@ -12,13 +12,20 @@
     <div id="app">
       <div class="wrapper" v-if="check === false">
         <div class="fruit-title">
-          <h2>{{fruit ? fruit : NONE}}</h2>
+          <transition name="fade">
+            <h2 v-if="fruit">{{fruit}}</h2>
+          </transition>
           <p v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon'">Price/Piece: {{unitPrise[fruit]}}</p>
           <p v-if="fruit === 'Lychee' || fruit === 'Grapes'">Price/Gram: {{kgPrise[fruit]}}</p>
         </div>
-        <div class="fruit-left">
-          <transition name="fade"><img id="fruit_img" v-bind:src="'img/'+fruit+'.png'"></transition>
-        </div>
+        <transition-group name="fade" key="fruit_image">
+          <div class="fruit-left" v-if="fruit === 'Apple'" v-bind:key="fruit"><img src="img/Apple.png"></div>
+          <div class="fruit-left" v-if="fruit === 'Orange'" v-bind:key="fruit"><img src="img/Orange.png"></div>
+          <div class="fruit-left" v-if="fruit === 'Lemon'" v-bind:key="fruit"><img src="img/Lemon.png"></div>
+          <div class="fruit-left" v-if="fruit === 'Lychee'" v-bind:key="fruit"><img src="img/Lychee.png"></div>
+          <div class="fruit-left" v-if="fruit === 'Grapes'" v-bind:key="fruit"><img src="img/Grapes.png"></div>
+          <div class="fruit-left" v-if="fruit === 'Scale'" v-bind:key="fruit"><img src="img/Scale.png"></div>
+        </transition-group>
         <div class="fruit-right">
           <table>
             <tr>
@@ -81,7 +88,7 @@
       </div>
     </div>
     <script type="text/javascript" src="assets/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="assets/vue.min.js"></script>
+    <script type="text/javascript" src="assets/vue-2.2.6.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
   </body>
 </html>
