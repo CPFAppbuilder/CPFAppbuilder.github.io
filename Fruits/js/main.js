@@ -54,7 +54,7 @@ var vm = new Vue({
 
 
 function loop() {
-  // Julia詳細說明請參考+++++++++
+  
   // 1.判斷aop上是否有庫存，若沒有的話先給aop上的每種水果庫存初始數值，
   // 若有就下載當前庫存量並存至vm.data.stock
   // if(aop.getStore("Apple")){
@@ -72,11 +72,11 @@ function loop() {
   
   
 
-  //kanzo+
+  
   var mfruit = cpf.getAiValue("cam.json");
   var weight = cpf.get("weight");
 
-  //Julia 這邊把每一秒cpf.get到的string傳到vue的data裡面
+  //這邊把每一秒cpf.get到的string傳到vue的data裡面
   vm.mfruit = mfruit;
   vm.mweight = weight;
 
