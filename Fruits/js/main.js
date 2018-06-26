@@ -96,7 +96,8 @@ function loop() {
   //vm.mweight = '{"weight": 20}';//cpf.getAiWeightValue();
 
   //find out how many pieces apple in the scale
-  var temp = cpf.getAiCamValue();//vm.mfruit;
+  if(cpf)
+    var temp = cpf.getAiCamValue();//vm.mfruit;
   var weight = '{"weight": 20}';
 
   if(weight !== ""){
