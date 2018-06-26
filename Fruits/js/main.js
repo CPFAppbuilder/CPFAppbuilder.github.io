@@ -93,11 +93,11 @@ function loop() {
   //KKK 這邊把每一秒cpf.get到的string傳到vue的data裡面
   //vm.mfruit = '{"items": [{"pos": [2, 78, 634, 477], "conf": 0.9493815302848816, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"},{"pos": [2, 78, 634, 477], "conf": 0.9493815302848817, "cls": "apple"}]}';//cpf.getAiCamValue();
   //vm.mfruit =  cpf.getAiCamValue();
-  vm.mweight = '{"weight": 20}';//cpf.getAiWeightValue();
+  //vm.mweight = '{"weight": 20}';//cpf.getAiWeightValue();
 
   //find out how many pieces apple in the scale
   var temp = cpf.getAiCamValue();//vm.mfruit;
-  var weight = vm.mweight;
+  var weight = '{"weight": 20}';
 
   if(weight !== ""){
     var fruit = JSON.parse(temp).items[0].cls;
