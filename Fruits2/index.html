@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acer</title>
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" href="assets/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika:300,400,600,700">
+</head>
+<div id="app">
+  <div class="wrapper" v-if="check === false">
+    <div class="row">
+      <div class="fruit-title col-xs-12">
+        <transition name="fade">
+          <h2 v-if="fruit === 'Pepper'">Green Pepper</h2>
+          <h2 v-else-if="fruit === 'Scale'">Scale...</h2>
+          <h2 v-else="fruit">{{fruit}}</h2>
+        </transition>
+        <p v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'">Price/Piece: ${{unitPrise[fruit]}}</p>
+        <p v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'">Price/Gram: {{kgPrise[fruit]}}</p>
+        <p class="msg" v-if="msg">{{msg}}</p>
+        <p v-else="msg === ''"> </p>
+      </div>
+    </div>
+    <div class="row">
+      <transition-group class="col-xs-6" name="fade" key="fruit_image">
+        <div class="fruit-left fruit-piece" v-if="fruit === 'Apple'" v-bind:key="fruit"><img v-for="n in count" src="img/Apple.png"></div>
+        <div class="fruit-left fruit-piece" v-if="fruit === 'Orange'" v-bind:key="fruit"><img v-for="n in count" src="img/Orange.png"></div>
+        <div class="fruit-left fruit-piece" v-if="fruit === 'Lemon'" v-bind:key="fruit"><img v-for="n in count" src="img/Lemon.png"></div>
+        <div class="fruit-left fruit-gram" v-if="fruit === 'Lychee'" v-bind:key="fruit"><img src="img/Lychee.png"></div>
+        <div class="fruit-left fruit-gram" v-if="fruit === 'Grapes'" v-bind:key="fruit"><img src="img/Grapes.png"></div>
+        <div class="fruit-left fruit-gram" v-if="fruit === 'Chili'" v-bind:key="fruit"><img src="img/Chili.png"></div>
+        <div class="fruit-left fruit-piece" v-if="fruit === 'Pepper'" v-bind:key="fruit"><img v-for="n in count" src="img/Pepper.png"></div>
+        <div class="fruit-left fruit-gram" v-if="fruit === 'Cauliflower'" v-bind:key="fruit"><img src="img/Cauliflower.png"></div>
+        <div class="fruit-left fruit-gram" v-if="fruit === 'Banana'" v-bind:key="fruit"><img src="img/Banana.png"></div>
+        <div class="fruit-left fruit-sacle" v-if="fruit === 'Scale'" v-bind:key="fruit"><img src="img/Scale.png"></div>
+      </transition-group>
+      <div class="fruit-right col-xs-6">
+        <table>
+          <tr v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'">
+            <td>Unit: </td>
+            <td>{{count}}</td>
+          </tr>
+          <tr v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'">
+            <td>Weight: </td>
+            <td>{{weight}} g</td>
+          </tr>
+          <tr>
+            <td>Total: </td>
+            <td v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'">$ {{totals.unitTotal}}</td>
+            <td v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'">$ {{totals.kgTotal}}</td>
+            <td v-if="fruit === 'Scale'">$ {{totals.kgTotal}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper" v-if="check">
+    <div class="fruit-title">
+      <h2>Stock</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="gallery"><img src="img/Apple.png" width="400" height="300">
+          <div class="desc" id="Apple">{{stock[&apos;Apple&apos;]}} G</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery"><img src="img/Lemon.png" width="400" height="300">
+          <div class="desc" id="Lemon">{{stock[&apos;Lemon&apos;]}} G</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery"><img src="img/Orange.png" width="400" height="300">
+          <div class="desc" id="Orange">{{stock[&apos;Orange&apos;]}} G</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery"><img src="img/Lychee.png" width="400" height="300">
+          <div class="desc" id="Lychee">{{stock[&apos;Lychee&apos;]}} G</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="gallery"><img src="img/Grapes.png" width="400" height="300">
+          <div class="desc" id="Grapes">{{stock[&apos;Grapes&apos;]}} G</div>
+        </div>
+      </div>
+    </div>
+    <div class="fruit-send">
+      <button class="fruit-button" id="btn" v-on:click="backToTop()">BACK</button>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="assets/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="assets/vue.js"></script>
+<script type="text/javascript" src="js/main.js"></script>

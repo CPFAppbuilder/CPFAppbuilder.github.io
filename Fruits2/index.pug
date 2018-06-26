@@ -1,0 +1,89 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Acer
+  link(rel='stylesheet', href='assets/bootstrap.min.css')
+  link(rel='stylesheet', type='text/css', href='css/main.css')
+  link(rel='stylesheet', href='assets/bootstrap.min.css')
+  link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Signika:300,400,600,700")
+#app
+  .wrapper(v-if='check === false')
+    .row
+      .fruit-title.col-xs-12
+        transition(name='fade')
+          h2(v-if="fruit === 'Pepper'") Green Pepper
+          h2(v-else-if="fruit === 'Scale'") Scale...
+          h2(v-else="fruit") {{fruit}}
+        p(v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'") Price/Piece: ${{unitPrise[fruit]}}
+        p(v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'") Price/Gram: {{kgPrise[fruit]}}
+        p.msg(v-if="msg") {{msg}}
+        p(v-else="msg === ''") 
+    .row
+      transition-group.col-xs-6(name='fade', key='fruit_image')
+        .fruit-left.fruit-piece(v-if="fruit === 'Apple'", v-bind:key='fruit')
+          img(v-for="n in count" src='img/Apple.png')
+        .fruit-left.fruit-piece(v-if="fruit === 'Orange'", v-bind:key='fruit')
+          img(v-for="n in count" src='img/Orange.png')
+        .fruit-left.fruit-piece(v-if="fruit === 'Lemon'", v-bind:key='fruit')
+          img(v-for="n in count" src='img/Lemon.png')
+        .fruit-left.fruit-gram(v-if="fruit === 'Lychee'", v-bind:key='fruit')
+          img(src='img/Lychee.png')
+        .fruit-left.fruit-gram(v-if="fruit === 'Grapes'", v-bind:key='fruit')
+          img(src='img/Grapes.png')
+        .fruit-left.fruit-gram(v-if="fruit === 'Chili'", v-bind:key='fruit')
+          img(src='img/Chili.png')
+        .fruit-left.fruit-piece(v-if="fruit === 'Pepper'", v-bind:key='fruit')
+          img(v-for="n in count" src='img/Pepper.png')
+        .fruit-left.fruit-gram(v-if="fruit === 'Cauliflower'", v-bind:key='fruit')
+          img(src='img/Cauliflower.png')
+        .fruit-left.fruit-gram(v-if="fruit === 'Banana'", v-bind:key='fruit')
+          img(src='img/Banana.png')
+        .fruit-left.fruit-sacle(v-if="fruit === 'Scale'", v-bind:key='fruit')
+          img(src='img/Scale.png')
+      
+      .fruit-right.col-xs-6
+        table
+          tr(v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'")
+            td Unit: 
+            td {{count}}
+          tr(v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'")
+            td Weight: 
+            td {{weight}} g
+          tr
+            td Total: 
+            td(v-if="fruit === 'Apple' || fruit === 'Orange' || fruit === 'Lemon' || fruit === 'Pepper'") $ {{totals.unitTotal}}
+            td(v-if="fruit === 'Lychee' || fruit === 'Grapes' || fruit === 'Chili' || fruit === 'Cauliflower' || fruit === 'Banana'") $ {{totals.kgTotal}}
+            td(v-if="fruit === 'Scale'") $ {{totals.kgTotal}}
+    
+
+    
+  .wrapper(v-if='check')
+    .fruit-title
+      h2 Stock
+    .row
+      .col-md-3
+        .gallery
+          img(src='img/Apple.png', width='400', height='300')
+          #Apple.desc {{stock[&apos;Apple&apos;]}} G
+      .col-md-3
+        .gallery
+          img(src='img/Lemon.png', width='400', height='300')
+          #Lemon.desc {{stock[&apos;Lemon&apos;]}} G
+      .col-md-3
+        .gallery
+          img(src='img/Orange.png', width='400', height='300')
+          #Orange.desc {{stock[&apos;Orange&apos;]}} G
+      .col-md-3
+        .gallery
+          img(src='img/Lychee.png', width='400', height='300')
+          #Lychee.desc {{stock[&apos;Lychee&apos;]}} G
+      .col-md-3
+        .gallery
+          img(src='img/Grapes.png', width='400', height='300')
+          #Grapes.desc {{stock[&apos;Grapes&apos;]}} G
+    .fruit-send
+      button#btn.fruit-button(v-on:click='backToTop()') BACK
+script(type='text/javascript', src='assets/jquery-3.2.1.min.js')
+script(type='text/javascript', src='assets/vue.js')
+script(type='text/javascript', src='js/main.js')
