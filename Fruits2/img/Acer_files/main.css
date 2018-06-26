@@ -1,0 +1,211 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #fbfbfb!important;
+
+}
+
+*{
+  /*border: solid 1px;*/
+  font-family: 'Signika', sans-serif;
+  color: #333;
+}
+
+h2{
+  font-weight: 700 !important;
+}
+
+p, td{
+  font-weight: 300;
+  color: #444 !important;
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height:90%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  /*margin: 10px auto;*/
+  font-size: 20px;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  padding: 100px 100px !important;
+}
+.fruit-title{
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 15px;
+}
+.fruit-title h2{
+  font-size: 2.3em;
+  margin: 5px;
+}
+.fruit-title p{
+  font-size: 1.2em;
+  margin: 10px;
+}
+
+.fruit-title .msg{
+  font-size: 1em;
+  margin: 10px;
+  color: red !important;
+}
+
+.fruit-left{
+/*  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);*/
+}
+
+.fruit-left.fruit-piece{
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /*text-align: center;*/
+  /*float: left;*/
+  /*padding-left: 50;*/
+}
+
+.fruit-gram img{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+
+}
+.fruit-piece img{
+  width: 120px;
+}
+.fruit-left img:nth-child(odd){
+  
+  /*margin-left: 5%;*/
+}
+.fruit-left img:nth-child(even){
+  
+  /*margin-left: 5%;*/
+}
+.fruit-right {
+  position: relative;
+  /*margin-left: 50%;*/
+  padding-right: 20px;
+  text-align: right;
+  font-size: 1.2em;
+}
+.fruit-right table{
+
+  float: right;
+}
+.fruit-right td{
+  padding-left: 60px;
+  padding-top: 22px;
+}
+.clear {
+  clear: both;
+}
+.fruit-send{
+  text-align: center;
+  margin-top: 30px;
+}
+.fruit-button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-top: 35px;
+}
+button:active {
+  background-color: #fff;
+}
+  
+/****************************************/
+div.gallery {
+  margin: 10px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 130px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+
+@media (max-width: 520px) {
+  .fruit-right {
+    font-size: 1em;
+  }
+
+}
+
+@media (min-width: 1920px) {
+  .fruit-gram img{
+    width: 420px;
+
+  }
+  .fruit-piece img{
+    width: 200px;
+  }
+
+  .wrapper{
+    padding: 100px 150px !important;
+  }
+
+  .fruit-right {
+    font-size: 3em;
+  }
+  .fruit-title h2{
+    font-size: 7em;
+    margin: 10px;
+  }
+  .fruit-title p{
+    font-size: 4em;
+    margin: 20px;
+  }
+  .fruit-title .msg{
+    font-size: 3em;
+    font-weight: 500;
+    margin: 10px;
+    color: red !important;
+  }
+
+
+}
+
+/*animation*/
+
+.fade-enter-active {
+  animation: go 1s;
+}
+
+/*.fade-leave-active {
+  animation: back .5s;
+}*/
+
+@keyframes go {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes back {
+  from { opacity: 1 }
+  to { opacity: 0 }
+}
