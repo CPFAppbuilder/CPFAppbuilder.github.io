@@ -1,0 +1,23 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "Segoe UI Light", "Century Gothic", sans-serif;
+}
+
+h1#output{
+	display: block;
+	background: rgb(255,50,20);
+	color: white;
+	font-size: 5.5em;
+	text-align: center;
+}
+
+/*
+
+@media screen and (min-width: 640px){
+	h1#output{
+		width: 1%;
+	}
+}
+
+*/
