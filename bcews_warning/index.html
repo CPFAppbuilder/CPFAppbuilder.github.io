@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			
+			function setup(){
+				if(cpf){
+					cpf.setPinMode('["resetPin"],["setPinMode", "digital", 2, "INPUT"]'); 
+				}
+			}
+		
+			function loop(){
+				$("h1#output").html(cpf);
+				setTimeout(loop, 100);
+			}	
+		
+		});
+		</script>
+	</head>
+	<body>
+		<h1 id="output">CPF Not Connected</h1>
+	</body>
+</html>
